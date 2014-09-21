@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7503FD5F197757B10039A366 /* OrangeCard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7503FD5E197757B10039A366 /* OrangeCard.xcassets */; };
+		759EE0170B2CB8BF0001D1B0 /* CardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; };
+		759EE0180B2CB8C90001D1B0 /* CardView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C470A8F78D1003AAE72 /* CardActionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C480A8F78D1003AAE72 /* CardActionCell.m */; };
+		75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C490A8F78D1003AAE72 /* CardImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */; };
+		75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */; };
+		75AC2C5B0A8F78D1003AAE72 /* CardTextContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C5C0A8F78D1003AAE72 /* CardTextContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */; };
+		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
+		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2CC40A8F7B99003AAE72 /* orangecard-main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2CC00A8F7B99003AAE72 /* orangecard-main.m */; };
+		75AC2CC60A8F7B99003AAE72 /* OrangeCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2CC30A8F7B99003AAE72 /* OrangeCardController.m */; };
+		75AC2D210A8F839A003AAE72 /* OrangeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75AC2D200A8F839A003AAE72 /* OrangeCard.xib */; };
+		75C9BD8F19745834002F4088 /* drop-Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 75C9BD8E19745834002F4088 /* drop-Template.pdf */; };
+		75D6A83D0B35C94C00ECEF08 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D6A83C0B35C94C00ECEF08 /* Card.xib */; };
+		75D6A8410B35C98200ECEF08 /* OrangeCardDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D6A83F0B35C98200ECEF08 /* OrangeCardDelegate.m */; };
+		75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DE4323196E6A1B0022311F /* CardViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE4324196E6A1B0022311F /* CardViewCell.m */; };
+		75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75FA0B861981A52A000AFFE3 /* NSPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */; };
+		75FA0B8C1981B14F000AFFE3 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B8B1981B14F000AFFE3 /* PFMoveApplication.m */; };
+		75FA0B8E1981B1B1000AFFE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FA0B8D1981B1B1000AFFE3 /* Security.framework */; };
+		75FA0B901981B214000AFFE3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FA0B8F1981B214000AFFE3 /* Sparkle.framework */; };
+		75FA0B911981BEF7000AFFE3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75FA0B8F1981B214000AFFE3 /* Sparkle.framework */; };
+		75FD72DD1966A44A004C54DD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FD72DC1966A44A004C54DD /* WebKit.framework */; };
+		75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75AC2CCA0A8F7F0D003AAE72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = CardView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		75AC2D410A8F843C003AAE72 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				759EE0180B2CB8C90001D1B0 /* CardView.framework in CopyFiles */,
+				75FA0B911981BEF7000AFFE3 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* CardView.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.pch; sourceTree = "<group>"; };
+		7503FD5C197757870039A366 /* OrangeCardIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = OrangeCardIcon.pdf; sourceTree = "<group>"; };
+		7503FD5E197757B10039A366 /* OrangeCard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = OrangeCard.xcassets; sourceTree = "<group>"; };
+		75AC2C470A8F78D1003AAE72 /* CardActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardActionCell.h; sourceTree = "<group>"; };
+		75AC2C480A8F78D1003AAE72 /* CardActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardActionCell.m; sourceTree = "<group>"; };
+		75AC2C490A8F78D1003AAE72 /* CardImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImageCell.h; sourceTree = "<group>"; };
+		75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardImageCell.m; sourceTree = "<group>"; };
+		75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSeparatorCell.h; sourceTree = "<group>"; };
+		75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSeparatorCell.m; sourceTree = "<group>"; };
+		75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextContainer.h; sourceTree = "<group>"; };
+		75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextContainer.m; sourceTree = "<group>"; };
+		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
+		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
+		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		75AC2C790A8F7A32003AAE72 /* Orange Card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orange Card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75AC2CC00A8F7B99003AAE72 /* orangecard-main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "orangecard-main.m"; sourceTree = "<group>"; };
+		75AC2CC10A8F7B99003AAE72 /* OrangeCard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OrangeCard.plist; sourceTree = "<group>"; };
+		75AC2CC20A8F7B99003AAE72 /* OrangeCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeCardController.h; sourceTree = "<group>"; };
+		75AC2CC30A8F7B99003AAE72 /* OrangeCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeCardController.m; sourceTree = "<group>"; };
+		75AC2D200A8F839A003AAE72 /* OrangeCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrangeCard.xib; sourceTree = "<group>"; };
+		75C9BD8E19745834002F4088 /* drop-Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "drop-Template.pdf"; sourceTree = "<group>"; };
+		75D6A83C0B35C94C00ECEF08 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
+		75D6A83E0B35C98200ECEF08 /* OrangeCardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeCardDelegate.h; sourceTree = "<group>"; };
+		75D6A83F0B35C98200ECEF08 /* OrangeCardDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeCardDelegate.m; sourceTree = "<group>"; };
+		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
+		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
+		75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPasteboard+CardView.h"; sourceTree = "<group>"; };
+		75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPasteboard+CardView.m"; sourceTree = "<group>"; };
+		75FA0B871981AF8C000AFFE3 /* sign_bundles.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sign_bundles.sh; sourceTree = "<group>"; };
+		75FA0B8A1981B14F000AFFE3 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
+		75FA0B8B1981B14F000AFFE3 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
+		75FA0B8D1981B1B1000AFFE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		75FA0B8F1981B214000AFFE3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		75FD72DC1966A44A004C54DD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CardView.h"; sourceTree = "<group>"; };
+		75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CardView.m"; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* CardView.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardView.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		75AC2C770A8F7A32003AAE72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75FA0B8E1981B1B1000AFFE3 /* Security.framework in Frameworks */,
+				75FD72DD1966A44A004C54DD /* WebKit.framework in Frameworks */,
+				759EE0170B2CB8BF0001D1B0 /* CardView.framework in Frameworks */,
+				75FA0B901981B214000AFFE3 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* CardView.framework */,
+				75AC2C790A8F7A32003AAE72 /* Orange Card.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* CardView.plist */,
+				32DBCF5E0370ADEE00C91783 /* CardView.pch */,
+				75AC2C600A8F78D9003AAE72 /* CardView.h */,
+				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
+				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
+				75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */,
+				75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */,
+				75DE4323196E6A1B0022311F /* CardViewCell.h */,
+				75DE4324196E6A1B0022311F /* CardViewCell.m */,
+				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
+				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
+				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
+				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
+				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
+				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
+				75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */,
+				75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */,
+				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
+				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+				75AC2CBF0A8F7B99003AAE72 /* OrangeCard */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = CardView;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75FA0B8D1981B1B1000AFFE3 /* Security.framework */,
+				75FD72DC1966A44A004C54DD /* WebKit.framework */,
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		75AC2CBF0A8F7B99003AAE72 /* OrangeCard */ = {
+			isa = PBXGroup;
+			children = (
+				75FA0B871981AF8C000AFFE3 /* sign_bundles.sh */,
+				75AC2CC10A8F7B99003AAE72 /* OrangeCard.plist */,
+				7503FD5C197757870039A366 /* OrangeCardIcon.pdf */,
+				75C9BD8E19745834002F4088 /* drop-Template.pdf */,
+				75AC2CC00A8F7B99003AAE72 /* orangecard-main.m */,
+				75D6A83E0B35C98200ECEF08 /* OrangeCardDelegate.h */,
+				75D6A83F0B35C98200ECEF08 /* OrangeCardDelegate.m */,
+				75AC2CC20A8F7B99003AAE72 /* OrangeCardController.h */,
+				75AC2CC30A8F7B99003AAE72 /* OrangeCardController.m */,
+				75FA0B8A1981B14F000AFFE3 /* PFMoveApplication.h */,
+				75FA0B8B1981B14F000AFFE3 /* PFMoveApplication.m */,
+				75AC2D200A8F839A003AAE72 /* OrangeCard.xib */,
+				75D6A83C0B35C94C00ECEF08 /* Card.xib */,
+				75FA0B8F1981B214000AFFE3 /* Sparkle.framework */,
+				7503FD5E197757B10039A366 /* OrangeCard.xcassets */,
+			);
+			path = OrangeCard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */,
+				75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */,
+				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
+				75AC2C5B0A8F78D1003AAE72 /* CardTextContainer.h in Headers */,
+				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
+				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
+				75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */,
+				75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */,
+				75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		75AC2C780A8F7A32003AAE72 /* Orange Card */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75AC2C7C0A8F7A34003AAE72 /* Build configuration list for PBXNativeTarget "Orange Card" */;
+			buildPhases = (
+				75AC2C750A8F7A32003AAE72 /* Resources */,
+				75AC2C760A8F7A32003AAE72 /* Sources */,
+				75AC2C770A8F7A32003AAE72 /* Frameworks */,
+				75AC2D410A8F843C003AAE72 /* CopyFiles */,
+				75FA0B921981BFC2000AFFE3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75AC2CCB0A8F7F0D003AAE72 /* PBXTargetDependency */,
+			);
+			name = "Orange Card";
+			productName = CardInfo;
+			productReference = 75AC2C790A8F7A32003AAE72 /* Orange Card.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8DC2EF4F0486A6940098B216 /* CardView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardView;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = CardView;
+			productReference = 8DC2EF5B0486A6940098B216 /* CardView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				TargetAttributes = {
+					75AC2C780A8F7A32003AAE72 = {
+						DevelopmentTeam = E8G8ARB44Z;
+					};
+				};
+			};
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CardView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* CardView */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* CardView */,
+				75AC2C780A8F7A32003AAE72 /* Orange Card */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75AC2C750A8F7A32003AAE72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AC2D210A8F839A003AAE72 /* OrangeCard.xib in Resources */,
+				7503FD5F197757B10039A366 /* OrangeCard.xcassets in Resources */,
+				75D6A83D0B35C94C00ECEF08 /* Card.xib in Resources */,
+				75C9BD8F19745834002F4088 /* drop-Template.pdf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		75FA0B921981BFC2000AFFE3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh OrangeCard/sign_bundles.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75AC2C760A8F7A32003AAE72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AC2CC40A8F7B99003AAE72 /* orangecard-main.m in Sources */,
+				75AC2CC60A8F7B99003AAE72 /* OrangeCardController.m in Sources */,
+				75D6A8410B35C98200ECEF08 /* OrangeCardDelegate.m in Sources */,
+				75FA0B8C1981B14F000AFFE3 /* PFMoveApplication.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75FA0B861981A52A000AFFE3 /* NSPasteboard+CardView.m in Sources */,
+				75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */,
+				75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */,
+				75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */,
+				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
+				75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */,
+				75AC2C5C0A8F78D1003AAE72 /* CardTextContainer.m in Sources */,
+				75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		75AC2CCB0A8F7F0D003AAE72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* CardView */;
+			targetProxy = 75AC2CCA0A8F7F0D003AAE72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CardView.pch;
+				INFOPLIST_FILE = CardView.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = CardView;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CardView.pch;
+				INFOPLIST_FILE = CardView.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = CardView;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Alf Watt";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+			};
+			name = Release;
+		};
+		75AC2C7D0A8F7A34003AAE72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OrangeCard",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "$(SRCROOT)/OrangeCard/OrangeCard.plist";
+				INSTALL_PATH = /Applications/Utilities;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = "Orange Card";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		75AC2C7E0A8F7A34003AAE72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OrangeCard",
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "$(SRCROOT)/OrangeCard/OrangeCard.plist";
+				INSTALL_PATH = /Applications/Utilities;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = "Orange Card";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CardView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75AC2C7C0A8F7A34003AAE72 /* Build configuration list for PBXNativeTarget "Orange Card" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75AC2C7D0A8F7A34003AAE72 /* Debug */,
+				75AC2C7E0A8F7A34003AAE72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
