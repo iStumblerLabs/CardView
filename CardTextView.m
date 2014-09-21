@@ -60,7 +60,8 @@
     self = [super initWithFrame:frame];
     if (self) 
     {
-        [self createButton];
+        self.tabStop = 100;
+        self.tabGutter = 10;
     }
     return self;
 }
@@ -74,27 +75,20 @@
     return [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
 }
 
-- (void) createButton
-{
-    card_button = [NSButton new];
-    [self addSubview:card_button];
-    [card_button setFrame:NSMakeRect(10,10,64,64)];
-    [card_button setButtonType:NSMomentaryPushInButton];
-    [card_button setBezelStyle:NSShadowlessSquareBezelStyle];
-    [card_button setBordered:NO];
-    [card_button setImagePosition:NSImageOnly];
-}
-
-- (NSButton*) button
-{
-    return card_button;
-}
-
 #pragma mark - append methods
 
 - (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth
 {
     NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:[NSFont smallSystemFontSize] tabStop:tabStop gutterWidth:gutterWidth];
+    if( !string) string = @"-";
+    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+    [[self textStorage] appendAttributedString:attrString];
+    return attrString;
+}
+
+- (NSAttributedString*) appendTabString:(NSString*) string
+{
+    NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:[NSFont smallSystemFontSize] tabStop:self.tabStop gutterWidth:self.tabGutter];
     if( !string) string = @"-";
     NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
     [[self textStorage] appendAttributedString:attrString];
@@ -155,7 +149,11 @@
     NSAttributedString* attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
     [[self textStorage] appendAttributedString:attrString];
     return attrString;
+}
 
+- (NSAttributedString*) appendNewline
+{
+    return [self appendValueString:@"\n"];
 }
 
 #pragma mark - NSMenuValidation

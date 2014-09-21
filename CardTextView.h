@@ -8,9 +8,10 @@
 
 @interface CardTextView : NSTextView
 {
-    NSButton* card_button;
 	NSRect baseFrame;
 }
+@property(nonatomic,assign) CGFloat tabStop;
+@property(nonatomic,assign) CGFloat tabGutter;
 
 + (NSParagraphStyle*) cardViewTabsStyleForTabStop:(CGFloat) tabLocation gutterWidth:(CGFloat) gutterWidth;
 + (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth;
@@ -27,6 +28,7 @@
 #pragma mark - append methods
 
 - (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth;
+- (NSAttributedString*) appendTabString:(NSString*) string;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
 - (NSAttributedString*) appendNoneString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
@@ -34,6 +36,7 @@
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(NSImage*) image;
+- (NSAttributedString*) appendNewline;
 
 @end
 
