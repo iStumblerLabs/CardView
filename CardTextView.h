@@ -22,8 +22,6 @@
 + (NSDictionary*) cardViewKeywordAttributesForSize:(CGFloat) fontSize;
 
 - (NSTextAttachment*) clickedAttachment;
-- (void) createButton;
-- (NSButton*) button;
 
 #pragma mark - append methods
 
