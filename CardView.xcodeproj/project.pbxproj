@@ -34,7 +34,7 @@
 		75FA0B8C1981B14F000AFFE3 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B8B1981B14F000AFFE3 /* PFMoveApplication.m */; };
 		75FA0B8E1981B1B1000AFFE3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FA0B8D1981B1B1000AFFE3 /* Security.framework */; };
 		75FA0B901981B214000AFFE3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FA0B8F1981B214000AFFE3 /* Sparkle.framework */; };
-		75FA0B911981BEF7000AFFE3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75FA0B8F1981B214000AFFE3 /* Sparkle.framework */; };
+		75FA0B911981BEF7000AFFE3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75FA0B8F1981B214000AFFE3 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		75FD72DD1966A44A004C54DD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FD72DC1966A44A004C54DD /* WebKit.framework */; };
 		75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
@@ -347,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh OrangeCard/sign_bundles.sh";
+			shellScript = "# /bin/sh OrangeCard/sign_bundles.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
