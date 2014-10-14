@@ -32,7 +32,7 @@
         [self.cardView.textStorage appendAttributedString:sellString];
         
         NSMutableDictionary* linked = [[CardTextView cardViewCenteredAttributesForSize:[NSFont systemFontSize]] mutableCopy];
-        [linked setObject:[NSURL URLWithString:@"https://istumbler.net"] forKey:NSLinkAttributeName];
+        [linked setObject:[NSURL URLWithString:@"https://istumbler.net?ref=oc"] forKey:NSLinkAttributeName];
         NSAS* trystring = [[NSAS alloc] initWithString:@"Try iStumbler!" attributes:linked];
         [self.cardView.textStorage appendAttributedString:trystring];
         
