@@ -10,8 +10,6 @@ iStumbler Labs Card View Framework &amp; Orange Card Source Code
 
 ### CardTextContainer
 
-### 
-
 ## Categories
 
 ### NSAttributedString+CardView
@@ -26,8 +24,8 @@ iStumbler Labs Card View Framework &amp; Orange Card Source Code
 
 ## Credits
 
-PFMoveApplication
-Sparkle
+- PFMoveApplication
+- Sparkle
 
 ## License
 
