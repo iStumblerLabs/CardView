@@ -8,19 +8,38 @@ iStumbler Labs Card View Framework &amp; Orange Card Source Code
 
 ### CardTextView
 
+A subclass of NSTextView
+
 ### CardTextContainer
+
+A subclass of NSTextContainer
+
+### CardImageCell
+
+An NSCell for displaying images in a CardTextView
+
+### CardSeparatorCell
+
+An NSCell for displaying a seperator line in a CardTextView
+
+### CardActionCell
+
+An NSCell for displaying a button in a CardTextView
 
 ## Categories
 
-### NSAttributedString+CardView
-
-### NSPasteboard+CardView
+- NSAttributedString+CardView
+- NSPasteboard+CardView
 
 ## Orange Card
 
 ### OrangeCardController
 
+NSWindowControler for the OrangeCard primary window
+
 ### OrangeCardDelegate
+
+NSApplication delegate class for OrageCard
 
 ## Credits
 
