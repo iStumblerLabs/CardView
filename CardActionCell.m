@@ -153,6 +153,6 @@
 
 @end
 
-/* Copyright (c) 2014, Alf Watt (alf@istumbler.net). All rights reserved.
+/* Copyright (c) 2014-2015, Alf Watt (alf@istumbler.net). All rights reserved.
 Redistribution and use permitted under BSD-Style license in license.txt. */
 
