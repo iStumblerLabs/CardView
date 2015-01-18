@@ -69,10 +69,11 @@
 - (NSTextAttachment*) clickedAttachment
 {
     NSPoint click = [self convertPoint:[[NSApp currentEvent] locationInWindow] fromView:nil];
-    click.y -= [self textContainerInset].height;
-    click.x -= [self textContainerInset].width;
+            click.y -= [self textContainerInset].height;
+            click.x -= [self textContainerInset].width;
     NSUInteger index = [[self layoutManager] glyphIndexForPoint:click inTextContainer:[self textContainer]];
-    return [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+    NSTextAttachment* attachment = [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+    return attachment;
 }
 
 #pragma mark - append methods
@@ -133,7 +134,8 @@
 
 - (NSAttributedString*) appendHorizontalRule;
 {
-    return [self appendHorizontalRuleWithColor:[NSColor grayColor] width:1];
+    NSAS* rule = [self appendHorizontalRuleWithColor:[NSColor grayColor] width:1];
+    return rule;
 }
 
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width
@@ -153,7 +155,8 @@
 
 - (NSAttributedString*) appendNewline
 {
-    return [self appendValueString:@"\n"];
+    NSAS* newline = [self appendValueString:@"\n"];
+    return newline;
 }
 
 #pragma mark - NSMenuValidation
@@ -226,7 +229,6 @@
 }
 
 /*
-#pragma mark NSTextView Methods
 
 - (NSPoint) textContainerOrigin
 {
