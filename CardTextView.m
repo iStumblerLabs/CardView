@@ -15,11 +15,36 @@
     return style;
 }
 
++ (NSParagraphStyle*) cardViewTabsStyleForTabStops:(NSArray*) tabStops
+{
+    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
+    NSMutableArray* stops = [NSMutableArray new];
+    for ( NSNumber* stop in tabStops)
+    {
+        [stops addObject:[[NSTextTab alloc] initWithType:NSLeftTabStopType location:[stop doubleValue]]];
+    }
+    [style setTabStops:stops];
+    return style;
+}
 
 + (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth
 {
     NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
     return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStop:tabStop gutterWidth:gutterWidth],
+              NSFontAttributeName: tag_font};
+}
+
++ (NSDictionary*) cardViewTabsHeaderAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops
+{
+    NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
+    return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStops:tabStops],
+              NSFontAttributeName: tag_font};
+}
+
++ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops
+{
+    NSFont* tag_font = [NSFont systemFontOfSize:fontSize];
+    return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStops:tabStops],
               NSFontAttributeName: tag_font};
 }
 
@@ -81,6 +106,34 @@
 - (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth
 {
     NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:[NSFont smallSystemFontSize] tabStop:tabStop gutterWidth:gutterWidth];
+    if( !string) string = @"-";
+    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+    [[self textStorage] appendAttributedString:attrString];
+    return attrString;
+}
+
+- (NSAttributedString*) appendTabHeaderString:(NSString*) string tabStops:(NSArray*) tabStops
+{
+    NSDictionary* attrs = [CardTextView cardViewTabsHeaderAttributesForSize:[NSFont smallSystemFontSize] tabStops:tabStops];
+    if( !string) string = @"-";
+    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+    [[self textStorage] appendAttributedString:attrString];
+    return attrString;
+}
+
+- (NSAttributedString*) appendTabSubheaderString:(NSString*) string tabStops:(NSArray*) tabStops
+{
+    NSMutableDictionary* attrs = [[CardTextView cardViewTabsAttributesForSize:[NSFont smallSystemFontSize] tabStops:tabStops] mutableCopy];
+    [attrs setValue:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
+    if( !string) string = @"-";
+    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+    [[self textStorage] appendAttributedString:attrString];
+    return attrString;
+}
+
+- (NSAttributedString*) appendTabString:(NSString*) string tabStops:(NSArray*) tabStops
+{
+    NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:[NSFont smallSystemFontSize] tabStops:tabStops];
     if( !string) string = @"-";
     NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
     [[self textStorage] appendAttributedString:attrString];

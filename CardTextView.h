@@ -14,7 +14,9 @@
 @property(nonatomic,assign) CGFloat tabGutter;
 
 + (NSParagraphStyle*) cardViewTabsStyleForTabStop:(CGFloat) tabLocation gutterWidth:(CGFloat) gutterWidth;
-+ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth;
++ (NSDictionary*) cardViewTabsHeaderAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops;
++ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth; // MEH
++ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops;
 + (NSDictionary*) cardViewCenteredAttributesForSize:(CGFloat) fontSize;
 + (NSDictionary*) cardViewLabelAttributesForSize:(CGFloat) fontSize;
 + (NSDictionary*) cardViewNoneAttributesForSize:(CGFloat) fontSize;
@@ -26,7 +28,10 @@
 #pragma mark - append methods
 
 - (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth;
+- (NSAttributedString*) appendTabString:(NSString*) string tabStops:(NSArray*) tabStops; // array of NSNumbers
 - (NSAttributedString*) appendTabString:(NSString*) string;
+- (NSAttributedString*) appendTabHeaderString:(NSString*) string tabStops:(NSArray*) tabStops;
+- (NSAttributedString*) appendTabSubheaderString:(NSString*) string tabStops:(NSArray*) tabStops;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
 - (NSAttributedString*) appendNoneString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
