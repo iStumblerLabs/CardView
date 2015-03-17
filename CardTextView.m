@@ -21,7 +21,7 @@
     NSMutableArray* stops = [NSMutableArray new];
     for ( NSNumber* stop in tabStops)
     {
-        [stops addObject:[[NSTextTab alloc] initWithType:NSLeftTabStopType location:[stop doubleValue]]];
+        [stops addObject:[[NSTextTab alloc] initWithType:([stop doubleValue]>0?NSLeftTabStopType:NSRightTabStopType) location:fabs([stop doubleValue])]];
     }
     [style setTabStops:stops];
     return style;
