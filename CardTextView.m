@@ -219,17 +219,17 @@
     BOOL isValid = YES;
     
     if( menuItem.action == @selector(cut:)
-       || menuItem.action == @selector(copy:)
-       || menuItem.action == @selector(paste:)
-       || menuItem.action == @selector(pasteSearch:)
-       || menuItem.action == @selector(pasteRuler:)
-       || menuItem.action == @selector(pasteFont:)
-       || menuItem.action == @selector(delete:))
+     || menuItem.action == @selector(copy:)
+     || menuItem.action == @selector(paste:)
+     || menuItem.action == @selector(pasteSearch:)
+     || menuItem.action == @selector(pasteRuler:)
+     || menuItem.action == @selector(pasteFont:)
+     || menuItem.action == @selector(delete:))
         isValid = YES;
     else
         isValid = [super validateMenuItem:menuItem];
-        
-    NSLog(@"validated: %@ %@", (isValid?@"YES":@"NO"), menuItem);
+
+//    NSLog(@"%@ validated: %@ %@", [self className], (isValid?@"YES":@"NO"), menuItem);
     return isValid;
 }
 
