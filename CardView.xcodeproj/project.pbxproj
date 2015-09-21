@@ -289,7 +289,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					75AC2C780A8F7A32003AAE72 = {
 						DevelopmentTeam = E8G8ARB44Z;
@@ -411,6 +411,7 @@
 				GCC_PREFIX_HEADER = CardView.pch;
 				INFOPLIST_FILE = CardView.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.cardview;
 				PRODUCT_NAME = CardView;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -436,6 +437,7 @@
 				GCC_PREFIX_HEADER = CardView.pch;
 				INFOPLIST_FILE = CardView.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.cardview;
 				PRODUCT_NAME = CardView;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -458,6 +460,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -521,6 +524,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.desklampx.orangecard;
 				PRODUCT_NAME = "Orange Card";
 				WRAPPER_EXTENSION = app;
 			};
@@ -548,6 +552,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.desklampx.orangecard;
 				PRODUCT_NAME = "Orange Card";
 				WRAPPER_EXTENSION = app;
 			};
