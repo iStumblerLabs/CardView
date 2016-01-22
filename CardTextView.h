@@ -5,13 +5,10 @@
     @abstract    Implements an Address Book Card style text view
     @discussion  
 */
-
 @interface CardTextView : NSTextView
-{
-	NSRect baseFrame;
-}
 @property(nonatomic,assign) CGFloat tabStop;
 @property(nonatomic,assign) CGFloat tabGutter;
+@property(nonatomic,assign) CGFloat fontSize;
 
 + (NSParagraphStyle*) cardViewTabsStyleForTabStop:(CGFloat) tabLocation gutterWidth:(CGFloat) gutterWidth;
 + (NSDictionary*) cardViewTabsHeaderAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops;
@@ -39,6 +36,8 @@
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(NSImage*) image;
+- (NSAttributedString*) appendFormatted:(id) object;
+- (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
 - (NSAttributedString*) appendNewline;
 
 @end
