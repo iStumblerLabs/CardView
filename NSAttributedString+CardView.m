@@ -18,7 +18,7 @@
 + (NSAttributedString*) attributedString:(NSString*)string withLink:(NSURL*) url
 {
     NSDictionary* attrs = @{NSFontAttributeName: [NSFont systemFontOfSize:10.0],
-        NSUnderlineStyleAttributeName: @(NSSingleUnderlineStyle),
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
         NSForegroundColorAttributeName: [NSColor blueColor], // TODO get link color from safari
         NSLinkAttributeName: [url absoluteString]};
     return [[NSAttributedString alloc] initWithString:string
@@ -48,3 +48,6 @@
 }
 
 @end
+
+/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+Redistribution and use permitted under BSD-Style license in README.md. */

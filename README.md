@@ -2,7 +2,7 @@
 
 ========
 
-iStumbler Labs Card View Framework &amp; Orange Card Source Code
+iStumbler Labs CardView.Framework
 
 ## Classes
 
@@ -31,20 +31,7 @@ An NSCell for displaying a button in a CardTextView
 - NSAttributedString+CardView
 - NSPasteboard+CardView
 
-## Orange Card
-
-### OrangeCardController
-
-NSWindowControler for the OrangeCard primary window
-
-### OrangeCardDelegate
-
-NSApplication delegate class for OrageCard
-
-## Credits
-
-- PFMoveApplication
-- Sparkle
+========
 
 ## License
 

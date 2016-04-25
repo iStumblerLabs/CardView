@@ -15,7 +15,7 @@
     if ((self = [super init]))
     {
         image_cell = [[NSImageCell alloc] initImageCell:cell_image];
-        [image_cell setImageScaling:NSScaleProportionally];
+        [image_cell setImageScaling:NSImageScaleProportionallyUpOrDown];
     }
     return self;
 }
@@ -48,5 +48,5 @@
 
 @end
 
-/* Copyright (c) 2014-2015, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in license.txt. */
+/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+Redistribution and use permitted under BSD-Style license in README.md. */
