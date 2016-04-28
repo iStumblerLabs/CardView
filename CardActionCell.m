@@ -10,8 +10,7 @@
 
 - (id) initWithActionCell:(NSActionCell*) cell
 {
-    if (self)
-    {
+    if (self) {
         [self setActionCell:cell];
     }
     return self;
@@ -24,8 +23,7 @@
 
 - (void) setActionCell:(NSActionCell*) cell
 {
-    if (cell != action_cell)
-    {
+    if (cell != action_cell) {
         action_cell = cell;
     }
 }
@@ -60,10 +58,9 @@
     return attachment;
 }
 
-- (void)setAttachment:(NSTextAttachment*) anAttachment
+- (void) setAttachment:(NSTextAttachment*)anAttachment
 {
-    if (attachment != anAttachment)
-    {
+    if (attachment != anAttachment) {
         attachment = anAttachment;
     }
 }
@@ -73,32 +70,29 @@
     return baseline_offset;
 }
 
-- (void) setCellBaselineOffset:(NSPoint) offset
+- (void) setCellBaselineOffset:(NSPoint)offset
 {
     baseline_offset = offset;
 }
 
-- (NSRect) cellFrameForTextContainer:(NSTextContainer*) container
-                proposedLineFragment:(NSRect) proposed
-                       glyphPosition:(NSPoint) position
-                      characterIndex:(NSUInteger) index
+- (NSRect) cellFrameForTextContainer:(NSTextContainer*)container proposedLineFragment:(NSRect)proposed glyphPosition:(NSPoint)position characterIndex:(NSUInteger)index
 {
     return proposed;
 }
 
-- (void) drawWithFrame:(NSRect) cellFrame inView:(NSView*) aView characterIndex:(NSUInteger)charIndex
+- (void) drawWithFrame:(NSRect)frame inView:(NSView*)view characterIndex:(NSUInteger)index
 {
-    [action_cell drawWithFrame:cellFrame inView:aView];
+    [action_cell drawWithFrame:frame inView:view];
 }
 
-- (void) drawWithFrame:(NSRect) cellFrame inView:(NSView*) controlView characterIndex:(NSUInteger) charIndex layoutManager:(NSLayoutManager*) layoutManager
+- (void) drawWithFrame:(NSRect)frame inView:(NSView*)view characterIndex:(NSUInteger)index layoutManager:(NSLayoutManager*)layout
 {
-    [action_cell drawWithFrame:cellFrame inView:controlView];
+    [action_cell drawWithFrame:frame inView:view];
 }
 
-- (void)highlight:(BOOL)flag withFrame:(NSRect)cellFrame inView:(NSView *)aView
+- (void) highlight:(BOOL)flag withFrame:(NSRect)frame inView:(NSView *)view
 {
-    [action_cell highlight:flag withFrame:cellFrame inView:aView];
+    [action_cell highlight:flag withFrame:frame inView:view];
 }
 
 - (BOOL) wantsToTrackMouse
@@ -106,35 +100,19 @@
     return YES;
 }
 
-- (BOOL) wantsToTrackMouseForEvent:(NSEvent*) theEvent 
-                            inRect:(NSRect) cellFrame
-                            ofView:(NSView*) controlView 
-                  atCharacterIndex:(NSUInteger) charIndex
+- (BOOL) wantsToTrackMouseForEvent:(NSEvent*)event inRect:(NSRect)frame ofView:(NSView*)view atCharacterIndex:(NSUInteger)index
 {
     return YES;
 }
 
-- (BOOL) trackMouse:(NSEvent*)theEvent 
-             inRect:(NSRect)cellFrame 
-             ofView:(NSView*) aTextView 
-   atCharacterIndex:(NSUInteger)charIndex
-       untilMouseUp:(BOOL)flag
+- (BOOL) trackMouse:(NSEvent*)event inRect:(NSRect)frame ofView:(NSView*)view atCharacterIndex:(NSUInteger)index untilMouseUp:(BOOL)flag
 {
-    return [[self actionCell] trackMouse:theEvent
-                                   inRect:cellFrame
-                                   ofView:aTextView
-                             untilMouseUp:flag];
+    return [[self actionCell] trackMouse:event inRect:frame ofView:view untilMouseUp:flag];
 }
 
-- (BOOL) trackMouse:(NSEvent*) theEvent 
-             inRect:(NSRect) cellFrame 
-             ofView:(NSView*) aTextView 
-       untilMouseUp:(BOOL) flag
+- (BOOL) trackMouse:(NSEvent*)event inRect:(NSRect)frame ofView:(NSView*)view untilMouseUp:(BOOL)flag
 {
-    return [[self actionCell] trackMouse:theEvent
-                                   inRect:cellFrame
-                                   ofView:aTextView
-                             untilMouseUp:flag];
+    return [[self actionCell] trackMouse:event inRect:frame ofView:view untilMouseUp:flag];
 }
 
 #pragma mark NSProxy Methods
@@ -153,6 +131,5 @@
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
-
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

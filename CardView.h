@@ -8,5 +8,5 @@
 #import <CardView/NSPasteboard+CardView.h>
 #import <CardView/NSAttributedString+CardView.h>
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

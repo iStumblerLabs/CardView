@@ -7,9 +7,6 @@
 static NSMutableDictionary* formatterRegistry;
 
 @implementation CardTextView
-{
-    NSRect baseFrame;
-}
 
 + (void) initialize
 {
@@ -41,90 +38,25 @@ static NSMutableDictionary* formatterRegistry;
     return formatter;
 }
 
-+ (NSParagraphStyle*) cardViewTabsStyleForTabStop:(CGFloat) tabLocation gutterWidth:(CGFloat) gutterWidth
-{
-    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
-    NSTextTab* right_stop = [[NSTextTab alloc] initWithType:NSRightTabStopType location:tabLocation];
-    NSTextTab* left_stop = [[NSTextTab alloc] initWithType:NSLeftTabStopType location:tabLocation+gutterWidth];
-    [style setTabStops:@[right_stop, left_stop]];
-    style.headIndent = tabLocation+gutterWidth;
-    style.firstLineHeadIndent = gutterWidth;
-    return style;
-}
-
-+ (NSParagraphStyle*) cardViewTabsStyleForTabStops:(NSArray*) tabStops
-{
-    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
-    NSMutableArray* stops = [NSMutableArray new];
-    for ( NSNumber* stop in tabStops)
-    {
-        [stops addObject:[[NSTextTab alloc] initWithType:([stop doubleValue]>0?NSLeftTabStopType:NSRightTabStopType) location:fabs([stop doubleValue])]];
-    }
-    [style setTabStops:stops];
-    return style;
-}
-
-+ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth
-{
-    NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStop:tabStop gutterWidth:gutterWidth],
-              NSFontAttributeName: tag_font};
-}
-
-+ (NSDictionary*) cardViewTabsHeaderAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops
-{
-    NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStops:tabStops],
-              NSFontAttributeName: tag_font};
-}
-
-+ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops
-{
-    NSFont* tag_font = [NSFont systemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: [CardTextView cardViewTabsStyleForTabStops:tabStops],
-              NSFontAttributeName: tag_font};
-}
-
-+ (NSDictionary*) cardViewCenteredAttributesForSize:(CGFloat) fontSize
-{
-    NSFont* font = [NSFont systemFontOfSize:fontSize];
-    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
-    [style setAlignment:NSCenterTextAlignment];
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: font};
-}
-
-+ (NSDictionary*) cardViewLabelAttributesForSize:(CGFloat) fontSize
-{
-    return @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:fontSize]};
-}
-
-+ (NSDictionary*) cardViewNoneAttributesForSize:(CGFloat) fontSize
-{
-    return @{ NSFontAttributeName: [NSFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [NSColor grayColor]};
-}
-
-+ (NSDictionary*) cardViewValueAttributesForSize:(CGFloat) fontSize
-{
-    return @{ NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
-}
-
-+ (NSDictionary*) cardViewKeywordAttributesForSize:(CGFloat) fontSize
-{
-    return @{ NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
-}
-
 #pragma mark -
+
+- (void) initView {
+    self.columns = @[@(-0.33), @(5)]; // 40% right-aligned with a ten pt gutter
+    self.fontSize = [NSFont smallSystemFontSize];
+}
 
 - (id) initWithFrame:(NSRect)frame 
 {
-    self = [super initWithFrame:frame];
-    if (self) 
-    {
-        self.tabStop = 100;
-        self.tabGutter = 10;
-        self.fontSize = [NSFont smallSystemFontSize];
+    if (self = [super initWithFrame:frame]) {
+        [self initView];
+    }
+    return self;
+}
+
+- (id) initWithCoder:(NSCoder *)coder
+{
+    if (self = [super initWithCoder:coder]) {
+        [self initView];
     }
     return self;
 }
@@ -139,87 +71,146 @@ static NSMutableDictionary* formatterRegistry;
     return attachment;
 }
 
-#pragma mark - append methods
+#pragma mark - Tabs
 
-- (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth
+- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths
 {
-    NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:self.fontSize tabStop:tabStop gutterWidth:gutterWidth];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
+    NSMutableArray* stops = [NSMutableArray new];
+    CGFloat columnEdge = 0;
+    for (NSNumber* stop in columnWidths) {
+        CGFloat stopValue = [stop doubleValue];
+        NSTextTabType tabType = NSLeftTabStopType;
+        if (stopValue < 0) { // it's a right tab
+            tabType = NSRightTabStopType;
+            stopValue = fabs(stopValue); // be positive
+        }
+        
+        if (stopValue > 0 && stopValue < 1) { // it's a fraction of the width of the frame
+            stopValue = (self.frame.size.width * stopValue);
+        }
+        
+        columnEdge += stopValue;
+        [stops addObject:[[NSTextTab alloc] initWithType:tabType location:columnEdge]];
+    }
+    [style setTabStops:stops];
+    return style;
+}
+
+- (NSDictionary*) attributesForSize:(CGFloat)fontSize
+{
+    NSFont* tagFont = [NSFont systemFontOfSize:fontSize];
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: tagFont};
+}
+
+- (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops
+{
+    NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: tag_font};
+}
+
+- (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize
+{
+    NSFont* font = [NSFont systemFontOfSize:fontSize];
+    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
+    [style setAlignment:NSCenterTextAlignment];
+    return @{ NSParagraphStyleAttributeName: style,
+              NSFontAttributeName: font};
+}
+
+- (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize
+{
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: [NSFont boldSystemFontOfSize:fontSize]};
+}
+
+- (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize
+{
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: [NSFont systemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [NSColor grayColor]};
+}
+
+- (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize
+{
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+}
+
+- (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize
+{
+    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+}
+
+#pragma mark - Appending Strings
+
+- (NSAttributedString*) appendHeaderString:(NSString*)string
+{
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self attributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
-- (NSAttributedString*) appendTabHeaderString:(NSString*) string tabStops:(NSArray*) tabStops
+- (NSAttributedString*) appendSubheaderString:(NSString*)string
 {
-    NSDictionary* attrs = [CardTextView cardViewTabsHeaderAttributesForSize:self.fontSize tabStops:tabStops];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
-    return attrString;
-}
-
-- (NSAttributedString*) appendTabSubheaderString:(NSString*) string tabStops:(NSArray*) tabStops
-{
-    NSMutableDictionary* attrs = [[CardTextView cardViewTabsAttributesForSize:self.fontSize tabStops:tabStops] mutableCopy];
-    [attrs setValue:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
-    return attrString;
-}
-
-- (NSAttributedString*) appendTabString:(NSString*) string tabStops:(NSArray*) tabStops
-{
-    NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:self.fontSize tabStops:tabStops];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
-    return attrString;
-}
-
-- (NSAttributedString*) appendTabString:(NSString*) string
-{
-    NSDictionary* attrs = [CardTextView cardViewTabsAttributesForSize:self.fontSize tabStop:self.tabStop gutterWidth:self.tabGutter];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAS* attrString = nil;
+    if (string) {
+        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        [attrs setValue:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
 - (NSAttributedString*) appendLabelString:(NSString*) string
 {
-    NSDictionary* attrs = [CardTextView cardViewLabelAttributesForSize:self.fontSize];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self labelAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
-- (NSAttributedString*) appendNoneString:(NSString*) string
+- (NSAttributedString*) appendGrayString:(NSString*) string
 {
-    NSDictionary* attrs = [CardTextView cardViewNoneAttributesForSize:self.fontSize];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self grayAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
 - (NSAttributedString*) appendValueString:(NSString*) string
 {
-    NSDictionary* attrs = [CardTextView cardViewValueAttributesForSize:self.fontSize];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self valueAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
 - (NSAttributedString*) appendKeywordString:(NSString*) string
 {
-    NSDictionary* attrs = [CardTextView cardViewKeywordAttributesForSize:self.fontSize];
-    if( !string) string = @"-";
-    NSAS* attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self keywordAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
@@ -238,15 +229,18 @@ static NSMutableDictionary* formatterRegistry;
 
 - (NSAttributedString*) appendImage:(NSImage*) image
 {
-    CardImageCell* cell = [CardImageCell cellWithImage:image];
-    NSAttributedString* attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
-    [[self textStorage] appendAttributedString:attrString];
+    NSAttributedString* attrString = nil;
+    if (image) {
+        CardImageCell* cell = [CardImageCell cellWithImage:image];
+        attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
+        [[self textStorage] appendAttributedString:attrString];
+    }
     return attrString;
 }
 
 - (NSAttributedString*) appendFormatted:(id) object
 {
-    NSDictionary* valueAttrs = [CardTextView cardViewValueAttributesForSize:self.fontSize];
+    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
     NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
     NSAttributedString* attributed = nil;
     if( formatter) {
@@ -259,9 +253,9 @@ static NSMutableDictionary* formatterRegistry;
     return attributed;
 }
 
-- (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter
+- (NSAttributedString*) append:(id)object withFormatter:(NSFormatter*)formatter
 {
-    NSDictionary* valueAttrs = [CardTextView cardViewValueAttributesForSize:self.fontSize];
+    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
     NSAttributedString* attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:valueAttrs];
     [[self textStorage] appendAttributedString:attributed];
     return attributed;
@@ -273,9 +267,23 @@ static NSMutableDictionary* formatterRegistry;
     return newline;
 }
 
+- (void) replaceParagraphStyle:(NSParagraphStyle*)newStyle
+{
+    NSMAS* updatedString = [NSMAS new];
+    for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
+        NSMutableDictionary* newAttrs = [[storage attributesAtIndex:0 effectiveRange:nil] mutableCopy];
+        if ([newAttrs[NSParagraphStyleAttributeName] alignment] != NSCenterTextAlignment) {
+            [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
+        }
+        NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];
+        [updatedString appendAttributedString:updatedRange];
+    }
+    [self.textStorage setAttributedString:updatedString];
+}
+
 #pragma mark - NSMenuValidation
 
-- (BOOL) validateMenuItem:(NSMenuItem *)menuItem
+- (BOOL) validateMenuItem:(NSMenuItem*)menuItem
 {
     BOOL isValid = YES;
     
@@ -285,10 +293,12 @@ static NSMutableDictionary* formatterRegistry;
      || menuItem.action == @selector(pasteSearch:)
      || menuItem.action == @selector(pasteRuler:)
      || menuItem.action == @selector(pasteFont:)
-     || menuItem.action == @selector(delete:))
+     || menuItem.action == @selector(delete:)) {
         isValid = YES;
-    else
+    }
+    else {
         isValid = [super validateMenuItem:menuItem];
+    }
 
 //    NSLog(@"%@ validated: %@ %@", [self className], (isValid?@"YES":@"NO"), menuItem);
     return isValid;
@@ -298,70 +308,75 @@ static NSMutableDictionary* formatterRegistry;
 
 - (void) cut:(id) sender
 {
-    if( [self selectedRange].location > 0)
+    if ([self selectedRange].location > 0) {
         [super copy:sender]; // don't modify the contents here
-    else if( [self.delegate respondsToSelector:@selector(card:cut:)])
+    }
+    else if ([self.delegate respondsToSelector:@selector(card:cut:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self cut:sender];
+    }
 }
 
 - (void) copy:(id) sender
 {
-    if( [self selectedRange].length > 0)
+    if ([self selectedRange].length > 0) {
         [super copy:sender]; // do the superclass thing with the contents
-    else if( [self.delegate respondsToSelector:@selector(card:copy:)])
+    }
+    else if ([self.delegate respondsToSelector:@selector(card:copy:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self copy:sender];
+    }
 }
 
 - (void) paste:(id) sender
 {
-    if( [self.delegate respondsToSelector:@selector(card:paste:)])
+    if ([self.delegate respondsToSelector:@selector(card:paste:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self paste:sender];
+    }
 }
 
 - (void) pasteSearch:(id) sender
 {
-    if( [self.delegate respondsToSelector:@selector(card:pasteSearch:)])
+    if ([self.delegate respondsToSelector:@selector(card:pasteSearch:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self pasteSearch:sender];
+    }
 }
 
 - (void) pasteRuler:(id) sender
 {
-    if( [self.delegate respondsToSelector:@selector(card:pasteRuler:)])
+    if ([self.delegate respondsToSelector:@selector(card:pasteRuler:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self pasteRuler:sender];
+    }
 }
 
 - (void) pasteFont:(id) sender
 {
-    if( [self.delegate respondsToSelector:@selector(card:pasteFont:)])
+    if ([self.delegate respondsToSelector:@selector(card:pasteFont:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self pasteFont:sender];
+    }
 }
 
 - (void) delete:(id) sender
 {
-    if( [self.delegate respondsToSelector:@selector(card:delete:)])
+    if ([self.delegate respondsToSelector:@selector(card:delete:)]) {
         [(id<CardTextViewDelegate>)self.delegate card:self delete:sender];
-}
-
-/*
-
-- (NSPoint) textContainerOrigin
-{
-    return NSMakePoint(10,10);
+    }
 }
 
 #pragma mark NSView Methods
 
 - (void) setFrame:(NSRect) frameRect
 {
+    [super setFrame:frameRect];
+
+    [self replaceParagraphStyle:[self paragraphStyleForColumns:self.columns]];
+/*
     NSSize insets = [self textContainerInset];
     NSSize frame = frameRect.size;
     [[self textContainer] setContainerSize:NSMakeSize(frame.width-(insets.width*2),
                                                       frame.height-(insets.height*2))];
-    [super setFrame:frameRect];
-}
 */
+}
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

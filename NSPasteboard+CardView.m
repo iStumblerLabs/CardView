@@ -1,11 +1,3 @@
-//
-//  NSPasteboard+CardView.m
-//  CardView
-//
-//  Created by alf on 7/24/14.
-//
-//
-
 #import "NSPasteboard+CardView.h"
 
 @implementation NSPasteboard (CardView)
@@ -20,8 +12,7 @@
 - (NSArray*) clonedItems
 {
     NSMutableArray* clonedItems = [NSMutableArray array];
-    for( NSPasteboardItem* item in self.pasteboardItems)
-    {
+    for (NSPasteboardItem* item in self.pasteboardItems) {
         [clonedItems addObject:[item clone]];
     }
     return clonedItems;
@@ -36,14 +27,16 @@
 - (NSPasteboardItem*) clone
 {
     NSPasteboardItem* clone = [NSPasteboardItem new];
-    for( NSString* type in self.types)
-    {
-        [clone setData:[self dataForType:type] forType:type];
+    for (NSString* type in self.types) {
+        NSData* data = [self dataForType:type];
+        if (data) {
+            [clone setData:data forType:type];
+        }
     }
     return clone;
 }
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

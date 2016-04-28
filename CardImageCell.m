@@ -12,8 +12,7 @@
 
 - (id) initWithImage:(NSImage*) cell_image
 {
-    if ((self = [super init]))
-    {
+    if ((self = [super init])) {
         image_cell = [[NSImageCell alloc] initImageCell:cell_image];
         [image_cell setImageScaling:NSImageScaleProportionallyUpOrDown];
     }
@@ -48,5 +47,5 @@
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

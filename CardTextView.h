@@ -1,36 +1,33 @@
 #import <Cocoa/Cocoa.h>
 
 /*!
-    @class
-    @abstract    Implements an Address Book Card style text view
+    @class CartTextView
+    @abstract Implements an Address Book Card style text view
     @discussion  
 */
 @interface CardTextView : NSTextView
-@property(nonatomic,assign) CGFloat tabStop;
-@property(nonatomic,assign) CGFloat tabGutter;
 @property(nonatomic,assign) CGFloat fontSize;
-
-+ (NSParagraphStyle*) cardViewTabsStyleForTabStop:(CGFloat) tabLocation gutterWidth:(CGFloat) gutterWidth;
-+ (NSDictionary*) cardViewTabsHeaderAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops;
-+ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth; // MEH
-+ (NSDictionary*) cardViewTabsAttributesForSize:(CGFloat) fontSize tabStops:(NSArray*) tabStops;
-+ (NSDictionary*) cardViewCenteredAttributesForSize:(CGFloat) fontSize;
-+ (NSDictionary*) cardViewLabelAttributesForSize:(CGFloat) fontSize;
-+ (NSDictionary*) cardViewNoneAttributesForSize:(CGFloat) fontSize;
-+ (NSDictionary*) cardViewValueAttributesForSize:(CGFloat) fontSize;
-+ (NSDictionary*) cardViewKeywordAttributesForSize:(CGFloat) fontSize;
+@property(nonatomic,retain) NSArray<NSNumber*>* columns;
 
 - (NSTextAttachment*) clickedAttachment;
 
-#pragma mark - append methods
+#pragma mark - Styles
 
-- (NSAttributedString*) appendTabString:(NSString*) string tabStop:(CGFloat) tabStop gutterWidth:(CGFloat) gutterWidth;
-- (NSAttributedString*) appendTabString:(NSString*) string tabStops:(NSArray*) tabStops; // array of NSNumbers
-- (NSAttributedString*) appendTabString:(NSString*) string;
-- (NSAttributedString*) appendTabHeaderString:(NSString*) string tabStops:(NSArray*) tabStops;
-- (NSAttributedString*) appendTabSubheaderString:(NSString*) string tabStops:(NSArray*) tabStops;
+- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths;
+
+- (NSDictionary*) attributesForSize:(CGFloat)fontSize;
+- (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize;
+- (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize;
+- (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize;
+- (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize;
+- (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize;
+
+#pragma mark - Appending
+
+- (NSAttributedString*) appendHeaderString:(NSString*) string;
+- (NSAttributedString*) appendSubheaderString:(NSString*) string;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
-- (NSAttributedString*) appendNoneString:(NSString*) string;
+- (NSAttributedString*) appendGrayString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
 - (NSAttributedString*) appendHorizontalRule;
@@ -44,6 +41,7 @@
 
 #pragma mark -
 
+/*! @protocol CardTextViewDelegate */
 @protocol CardTextViewDelegate <NSObject>
 
 - (void) card:(CardTextView*) card cut:(id) sender;
@@ -56,5 +54,5 @@
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/

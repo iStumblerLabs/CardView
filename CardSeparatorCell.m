@@ -29,8 +29,7 @@
 
 - (id) initWithColor:(NSColor*) color width:(CGFloat) width
 {
-    if ((self = [super init]))
-    {
+    if ((self = [super init])) {
         self.separator_color = color;
         self.separator_width = width;
     }
@@ -39,7 +38,7 @@
 
 #pragma mark - NSTextAttachmentCell
 
-- (NSRect) cellFrameForTextContainer:(NSTextContainer*) textContainer proposedLineFragment:(NSRect) lineFrag glyphPosition:(NSPoint)position characterIndex:(NSUInteger)charIndex
+- (NSRect) cellFrameForTextContainer:(NSTextContainer*)textContainer proposedLineFragment:(NSRect)lineFrag glyphPosition:(NSPoint)position characterIndex:(NSUInteger)charIndex
 {
 	NSRect frag = [super cellFrameForTextContainer:textContainer proposedLineFragment:lineFrag glyphPosition:position characterIndex:charIndex];
 	NSSize size = [textContainer containerSize];
@@ -50,7 +49,7 @@
 	return frag;
 }
 
-- (void) drawWithFrame:(NSRect) frame inView:(NSView*) aView
+- (void) drawWithFrame:(NSRect)frame inView:(NSView*)aView
 {
     [NSGraphicsContext saveGraphicsState];
     [self.separator_color set];
@@ -64,6 +63,5 @@
 
 @end
 
-/* Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
-Redistribution and use permitted under BSD-Style license in README.md. */
-
+/** Copyright (c) 2014-2016, Alf Watt (alf@istumbler.net). All rights reserved.
+    Redistribution and use permitted under MIT License in README.md. **/
