@@ -93,6 +93,8 @@ static NSMutableDictionary* formatterRegistry;
         columnEdge += stopValue;
         [stops addObject:[[NSTextTab alloc] initWithType:tabType location:columnEdge]];
     }
+    style.firstLineHeadIndent = 0;
+    style.headIndent = columnEdge;
     [style setTabStops:stops];
     return style;
 }
@@ -144,6 +146,13 @@ static NSMutableDictionary* formatterRegistry;
     return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
 }
+
+- (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize
+{
+    return @{ NSParagraphStyleAttributeName: (self.contentStyle ? self.contentStyle : [NSParagraphStyle defaultParagraphStyle]),
+              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+}
+
 
 #pragma mark - Appending Strings
 
@@ -214,6 +223,19 @@ static NSMutableDictionary* formatterRegistry;
     return attrString;
 }
 
+- (NSAttributedString*) appendContentString:(NSString*) string
+{
+    NSAS* attrString = nil;
+    if (string) {
+        NSDictionary* attrs = [self contentAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
+    return attrString;
+}
+
+#pragma mark - Rules
+
 - (NSAttributedString*) appendHorizontalRule;
 {
     NSAS* rule = [self appendHorizontalRuleWithColor:[NSColor grayColor] width:1];
@@ -223,7 +245,9 @@ static NSMutableDictionary* formatterRegistry;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width
 {
     NSAttributedString* attrString = [CardSeparatorCell separatorWithColor:color width:width];
+    [self appendNewline]; // each rule is it's own paragrah
     [[self textStorage] appendAttributedString:attrString];
+    [self appendNewline]; // and clears the next line below it
     return attrString;
 }
 
@@ -242,13 +266,17 @@ static NSMutableDictionary* formatterRegistry;
 {
     NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
     NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
-    NSAttributedString* attributed = nil;
-    if( formatter) {
-        attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:valueAttrs];
+    NSString* formattedString = nil;
+    if (!object) {
+        formattedString = @"-";
+    }
+    else if (formatter) {
+        formattedString =  [formatter stringForObjectValue:object];
     }
     else {
-        attributed = [NSAttributedString attributedString:[object description] withAttributes:valueAttrs];
+        formattedString = [object description];
     }
+    NSAttributedString* attributed = [NSAttributedString attributedString:formattedString withAttributes:valueAttrs];
     [[self textStorage] appendAttributedString:attributed];
     return attributed;
 }
@@ -272,7 +300,10 @@ static NSMutableDictionary* formatterRegistry;
     NSMAS* updatedString = [NSMAS new];
     for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
         NSMutableDictionary* newAttrs = [[storage attributesAtIndex:0 effectiveRange:nil] mutableCopy];
-        if ([newAttrs[NSParagraphStyleAttributeName] alignment] != NSCenterTextAlignment) {
+        NSParagraphStyle* oldStyle = newAttrs[NSParagraphStyleAttributeName];
+        if ([oldStyle alignment] != NSCenterTextAlignment
+         || oldStyle == self.contentStyle
+         || oldStyle == [NSParagraphStyle defaultParagraphStyle]) {
             [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
         }
         NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];

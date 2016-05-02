@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
 		75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C470A8F78D1003AAE72 /* CardActionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C480A8F78D1003AAE72 /* CardActionCell.m */; };
 		75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C490A8F78D1003AAE72 /* CardImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +35,8 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* CardView.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.pch; sourceTree = "<group>"; };
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7571BFB81CD579CF00021159 /* CardTextFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextFormatters.h; sourceTree = "<group>"; };
+		7571BFB91CD579CF00021159 /* CardTextFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextFormatters.m; sourceTree = "<group>"; };
 		75AC2C470A8F78D1003AAE72 /* CardActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardActionCell.h; sourceTree = "<group>"; };
 		75AC2C480A8F78D1003AAE72 /* CardActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardActionCell.m; sourceTree = "<group>"; };
 		75AC2C490A8F78D1003AAE72 /* CardImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImageCell.h; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
 				75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */,
 				75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */,
+				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
+				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
 				75DE4323196E6A1B0022311F /* CardViewCell.h */,
 				75DE4324196E6A1B0022311F /* CardViewCell.m */,
 				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
@@ -143,13 +149,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */,
-				75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */,
-				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
 				75AC2C5B0A8F78D1003AAE72 /* CardTextContainer.h in Headers */,
-				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
+				7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */,
+				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
 				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
-				75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */,
+				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
 				75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */,
+				75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */,
+				75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */,
 				75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +231,7 @@
 				75FA0B861981A52A000AFFE3 /* NSPasteboard+CardView.m in Sources */,
 				75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */,
 				75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */,
+				7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */,
 				75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */,
 				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
 				75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */,

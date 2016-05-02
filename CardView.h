@@ -1,10 +1,11 @@
 
 #import <CardView/CardTextView.h>
-#import <CardView/CardViewCell.h>
+#import <CardView/CardTextContainer.h>
+#import <CardView/CardTextFormatters.h>
 #import <CardView/CardActionCell.h>
 #import <CardView/CardImageCell.h>
 #import <CardView/CardSeparatorCell.h>
-#import <CardView/CardTextContainer.h>
+#import <CardView/CardViewCell.h>
 #import <CardView/NSPasteboard+CardView.h>
 #import <CardView/NSAttributedString+CardView.h>
 

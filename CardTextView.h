@@ -6,16 +6,24 @@
     @discussion  
 */
 @interface CardTextView : NSTextView
-@property(nonatomic,assign) CGFloat fontSize;
-@property(nonatomic,retain) NSArray<NSNumber*>* columns;
+@property(nonatomic, assign) CGFloat fontSize;
+@property(nonatomic, retain) NSArray<NSNumber*>* columns;
+@property(nonatomic, retain) NSParagraphStyle* contentStyle; // a plain style for full-width contents which won't be replaced
+
+#pragma mark - Formatter Registry
+
++ (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
++ (NSFormatter*) registeredFormatterForClass:(Class) clzz;
+
+#pragma mark -
 
 - (NSTextAttachment*) clickedAttachment;
 
 #pragma mark - Styles
 
-- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths;
+- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*) columnWidths;
 
-- (NSDictionary*) attributesForSize:(CGFloat)fontSize;
+- (NSDictionary*) attributesForSize:(CGFloat) fontSize;
 - (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize;
 - (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize;
 - (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize;
@@ -30,6 +38,7 @@
 - (NSAttributedString*) appendGrayString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
+- (NSAttributedString*) appendContentString:(NSString*) string;
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(NSImage*) image;
