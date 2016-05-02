@@ -108,16 +108,56 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
+#pragma mark - URL Formatter
+
+@implementation CardURLFormatter
+
++ (CardURLFormatter*) formatterWithLinkColor:(NSColor*) color
+{
+    CardURLFormatter* urlFormatter = [CardURLFormatter new];
+    urlFormatter.linkColor = color;
+    return urlFormatter;
+}
+
+#pragma mark -
+
+- (NSString*) stringForObjectValue:(id)obj
+{
+    NSString* stringValue = [obj description];
+    if ([obj isKindOfClass:[NSURL class]]) {
+        stringValue = [(NSURL*)obj absoluteString];
+    }
+    return stringValue;
+}
+
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs
+{
+    NSAttributedString* urlString = nil;
+    if ([obj isKindOfClass:[NSURL class]]) {
+        NSMutableDictionary* linkAttrs = [attrs mutableCopy];
+        linkAttrs[NSLinkAttributeName] = (NSURL*)obj;
+        linkAttrs[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
+        if (self.linkColor) {
+            [linkAttrs setObject:self.linkColor forKey:NSForegroundColorAttributeName];
+        }
+
+        urlString = [[NSAttributedString alloc] initWithString:[self stringForObjectValue:obj] attributes:linkAttrs];
+    }
+    return urlString;
+}
+
+@end
+
 #pragma mark - Date Formatter
 
 @implementation CardDateFormatter
 
 /*! @discussion singleton NSDateFormatter for the users's current locale */
-+ (NSDateFormatter*) cardDateFormat
++ (CardDateFormatter*) cardDateFormat
 {
-    static NSDateFormatter* cardFormat = nil;
+    static CardDateFormatter* cardFormat = nil;
     if (!cardFormat) {
-        cardFormat = [NSDateFormatter new];
+        cardFormat = [CardDateFormatter new];
         cardFormat.locale = [NSLocale autoupdatingCurrentLocale];
         cardFormat.doesRelativeDateFormatting = YES;
         cardFormat.dateStyle = NSDateFormatterMediumStyle;

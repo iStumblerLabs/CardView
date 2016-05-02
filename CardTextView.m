@@ -6,6 +6,8 @@
 
 static NSMutableDictionary* formatterRegistry;
 
+static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplaceableStyleAttribute";
+
 @implementation CardTextView
 
 + (void) initialize
@@ -76,6 +78,7 @@ static NSMutableDictionary* formatterRegistry;
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths
 {
     NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
+
     NSMutableArray* stops = [NSMutableArray new];
     CGFloat columnEdge = 0;
     for (NSNumber* stop in columnWidths) {
@@ -102,14 +105,16 @@ static NSMutableDictionary* formatterRegistry;
 - (NSDictionary*) attributesForSize:(CGFloat)fontSize
 {
     NSFont* tagFont = [NSFont systemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tagFont};
 }
 
 - (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops
 {
     NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tag_font};
 }
 
@@ -124,26 +129,30 @@ static NSMutableDictionary* formatterRegistry;
 
 - (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize
 {
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [NSFont boldSystemFontOfSize:fontSize]};
 }
 
 - (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize
 {
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [NSFont systemFontOfSize:fontSize],
               NSForegroundColorAttributeName: [NSColor grayColor]};
 }
 
 - (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize
 {
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
 }
 
 - (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize
 {
-    return @{ NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
+    return @{ CardTextReplaceableStyleAttributeName: @(YES),
+              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
 }
 
@@ -262,29 +271,53 @@ static NSMutableDictionary* formatterRegistry;
     return attrString;
 }
 
-- (NSAttributedString*) appendFormatted:(id) object
+- (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes
 {
-    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
     NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
-    NSString* formattedString = nil;
+    NSAttributedString* formatted = nil;
     if (!object) {
-        formattedString = @"-";
+        formatted = [[NSAttributedString alloc] initWithString:@"-" attributes:attributes];
     }
     else if (formatter) {
-        formattedString =  [formatter stringForObjectValue:object];
+        if ([formatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
+            formatted = [formatter attributedStringForObjectValue:object withDefaultAttributes:attributes];
+        }
+        else {
+            formatted = [[NSAttributedString alloc] initWithString:[formatter stringForObjectValue:object] attributes:attributes];
+        }
     }
     else {
-        formattedString = [object description];
+        formatted = [[NSAttributedString alloc] initWithString:[object description] attributes:attributes];
     }
-    NSAttributedString* attributed = [NSAttributedString attributedString:formattedString withAttributes:valueAttrs];
-    [[self textStorage] appendAttributedString:attributed];
-    return attributed;
+
+    if (formatted) {
+        [[self textStorage] appendAttributedString:formatted];
+    }
+    
+    return formatted;
 }
 
-- (NSAttributedString*) append:(id)object withFormatter:(NSFormatter*)formatter
+- (NSAttributedString*) appendValueFormatted:(id) object
 {
     NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
-    NSAttributedString* attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:valueAttrs];
+    return [self appendFormatted:object withAttributes:valueAttrs];
+}
+
+- (NSAttributedString*) appendContentFormatted:(id) object
+{
+    NSDictionary* contentAttrs = [self contentAttributesForSize:self.fontSize];
+    return [self appendFormatted:object withAttributes:contentAttrs];
+}
+
+- (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter
+{
+    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
+    return [self append:object withFormatter:formatter andAttributes:valueAttrs];
+}
+
+- (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter andAttributes:(NSDictionary*) attributes;
+{
+    NSAttributedString* attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:attributes];
     [[self textStorage] appendAttributedString:attributed];
     return attributed;
 }
@@ -300,14 +333,14 @@ static NSMutableDictionary* formatterRegistry;
     NSMAS* updatedString = [NSMAS new];
     for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
         NSMutableDictionary* newAttrs = [[storage attributesAtIndex:0 effectiveRange:nil] mutableCopy];
-        NSParagraphStyle* oldStyle = newAttrs[NSParagraphStyleAttributeName];
-        if ([oldStyle alignment] != NSCenterTextAlignment
-         || oldStyle == self.contentStyle
-         || oldStyle == [NSParagraphStyle defaultParagraphStyle]) {
+        if (newAttrs[CardTextReplaceableStyleAttributeName]) {
             [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
+            NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];
+            [updatedString appendAttributedString:updatedRange];
         }
-        NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];
-        [updatedString appendAttributedString:updatedRange];
+        else {
+            [updatedString appendAttributedString:storage];
+        }
     }
     [self.textStorage setAttributedString:updatedString];
 }

@@ -27,9 +27,18 @@
 
 #pragma mark -
 
+@interface CardURLFormatter : CardTextFormatter
+@property(nonatomic, retain) NSColor* linkColor;
+
++ (CardURLFormatter*) formatterWithLinkColor:(NSColor*) color;
+
+@end
+
+#pragma mark -
+
 /*! @class CardDateFormatter formats dates into the users preferred medium date and long time format */
 @interface CardDateFormatter : NSDateFormatter
-+ (NSDateFormatter*) cardDateFormat;
++ (CardDateFormatter*) cardDateFormat;
 @end
 
 #pragma mark -

@@ -32,18 +32,23 @@
 
 #pragma mark - Appending
 
+- (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes;
+
 - (NSAttributedString*) appendHeaderString:(NSString*) string;
 - (NSAttributedString*) appendSubheaderString:(NSString*) string;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
 - (NSAttributedString*) appendGrayString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
-- (NSAttributedString*) appendContentString:(NSString*) string;
+- (NSAttributedString*) appendValueFormatted:(id) object;
+// non-resizeable styles 
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(NSImage*) image;
-- (NSAttributedString*) appendFormatted:(id) object;
+- (NSAttributedString*) appendContentString:(NSString*) string;
+- (NSAttributedString*) appendContentFormatted:(id) object;
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
+- (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter andAttributes:(NSDictionary*) attributes;
 - (NSAttributedString*) appendNewline;
 
 @end
