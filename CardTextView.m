@@ -431,7 +431,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     [super setFrame:frameRect];
 
-    [self replaceParagraphStyle:[self paragraphStyleForColumns:self.columns]];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(replaceParagraphStyle:) withObject:self.columns afterDelay:0.1];
 /*
     NSSize insets = [self textContainerInset];
     NSSize frame = frameRect.size;
