@@ -426,7 +426,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     }
 }
 
-#pragma mark NSView Methods
+#pragma mark - NSView
 
 - (void) setFrame:(NSRect) frameRect
 {
