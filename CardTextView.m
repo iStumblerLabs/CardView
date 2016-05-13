@@ -332,8 +332,9 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSMAS* updatedString = [NSMAS new];
     for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
-        NSMutableDictionary* newAttrs = [[storage attributesAtIndex:0 effectiveRange:nil] mutableCopy];
-        if (newAttrs[CardTextReplaceableStyleAttributeName]) {
+        NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:nil];
+        if (runAttrs[CardTextReplaceableStyleAttributeName]) {
+            NSMutableDictionary* newAttrs = [runAttrs mutableCopy];
             [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
             NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];
             [updatedString appendAttributedString:updatedRange];
@@ -432,7 +433,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     [super setFrame:frameRect];
 
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(replaceParagraphStyle:) withObject:self.columns afterDelay:0.1];
+    NSParagraphStyle* style = [self paragraphStyleForColumns:self.columns];
+    [self performSelector:@selector(replaceParagraphStyle:) withObject:style afterDelay:0.1];
 /*
     NSSize insets = [self textContainerInset];
     NSSize frame = frameRect.size;
