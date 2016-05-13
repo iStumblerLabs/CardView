@@ -8,7 +8,6 @@
 @interface CardTextView : NSTextView
 @property(nonatomic, assign) CGFloat fontSize;
 @property(nonatomic, retain) NSArray<NSNumber*>* columns;
-@property(nonatomic, retain) NSParagraphStyle* contentStyle; // a plain style for full-width contents which won't be replaced
 
 #pragma mark - Formatter Registry
 

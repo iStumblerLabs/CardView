@@ -212,3 +212,26 @@ static CGFloat unit_scale = 0.9;
 }
 
 @end
+
+#pragma mark -
+
+/*! @class CardListFormatter formats arrays with commas between the elements */
+@implementation CardListFormatter
+
++ (CardListFormatter*) cardListFormatter
+{
+    return [CardListFormatter new];
+}
+
+- (NSString*) stringForObjectValue:(id)obj
+{
+    NSString* listString = [obj description];
+    if ([obj isKindOfClass:[NSArray class]]) {
+        NSArray* attributeArray = (NSArray*)obj;
+        listString = [attributeArray componentsJoinedByString:@", "];
+    }
+
+    return listString;
+}
+
+@end

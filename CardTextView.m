@@ -158,7 +158,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize
 {
-    return @{ NSParagraphStyleAttributeName: (self.contentStyle ? self.contentStyle : [NSParagraphStyle defaultParagraphStyle]),
+    return @{ NSParagraphStyleAttributeName: [NSParagraphStyle defaultParagraphStyle],
               NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
 }
 

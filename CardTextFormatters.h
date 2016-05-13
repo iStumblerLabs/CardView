@@ -38,7 +38,9 @@
 
 /*! @class CardDateFormatter formats dates into the users preferred medium date and long time format */
 @interface CardDateFormatter : NSDateFormatter
+
 + (CardDateFormatter*) cardDateFormat;
+
 @end
 
 #pragma mark -
@@ -55,5 +57,14 @@
 /*! @discussion creates a new formatter with the units and scaling provided
     e.g. if the source is meters, pass "Km" and 0.001 to get "1 Km" when the value is 1000 */
 + (CardUnitsFormatter*) formatterForUnits:(NSString*) units atScale:(CGFloat) scale;
+
+@end
+
+#pragma mark -
+
+/*! @class CardListFormatter formats arrays with commas between the elements */
+@interface CardListFormatter : CardArrayFormatter
+
++ (CardListFormatter*) cardListFormatter;
 
 @end
