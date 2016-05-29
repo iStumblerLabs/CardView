@@ -180,15 +180,28 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardUnitsFormatter
 
-+ (CardUnitsFormatter*) formatterForUnits:(NSString*) units atScale:(CGFloat) scale
++ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier
 {
     CardUnitsFormatter* unitsFormat = [CardUnitsFormatter new];
     unitsFormat.units = units;
-    unitsFormat.unitScale = scale;
+    unitsFormat.multiplier = @(multiplier);
     unitsFormat.groupingSeparator = NSLocalizedString(@",", @"Grouping Separator");
     unitsFormat.usesGroupingSeparator = YES;
 
     return unitsFormat;
+}
+
+- (instancetype) init
+{
+    if (self = [super init]) {
+        self.formatterBehavior = NSNumberFormatterBehavior10_4;
+        self.numberStyle = NSNumberFormatterDecimalStyle;
+        self.minimumIntegerDigits = 1;
+        self.maximumIntegerDigits = 99;
+        self.minimumFractionDigits = 0;
+        self.maximumFractionDigits = 9;
+    }
+    return self;
 }
 
 - (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs
@@ -196,8 +209,7 @@ static CGFloat unit_scale = 0.9;
     NSMutableAttributedString* formatted = nil;
     if ([anObject isKindOfClass:[NSNumber class]]) {
         formatted = [NSMutableAttributedString new];
-        NSNumber* scaledValue = @([(NSNumber*)anObject doubleValue] * self.unitScale);
-        NSString* valueString = [self stringForObjectValue:scaledValue];
+        NSString* valueString = [self stringForObjectValue:anObject];
         NSDictionary* unitsAttrs = [CardTextFormatter unitsAttrs:attrs];
         NSAttributedString* formattedValue = [[NSAttributedString alloc] initWithString:valueString attributes:attrs];
         [formatted appendAttributedString:formattedValue];
@@ -209,6 +221,87 @@ static CGFloat unit_scale = 0.9;
     }
 
     return formatted;
+}
+
+@end
+
+#pragma mark -
+
+@implementation CardBytesFormatter
+
++ (CardBytesFormatter*) cardBytesFormatter
+{
+    return [CardBytesFormatter new];
+}
+
+// https://en.wikipedia.org/wiki/Kibibyte
+
+/* TODO MiB * MB modes
+static unsigned long long const KiB = 1024; // 2^10
+static unsigned long long const MiB = KiB * KiB; // 2^20
+static unsigned long long const GiB = MiB * KiB; // 2^30
+static unsigned long long const Tib = GiB * KiB; // 2^40
+static unsigned long long const PiB = TiB * KiB; // 2^50
+static unsigned long long const EiB = PiB * KiB; // 2^60
+static unsigned long long const ZiB = EiB * KiB; // 2^70
+static unsigned long long const YiB = UiB * KiB; // 2^80
+*/
+
+static unsigned long long const KB = 1000;
+static unsigned long long const MB = (KB * KB);
+static unsigned long long const GB = (MB * KB);
+static unsigned long long const TB = (GB * KB);
+static unsigned long long const PB = (TB * KB);
+static unsigned long long const EB = (PB * KB);
+// static unsigned long long const ZB = (EB * KB);
+// static unsigned long long const YB = (ZB * KB);
+
+- (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs
+{
+    unsigned long long fileSize = [anObject unsignedLongLongValue]; // NSUInteger is 32 bits on smaller systems
+    CGFloat scaledSize = (CGFloat)fileSize;
+
+    if (fileSize < KB) { // display Bytes
+        self.units = NSLocalizedString( @"Bytes", nil);
+    }
+    else if (fileSize < MB) { // display kB
+        scaledSize = fileSize / (CGFloat)KB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"kB", nil); // opinions differ
+    }
+    else if ( fileSize < GB) { // display MB
+        scaledSize = fileSize / (CGFloat)MB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"MB", nil);
+    }
+    else if ( fileSize < TB) { // display GB
+        scaledSize = fileSize / (CGFloat)GB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"GB", nil);
+    }
+    else if ( fileSize < PB) { // display TB
+        scaledSize = fileSize / (CGFloat)TB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"TB", nil);
+    }
+    else if ( fileSize < EB) { // display PB
+        scaledSize = fileSize / (CGFloat)PB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"PB", nil);
+    }
+    else { // display EB
+        scaledSize = fileSize / (CGFloat)EB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedString( @"EB", nil);
+    }
+
+    return [super attributedStringForObjectValue:@(scaledSize) withDefaultAttributes:attrs];
 }
 
 @end

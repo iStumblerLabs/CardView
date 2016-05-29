@@ -45,18 +45,24 @@
 
 #pragma mark -
 
-/*! @class UnitsFormatter formats number vales with units in grey text */
+/*! @class CardUnitsFormatter formats number vales with units in grey text */
 @interface CardUnitsFormatter : NSNumberFormatter
 
 /*! @discussion unit name string to add to the number */
 @property(nonatomic, retain) NSString* units;
 
-/*! @discussion multiply the initial number by this value, defaults to 1.0 */
-@property(nonatomic, assign) CGFloat unitScale;
-
 /*! @discussion creates a new formatter with the units and scaling provided
     e.g. if the source is meters, pass "Km" and 0.001 to get "1 Km" when the value is 1000 */
-+ (CardUnitsFormatter*) formatterForUnits:(NSString*) units atScale:(CGFloat) scale;
++ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier;
+
+@end
+
+#pragma mark -
+
+/*! @class CardBytesFormatter formats byte sizes */
+@interface CardBytesFormatter : CardUnitsFormatter
+
++ (CardBytesFormatter*) cardBytesFormatter;
 
 @end
 
