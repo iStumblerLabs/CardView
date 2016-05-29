@@ -428,6 +428,19 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 #pragma mark - NSView
 
+- (void) viewDidHide
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [super viewDidHide];
+}
+
+- (void) viewDidUnhide
+{
+    NSParagraphStyle* style = [self paragraphStyleForColumns:self.columns];
+    [self performSelector:@selector(replaceParagraphStyle:) withObject:style afterDelay:0.1];
+    [super viewDidUnhide];
+}
+
 - (void) setFrame:(NSRect) frameRect
 {
     [super setFrame:frameRect];
