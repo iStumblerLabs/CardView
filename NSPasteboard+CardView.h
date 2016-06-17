@@ -2,7 +2,10 @@
 
 @interface NSPasteboard (CardView)
 
-- (NSPasteboard*) clone; // create a clone of this pasteboard with a unique name
+/*! @returns a clone of this pasteboard with a new unique name */
+- (NSPasteboard*) clone;
+
+/*! @returns a clone of the items on this pasteboard */
 - (NSArray*) clonedItems;
 
 @end

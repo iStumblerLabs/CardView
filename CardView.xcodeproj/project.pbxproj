@@ -15,8 +15,6 @@
 		75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */; };
 		75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */; };
-		75AC2C5B0A8F78D1003AAE72 /* CardTextContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75AC2C5C0A8F78D1003AAE72 /* CardTextContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */; };
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,8 +41,6 @@
 		75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardImageCell.m; sourceTree = "<group>"; };
 		75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSeparatorCell.h; sourceTree = "<group>"; };
 		75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSeparatorCell.m; sourceTree = "<group>"; };
-		75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextContainer.h; sourceTree = "<group>"; };
-		75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextContainer.m; sourceTree = "<group>"; };
 		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
 		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
 		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
@@ -90,8 +86,6 @@
 				75AC2C600A8F78D9003AAE72 /* CardView.h */,
 				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
 				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
-				75AC2C4F0A8F78D1003AAE72 /* CardTextContainer.h */,
-				75AC2C500A8F78D1003AAE72 /* CardTextContainer.m */,
 				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
 				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
 				75DE4323196E6A1B0022311F /* CardViewCell.h */,
@@ -149,7 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */,
-				75AC2C5B0A8F78D1003AAE72 /* CardTextContainer.h in Headers */,
 				7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */,
 				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
 				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
@@ -235,7 +228,6 @@
 				75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */,
 				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
 				75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */,
-				75AC2C5C0A8F78D1003AAE72 /* CardTextContainer.m in Sources */,
 				75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

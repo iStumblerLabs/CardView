@@ -1,6 +1,5 @@
 
 #import <CardView/CardTextView.h>
-#import <CardView/CardTextContainer.h>
 #import <CardView/CardTextFormatters.h>
 #import <CardView/CardActionCell.h>
 #import <CardView/CardImageCell.h>

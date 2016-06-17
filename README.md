@@ -8,11 +8,7 @@ iStumbler Labs CardView.Framework
 
 ### CardTextView
 
-A subclass of NSTextView
-
-### CardTextContainer
-
-A subclass of NSTextContainer
+A good looking subclass of NSTextView
 
 ### CardImageCell
 

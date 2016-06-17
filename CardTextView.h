@@ -14,7 +14,7 @@
 + (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
 + (NSFormatter*) registeredFormatterForClass:(Class) clzz;
 
-#pragma mark -
+#pragma mark - Attachments
 
 - (NSTextAttachment*) clickedAttachment;
 
@@ -33,6 +33,8 @@
 
 - (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes;
 
+#pragma mark - Resizeable Styles
+
 - (NSAttributedString*) appendHeaderString:(NSString*) string;
 - (NSAttributedString*) appendSubheaderString:(NSString*) string;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
@@ -40,7 +42,9 @@
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
 - (NSAttributedString*) appendValueFormatted:(id) object;
-// non-resizeable styles 
+
+#pragma mark - Non-Resizeable Styles
+
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(NSImage*) image;
