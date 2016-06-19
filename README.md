@@ -24,8 +24,9 @@ An NSCell for displaying a button in a CardTextView
 
 ## Categories
 
-- NSAttributedString+CardView
-- NSPasteboard+CardView
+### NSAttributedString+CardView
+
+### NSPasteboard+CardView
 
 ========
 
