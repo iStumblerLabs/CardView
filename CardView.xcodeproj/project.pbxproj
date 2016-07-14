@@ -82,24 +82,7 @@
 			children = (
 				7571BF711CCDB68100021159 /* README.md */,
 				8DC2EF5A0486A6940098B216 /* CardView.plist */,
-				32DBCF5E0370ADEE00C91783 /* CardView.pch */,
-				75AC2C600A8F78D9003AAE72 /* CardView.h */,
-				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
-				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
-				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
-				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
-				75DE4323196E6A1B0022311F /* CardViewCell.h */,
-				75DE4324196E6A1B0022311F /* CardViewCell.m */,
-				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
-				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
-				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
-				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
-				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
-				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
-				75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */,
-				75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */,
-				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
-				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+				7585A8331D307B8C00F5C869 /* Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -133,6 +116,31 @@
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7585A8331D307B8C00F5C869 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF5E0370ADEE00C91783 /* CardView.pch */,
+				75AC2C600A8F78D9003AAE72 /* CardView.h */,
+				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
+				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
+				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
+				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
+				75DE4323196E6A1B0022311F /* CardViewCell.h */,
+				75DE4324196E6A1B0022311F /* CardViewCell.m */,
+				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
+				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
+				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
+				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
+				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
+				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
+				75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */,
+				75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */,
+				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
+				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+			);
+			name = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
