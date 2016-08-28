@@ -122,7 +122,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSFont* font = [NSFont systemFontOfSize:fontSize];
     NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
-    [style setAlignment:NSCenterTextAlignment];
+    style.alignment = NSTextAlignmentCenter;
+    style.tabStops = @[]; // clear tabs
     return @{ NSParagraphStyleAttributeName: style,
               NSFontAttributeName: font};
 }
@@ -169,7 +170,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (string) {
-        NSDictionary* attrs = [self attributesForSize:self.fontSize];
+        NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
+        attrs[NSFontAttributeName] = [NSFont boldSystemFontOfSize:(self.fontSize * 1.2)];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
@@ -181,7 +183,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
-        [attrs setValue:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
+        attrs[NSForegroundColorAttributeName] = [NSColor grayColor];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
