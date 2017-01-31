@@ -3,7 +3,7 @@
 /*!
     @class CartTextView
     @abstract Implements an Address Book Card style text view
-    @discussion  
+    @discussion  subclass of NSTextView with support for columns and styled text
 */
 @interface CardTextView : NSTextView
 @property(nonatomic, assign) CGFloat fontSize;
