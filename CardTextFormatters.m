@@ -328,3 +328,131 @@ static unsigned long long const EB = (PB * KB);
 }
 
 @end
+
+#pragma mark -
+
+/*! @class PListFormatter formatts plists into various forms */
+@implementation PListFormatter : CardTextFormatter
+
++ (PListFormatter*) pListFormatter
+{
+    return [PListFormatter new];
+}
+
+- (NSString*) stringForObjectValue:(id)obj
+{
+    NSString* plistString = [obj description];
+    return plistString;
+}
+
+@end
+
+#pragma mark -
+
+/*! @class PListJSONFormatter formatts plists into various forms */
+@implementation PListJSONFormatter : CardTextFormatter
+
++ (PListJSONFormatter*) pListJSONFormatter
+{
+    return [PListJSONFormatter new];
+}
+
+- (NSString*) stringForObjectValue:(id)obj
+{
+    NSString* plistJSONString = [obj description];
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization
+        dataWithJSONObject:obj
+        options:NSJSONWritingPrettyPrinted
+        error:&error];
+    plistJSONString = [[NSString alloc]
+        initWithData:jsonData
+        encoding:NSUTF8StringEncoding];
+
+    return plistJSONString;
+}
+
+
+@end
+
+#pragma mark -
+
+/*! https://daringfireball.net/projects/markdown/syntax.text */
+@implementation PListMarkdownFormatter : CardTextFormatter
+
++ (PListMarkdownFormatter*) pListMarkdownFormatter
+{
+    return [PListMarkdownFormatter new];
+}
+
+#pragma mark -
+
+- (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level
+{
+    NSMutableString* objectMarkdown = [NSMutableString new];
+
+    unsigned indent = level;
+    while (indent-- > 0) {
+        [objectMarkdown appendString:@"  "]; // two spaces
+    }
+
+    // NSLog(@"level: %u indent: **%@**", level, objectMarkdown);
+
+    if ([obj isKindOfClass:[NSString class]]) {
+        [objectMarkdown appendString:obj];
+    }
+    else if ([obj isKindOfClass:[NSNumber class]]) {
+        [objectMarkdown appendString:[obj stringValue]];
+    }
+    else if ([obj isKindOfClass:[NSArray class]]) {
+        NSArray* array = (NSArray*)obj;
+        unsigned index = 1;
+        for (id item in array) {
+            [objectMarkdown appendFormat:@"%ui. ", index++];
+            [objectMarkdown appendString:[self stringForObjectValue:item indent:(level + 1)]];
+        }
+    }
+    else if ([obj isKindOfClass:[NSDictionary class]]) {
+        NSDictionary* dictionary = (NSDictionary*)obj;
+        for (NSString* key in [dictionary allKeys]) {
+            id value = [dictionary objectForKey:key];
+
+            [objectMarkdown appendString:@"* *"];
+            [objectMarkdown appendString:key];
+            [objectMarkdown appendString:@"* : "];
+            if ([value isKindOfClass:[NSString class]]) {
+                [objectMarkdown appendString:value];
+                [objectMarkdown appendString:@"\n"];
+            }
+            else if ([value isKindOfClass:[NSNumber class]]) {
+                [objectMarkdown appendString:[value stringValue]];
+                [objectMarkdown appendString:@"\n"];
+            }
+            else { // we need to go deeper
+                [objectMarkdown appendString:@"\n"];
+                NSString* valueMarkdown = [self stringForObjectValue:value indent:(level + 1)];
+                // NSLog(@"valueMarkdown %@", valueMarkdown);
+                [objectMarkdown appendString:valueMarkdown];
+            }
+        }
+        [objectMarkdown appendString:@"\n"];
+    }
+    else {
+        [objectMarkdown appendString:[obj description]]; // *shrug*
+    }
+
+    // [objectMarkdown appendString:@"\n"];
+
+    return objectMarkdown;
+}
+
+- (NSString*) stringForObjectValue:(id)obj
+{
+    NSString* markdownString = [self stringForObjectValue:obj indent:0];
+    // NSLog(@"markdownString %@", markdownString);
+    return markdownString;
+}
+
+@end
+

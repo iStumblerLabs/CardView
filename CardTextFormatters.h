@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface CardTextFormatter : NSFormatter
 
@@ -72,5 +72,32 @@
 @interface CardListFormatter : CardArrayFormatter
 
 + (CardListFormatter*) cardListFormatter;
+
+@end
+
+#pragma mark -
+
+/*! @class PListFormatter formatts plists into various forms */
+@interface PListFormatter : CardTextFormatter
+
++ (PListFormatter*) pListFormatter;
+
+@end
+
+#pragma mark -
+
+/*! @class PListJSONFormatter formatts plists into various forms */
+@interface PListJSONFormatter : CardTextFormatter
+
++ (PListJSONFormatter*) pListJSONFormatter;
+
+@end
+
+#pragma mark -
+
+/*! @class PListMarkdownFormatter formatts plists into various forms */
+@interface PListMarkdownFormatter : CardTextFormatter
+
++ (PListMarkdownFormatter*) pListMarkdownFormatter;
 
 @end

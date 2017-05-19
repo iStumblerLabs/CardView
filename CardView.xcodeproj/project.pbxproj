@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7553319B1EBE43B300B35345 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; };
+		7553319C1EBE43B300B35345 /* NSImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* NSImage+CardView.m */; };
 		7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
 		75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C470A8F78D1003AAE72 /* CardActionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,7 +33,8 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		32DBCF5E0370ADEE00C91783 /* CardView.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.pch; sourceTree = "<group>"; };
+		755331991EBE43B300B35345 /* NSImage+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CardView.h"; sourceTree = "<group>"; };
+		7553319A1EBE43B300B35345 /* NSImage+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CardView.m"; sourceTree = "<group>"; };
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7571BFB81CD579CF00021159 /* CardTextFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextFormatters.h; sourceTree = "<group>"; };
 		7571BFB91CD579CF00021159 /* CardTextFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextFormatters.m; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 				7571BF711CCDB68100021159 /* README.md */,
 				8DC2EF5A0486A6940098B216 /* CardView.plist */,
 				7585A8331D307B8C00F5C869 /* Sources */,
+				7553319E1EBE94DD00B35345 /* Categories */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -118,27 +122,35 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		7553319E1EBE94DD00B35345 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
+				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+				755331991EBE43B300B35345 /* NSImage+CardView.h */,
+				7553319A1EBE43B300B35345 /* NSImage+CardView.m */,
+				75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */,
+				75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		7585A8331D307B8C00F5C869 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF5E0370ADEE00C91783 /* CardView.pch */,
 				75AC2C600A8F78D9003AAE72 /* CardView.h */,
-				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
-				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
-				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
-				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
-				75DE4323196E6A1B0022311F /* CardViewCell.h */,
-				75DE4324196E6A1B0022311F /* CardViewCell.m */,
-				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
-				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
 				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
 				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
+				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
+				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
 				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
 				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
-				75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */,
-				75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */,
-				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
-				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
+				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
+				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
+				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
+				75DE4323196E6A1B0022311F /* CardViewCell.h */,
+				75DE4324196E6A1B0022311F /* CardViewCell.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -156,6 +168,7 @@
 				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
 				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
 				75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */,
+				7553319B1EBE43B300B35345 /* NSImage+CardView.h in Headers */,
 				75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */,
 				75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */,
 				75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */,
@@ -234,6 +247,7 @@
 				75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */,
 				7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */,
 				75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */,
+				7553319C1EBE43B300B35345 /* NSImage+CardView.m in Sources */,
 				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
 				75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */,
 				75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */,
@@ -256,7 +270,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CardView.pch;
 				INFOPLIST_FILE = CardView.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -281,7 +294,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CardView.pch;
 				INFOPLIST_FILE = CardView.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
