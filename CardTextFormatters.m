@@ -359,7 +359,7 @@ static unsigned long long const EB = (PB * KB);
 
 - (NSString*) stringForObjectValue:(id)obj
 {
-    NSString* plistJSONString = [obj description];
+    NSString* plistJSONString = nil;
 
     NSError *error;
     NSData *jsonData = [NSJSONSerialization

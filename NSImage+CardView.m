@@ -35,7 +35,10 @@
     else {
         NSDictionary* details = @{NSLocalizedDescriptionKey:@"Error writing PNG image"};
         [details setValue:@"ran out of money" forKey:NSLocalizedDescriptionKey];
-        *error = [NSError errorWithDomain:@"SSWPNGAdditionsErrorDomain" code:10 userInfo:details];
+        NSError* writeError = [NSError errorWithDomain:@"SSWPNGAdditionsErrorDomain" code:10 userInfo:details];
+        if (*error != nil && writeError) {
+            *error = writeError;
+        }
     }
 
 exit:
