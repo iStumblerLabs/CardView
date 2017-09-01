@@ -183,7 +183,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
-        attrs[NSForegroundColorAttributeName] = [NSColor grayColor];
+        attrs[NSFontAttributeName] = [NSFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
@@ -228,6 +228,18 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self keywordAttributesForSize:self.fontSize];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
+    return attrString;
+}
+
+- (NSAttributedString*) appendMonospaceString:(NSString*)string
+{
+    NSAS* attrString = nil;
+    if (string) {
+        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        attrs[NSFontAttributeName] = [NSFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }

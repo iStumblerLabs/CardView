@@ -41,6 +41,7 @@
 - (NSAttributedString*) appendGrayString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
+- (NSAttributedString*) appendMonospaceString:(NSString*) string;
 - (NSAttributedString*) appendValueFormatted:(id) object;
 
 #pragma mark - Non-Resizeable Styles
