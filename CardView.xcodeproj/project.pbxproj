@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		7553319B1EBE43B300B35345 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; };
 		7553319C1EBE43B300B35345 /* NSImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* NSImage+CardView.m */; };
 		7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,10 +30,35 @@
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7550C5B71F5A43D0003A0691 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75DCBEE21ED2C81E00538D87;
+			remoteInfo = "KitBridge (macOS)";
+		};
+		7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75DCBEF21ED2C84B00538D87;
+			remoteInfo = "KitBridge (iOS)";
+		};
+		7550C5BB1F5A43D7003A0691 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 75DCBEE11ED2C81E00538D87;
+			remoteInfo = "KitBridge (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = "<group>"; };
 		755331991EBE43B300B35345 /* NSImage+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CardView.h"; sourceTree = "<group>"; };
 		7553319A1EBE43B300B35345 /* NSImage+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CardView.m"; sourceTree = "<group>"; };
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -65,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +123,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */,
 				75FA0B8D1981B1B1000AFFE3 /* Security.framework */,
 				75FD72DC1966A44A004C54DD /* WebKit.framework */,
 				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
@@ -120,6 +148,15 @@
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7550C5B31F5A43D0003A0691 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7550C5B81F5A43D0003A0691 /* KitBridge.framework */,
+				7550C5BA1F5A43D0003A0691 /* KitBridge.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7553319E1EBE94DD00B35345 /* Categories */ = {
@@ -190,6 +227,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */,
 			);
 			name = CardView;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -220,12 +258,35 @@
 			mainGroup = 0867D691FE84028FC02AAC07 /* CardView */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7550C5B31F5A43D0003A0691 /* Products */;
+					ProjectRef = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* CardView */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7550C5B81F5A43D0003A0691 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KitBridge.framework;
+			remoteRef = 7550C5B71F5A43D0003A0691 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7550C5BA1F5A43D0003A0691 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KitBridge.framework;
+			remoteRef = 7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8DC2EF520486A6940098B216 /* Resources */ = {
@@ -255,6 +316,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "KitBridge (macOS)";
+			targetProxy = 7550C5BB1F5A43D7003A0691 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
