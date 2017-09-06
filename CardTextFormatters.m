@@ -308,7 +308,7 @@ static unsigned long long const EB = (PB * KB);
 
 #pragma mark -
 
-/*! @class CardListFormatter formats arrays with commas between the elements */
+/*! CardListFormatter formats arrays with commas between the elements */
 @implementation CardListFormatter
 
 + (CardListFormatter*) cardListFormatter
@@ -331,7 +331,7 @@ static unsigned long long const EB = (PB * KB);
 
 #pragma mark -
 
-/*! @class PListFormatter formatts plists into various forms */
+/*! PListFormatter formatts plists into various forms */
 @implementation PListFormatter : CardTextFormatter
 
 + (PListFormatter*) pListFormatter
@@ -349,7 +349,7 @@ static unsigned long long const EB = (PB * KB);
 
 #pragma mark -
 
-/*! @class PListJSONFormatter formatts plists into various forms */
+/*! PListJSONFormatter formatts plists into various forms */
 @implementation PListJSONFormatter : CardTextFormatter
 
 + (PListJSONFormatter*) pListJSONFormatter
