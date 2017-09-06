@@ -7,9 +7,9 @@ static CGFloat unit_scale = 0.9;
 + (NSDictionary*) unitsAttrs:(NSDictionary*) attrs
 {
     NSMutableDictionary* unitsAttrs = [attrs mutableCopy];
-    NSFont* fullSize = attrs[NSFontAttributeName];
-    NSFont* halfSize = [NSFont fontWithName:[fullSize fontName] size:([fullSize pointSize] * unit_scale)];
-    unitsAttrs[NSForegroundColorAttributeName] = [NSColor grayColor];
+    ILFont* fullSize = attrs[NSFontAttributeName];
+    ILFont* halfSize = [ILFont fontWithName:[fullSize fontName] size:([fullSize pointSize] * unit_scale)];
+    unitsAttrs[NSForegroundColorAttributeName] = [ILColor grayColor];
     unitsAttrs[NSFontAttributeName] = halfSize;
     return unitsAttrs;
 }
@@ -17,15 +17,15 @@ static CGFloat unit_scale = 0.9;
 + (NSDictionary*) cardinalAttrs:(NSDictionary*) attrs
 {
     NSMutableDictionary* cardinalAttrs = [attrs mutableCopy];
-    cardinalAttrs[NSForegroundColorAttributeName] = [NSColor grayColor];
+    cardinalAttrs[NSForegroundColorAttributeName] = [ILColor grayColor];
     return cardinalAttrs;
 }
 
 + (NSDictionary*) monospaceAttrs:(NSDictionary*) attrs
 {
     NSMutableDictionary* monoAttrs = [attrs mutableCopy];
-    NSFont* attrsFont = attrs[NSFontAttributeName];
-    NSFont* monoFont = [NSFont userFixedPitchFontOfSize:[attrsFont pointSize]];
+    ILFont* attrsFont = attrs[NSFontAttributeName];
+    ILFont* monoFont = [ILFont userFixedPitchFontOfSize:[attrsFont pointSize]];
     monoAttrs[NSFontAttributeName] = monoFont;
     return monoAttrs;
 }
@@ -112,7 +112,7 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardURLFormatter
 
-+ (CardURLFormatter*) formatterWithLinkColor:(NSColor*) color
++ (CardURLFormatter*) formatterWithLinkColor:(ILColor*) color
 {
     CardURLFormatter* urlFormatter = [CardURLFormatter new];
     urlFormatter.linkColor = color;

@@ -1,7 +1,10 @@
 #import "CardTextView.h"
 
+#if IL_APP_KIT
 #import "CardSeparatorCell.h"
 #import "CardImageCell.h"
+#endif
+
 #import "NSAttributedString+CardView.h"
 
 static NSMutableDictionary* formatterRegistry;
@@ -44,10 +47,10 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) initView {
     self.columns = @[@(-0.33), @(5)]; // 40% right-aligned with a ten pt gutter
-    self.fontSize = [NSFont smallSystemFontSize];
+    self.fontSize = [ILFont smallSystemFontSize];
 }
 
-- (id) initWithFrame:(NSRect)frame 
+- (id) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         [self initView];
@@ -65,11 +68,14 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSTextAttachment*) clickedAttachment
 {
-    NSPoint click = [self convertPoint:[[NSApp currentEvent] locationInWindow] fromView:nil];
+    NSTextAttachment* attachment = nil;
+#if IL_APP_KIT
+    CGPoint click = [self convertPoint:[[NSApp currentEvent] locationInWindow] fromView:nil];
             click.y -= [self textContainerInset].height;
             click.x -= [self textContainerInset].width;
     NSUInteger index = [[self layoutManager] glyphIndexForPoint:click inTextContainer:[self textContainer]];
-    NSTextAttachment* attachment = [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+    attachment = [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+#endif
     return attachment;
 }
 
@@ -78,7 +84,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths
 {
     NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
-
+#if IL_APP_KIT
     NSMutableArray* stops = [NSMutableArray new];
     CGFloat columnEdge = 0;
     for (NSNumber* stop in columnWidths) {
@@ -99,12 +105,13 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     style.firstLineHeadIndent = 0;
     style.headIndent = columnEdge;
     [style setTabStops:stops];
+#endif
     return style;
 }
 
 - (NSDictionary*) attributesForSize:(CGFloat)fontSize
 {
-    NSFont* tagFont = [NSFont systemFontOfSize:fontSize];
+    ILFont* tagFont = [ILFont systemFontOfSize:fontSize];
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tagFont};
@@ -112,7 +119,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops
 {
-    NSFont* tag_font = [NSFont boldSystemFontOfSize:fontSize];
+    ILFont* tag_font = [ILFont boldSystemFontOfSize:fontSize];
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tag_font};
@@ -120,7 +127,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize
 {
-    NSFont* font = [NSFont systemFontOfSize:fontSize];
+    ILFont* font = [ILFont systemFontOfSize:fontSize];
     NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
     style.alignment = NSTextAlignmentCenter;
     style.tabStops = @[]; // clear tabs
@@ -132,35 +139,35 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [NSFont boldSystemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize]};
 }
 
 - (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [NSFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [NSColor grayColor]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [ILColor grayColor]};
 }
 
 - (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
 }
 
 - (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
 }
 
 - (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize
 {
     return @{ NSParagraphStyleAttributeName: [NSParagraphStyle defaultParagraphStyle],
-              NSFontAttributeName: [NSFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
 }
 
 
@@ -171,7 +178,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
-        attrs[NSFontAttributeName] = [NSFont boldSystemFontOfSize:(self.fontSize * 1.2)];
+        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(self.fontSize * 1.2)];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
@@ -183,7 +190,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
-        attrs[NSFontAttributeName] = [NSFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
+        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
@@ -239,7 +246,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
-        attrs[NSFontAttributeName] = [NSFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
+        attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
@@ -261,27 +268,33 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSAttributedString*) appendHorizontalRule;
 {
-    NSAS* rule = [self appendHorizontalRuleWithColor:[NSColor grayColor] width:1];
+    NSAS* rule = [self appendHorizontalRuleWithColor:[ILColor grayColor] width:1];
     return rule;
 }
 
-- (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width
+- (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width
 {
-    NSAttributedString* attrString = [CardSeparatorCell separatorWithColor:color width:width];
+    NSAttributedString* attrString = nil;
+#if IL_APP_KIT
+    attrString = [CardSeparatorCell separatorWithColor:color width:width];
     [self appendNewline]; // each rule is it's own paragrah
     [[self textStorage] appendAttributedString:attrString];
     [self appendNewline]; // and clears the next line below it
+#endif
     return attrString;
 }
 
-- (NSAttributedString*) appendImage:(NSImage*) image
+- (NSAttributedString*) appendImage:(ILImage*) image
 {
     NSAttributedString* attrString = nil;
+#if IL_APP_KIT
     if (image) {
         CardImageCell* cell = [CardImageCell cellWithImage:image];
         attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
         [[self textStorage] appendAttributedString:attrString];
     }
+// TODO #elif IL_UI_KIT
+#endif
     return attrString;
 }
 
@@ -344,6 +357,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) replaceParagraphStyle:(NSParagraphStyle*)newStyle
 {
+#if IL_APP_KIT
     NSMAS* updatedString = [NSMAS new];
     for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
         NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:nil];
@@ -358,8 +372,10 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         }
     }
     [self.textStorage setAttributedString:updatedString];
+#endif
 }
 
+#if IL_APP_KIT
 #pragma mark - NSMenuValidation
 
 - (BOOL) validateMenuItem:(NSMenuItem*)menuItem
@@ -382,6 +398,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 //    NSLog(@"%@ validated: %@ %@", [self className], (isValid?@"YES":@"NO"), menuItem);
     return isValid;
 }
+#endif
 
 #pragma mark - NSResponder
 
@@ -440,6 +457,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     }
 }
 
+#if IL_APP_KIT
 #pragma mark - NSView
 
 - (void) viewDidHide
@@ -469,6 +487,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
                                                       frame.height-(insets.height*2))];
 */
 }
+#endif
 
 @end
 

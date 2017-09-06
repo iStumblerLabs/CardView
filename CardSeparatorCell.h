@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import <KitBridge/KitBridge.h>
 
 /*!
     @class
@@ -7,14 +7,14 @@
 */
 
 @interface CardSeparatorCell : NSTextAttachmentCell
-@property(nonatomic,retain) NSColor* separator_color;
+@property(nonatomic,retain) ILColor* separator_color;
 @property(nonatomic,assign) CGFloat separator_width;
 
 + (NSAttributedString*) separator;
-+ (NSAttributedString*) separatorWithColor:(NSColor*) color;
-+ (NSAttributedString*) separatorWithColor:(NSColor*) color width:(CGFloat) width;
++ (NSAttributedString*) separatorWithColor:(ILColor*) color;
++ (NSAttributedString*) separatorWithColor:(ILColor*) color width:(CGFloat) width;
 
-- (id) initWithColor:(NSColor*) color width:(CGFloat) width;
+- (id) initWithColor:(ILColor*) color width:(CGFloat) width;
 
 @end
 

@@ -1,8 +1,7 @@
-
-#import <Cocoa/Cocoa.h>
+#import <KitBridge/KitBridge.h>
 
 @interface CardViewCell : NSTextAttachmentCell
-@property(nonatomic,retain) NSView* view;
+@property(nonatomic,retain) ILView* view;
 
 @end
 

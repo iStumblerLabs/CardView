@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import <KitBridge/KitBridge.h>
 
 
 @interface CardActionCell : NSProxy <NSTextAttachmentCell>

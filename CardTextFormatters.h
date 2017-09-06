@@ -1,4 +1,4 @@
-#import <AppKit/AppKit.h>
+#import <KitBridge/KitBridge.h>
 
 @interface CardTextFormatter : NSFormatter
 
@@ -28,9 +28,9 @@
 #pragma mark -
 
 @interface CardURLFormatter : CardTextFormatter
-@property(nonatomic, retain) NSColor* linkColor;
+@property(nonatomic, retain) ILColor* linkColor;
 
-+ (CardURLFormatter*) formatterWithLinkColor:(NSColor*) color;
++ (CardURLFormatter*) formatterWithLinkColor:(ILColor*) color;
 
 @end
 

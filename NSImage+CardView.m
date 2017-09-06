@@ -1,20 +1,21 @@
-#import <AppKit/AppKit.h>
+#import <KitBridge/KitBridge.h>
 
 /* http://stackoverflow.com/questions/17507170/how-to-save-png-file-from-nsimage-retina-issues */
 
 
 #pragma mark -
 
-@implementation NSImage (CardView)
+@implementation ILImage (CardView)
 
-- (BOOL)writePNGToURL:(NSURL*)URL outputSize:(NSSize)outputSizePx alphaChannel:(BOOL)alpha error:(NSError*__autoreleasing*)error
+#ifdef IL_APP_KIT
+- (BOOL)writePNGToURL:(NSURL*)URL outputSize:(CGSize)outputSizePx alphaChannel:(BOOL)alpha error:(NSError*__autoreleasing*)error
 {
     BOOL result = NO;
-    NSImage* scalingImage = [NSImage imageWithSize:self.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+    ILImage* scalingImage = [ILImage imageWithSize:self.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
         [self drawAtPoint:NSMakePoint(0.0, 0.0) fromRect:dstRect operation:NSCompositeSourceOver fraction:1.0];
         return YES;
     }];
-    NSRect proposedRect = NSMakeRect(0.0, 0.0, outputSizePx.width, outputSizePx.height);
+    CGRect proposedRect = CGRectMake(0.0, 0.0, outputSizePx.width, outputSizePx.height);
     unsigned components = 4;
     unsigned bitsPerComponent = 8;
     unsigned bytesPerRow = proposedRect.size.width * (components * (bitsPerComponent / BYTE_SIZE));
@@ -49,5 +50,6 @@ exit:
     CFRelease(imageOptions);
     return result;
 }
+#endif
 
 @end

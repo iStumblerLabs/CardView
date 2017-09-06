@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
-		7553319B1EBE43B300B35345 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; };
+		7553319B1EBE43B300B35345 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553319C1EBE43B300B35345 /* NSImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* NSImage+CardView.m */; };
 		7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
@@ -21,13 +21,25 @@
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
+		75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
+		75BE80BE1F5F670500453938 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
+		75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
+		75BE80C11F5F670500453938 /* NSImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* NSImage+CardView.m */; };
+		75BE80C21F5F670500453938 /* NSPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */; };
+		75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80C71F5F671700453938 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80C81F5F671700453938 /* CardViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DE4323196E6A1B0022311F /* CardViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80CA1F5F671700453938 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80CB1F5F671700453938 /* NSPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80D31F5F710300453938 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DE4323196E6A1B0022311F /* CardViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE4324196E6A1B0022311F /* CardViewCell.m */; };
 		75FA0B851981A52A000AFFE3 /* NSPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75FA0B861981A52A000AFFE3 /* NSPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */; };
 		75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
-		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +64,17 @@
 			remoteGlobalIDString = 75DCBEE11ED2C81E00538D87;
 			remoteInfo = "KitBridge (macOS)";
 		};
+		75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 75DCBEF11ED2C84B00538D87;
+			remoteInfo = "KitBridge (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = "<group>"; };
 		755331991EBE43B300B35345 /* NSImage+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CardView.h"; sourceTree = "<group>"; };
 		7553319A1EBE43B300B35345 /* NSImage+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CardView.m"; sourceTree = "<group>"; };
@@ -73,6 +90,7 @@
 		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
 		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
 		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		75BE80AF1F5F66C200453938 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
 		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
 		75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPasteboard+CardView.h"; sourceTree = "<group>"; };
@@ -87,12 +105,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		75BE80AB1F5F66C200453938 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */,
-				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5B0486A6940098B216 /* CardView.framework */,
+				75BE80AF1F5F66C200453938 /* CardView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,28 +152,10 @@
 				7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */,
 				75FA0B8D1981B1B1000AFFE3 /* Security.framework */,
 				75FD72DC1966A44A004C54DD /* WebKit.framework */,
-				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
-				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
 				D2F7E79907B2D74100F64583 /* CoreData.framework */,
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
-			name = "Other Frameworks";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7550C5B31F5A43D0003A0691 /* Products */ = {
@@ -195,6 +203,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		75BE80AC1F5F66C200453938 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75BE80D31F5F710300453938 /* CardView.h in Headers */,
+				75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */,
+				75BE80C71F5F671700453938 /* CardTextView.h in Headers */,
+				75BE80C81F5F671700453938 /* CardViewCell.h in Headers */,
+				75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */,
+				75BE80CA1F5F671700453938 /* NSImage+CardView.h in Headers */,
+				75BE80CB1F5F671700453938 /* NSPasteboard+CardView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF500486A6940098B216 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,21 +237,40 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8DC2EF4F0486A6940098B216 /* CardView */ = {
+		75BE80AE1F5F66C200453938 /* CardView (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView" */;
+			buildConfigurationList = 75BE80B41F5F66C200453938 /* Build configuration list for PBXNativeTarget "CardView (iOS)" */;
+			buildPhases = (
+				75BE80AC1F5F66C200453938 /* Headers */,
+				75BE80AA1F5F66C200453938 /* Sources */,
+				75BE80AB1F5F66C200453938 /* Frameworks */,
+				75BE80AD1F5F66C200453938 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75BE80B81F5F66EF00453938 /* PBXTargetDependency */,
+			);
+			name = "CardView (iOS)";
+			productName = CardView;
+			productReference = 75BE80AF1F5F66C200453938 /* CardView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8DC2EF4F0486A6940098B216 /* CardView (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView (macOS)" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
-				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
+				8DC2EF520486A6940098B216 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */,
 			);
-			name = CardView;
+			name = "CardView (macOS)";
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = CardView;
 			productReference = 8DC2EF5B0486A6940098B216 /* CardView.framework */;
@@ -243,6 +284,11 @@
 			attributes = {
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
+					75BE80AE1F5F66C200453938 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = E8G8ARB44Z;
+						ProvisioningStyle = Automatic;
+					};
 					8DC2EF4F0486A6940098B216 = {
 						DevelopmentTeam = E8G8ARB44Z;
 					};
@@ -266,7 +312,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* CardView */,
+				8DC2EF4F0486A6940098B216 /* CardView (macOS) */,
+				75BE80AE1F5F66C200453938 /* CardView (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +336,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		75BE80AD1F5F66C200453938 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF520486A6940098B216 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +353,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		75BE80AA1F5F66C200453938 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */,
+				75BE80BE1F5F670500453938 /* CardTextView.m in Sources */,
+				75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */,
+				75BE80C11F5F670500453938 /* NSImage+CardView.m in Sources */,
+				75BE80C21F5F670500453938 /* NSPasteboard+CardView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +388,11 @@
 			isa = PBXTargetDependency;
 			name = "KitBridge (macOS)";
 			targetProxy = 7550C5BB1F5A43D7003A0691 /* PBXContainerItemProxy */;
+		};
+		75BE80B81F5F66EF00453938 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "KitBridge (iOS)";
+			targetProxy = 75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -428,10 +499,94 @@
 			};
 			name = Release;
 		};
+		75BE80B51F5F66C200453938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = CardView.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
+				PRODUCT_NAME = CardView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		75BE80B61F5F66C200453938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = CardView.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
+				PRODUCT_NAME = CardView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
@@ -448,6 +603,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		75BE80B41F5F66C200453938 /* Build configuration list for PBXNativeTarget "CardView (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75BE80B51F5F66C200453938 /* Debug */,
+				75BE80B61F5F66C200453938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

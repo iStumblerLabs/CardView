@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import <KitBridge/KitBridge.h>
 
 #define NSAS NSAttributedString
 
@@ -8,7 +8,9 @@
 + (NSAttributedString*) attributedString:(NSString*) string withFont:(NSFont*) font;
 + (NSAttributedString*) attributedString:(NSString*) string withLink:(NSURL*) url;
 + (NSAttributedString*) attributedString:(NSString*) string withAttributes:(NSDictionary*) attrs;
+#ifdef IL_APP_KIT
 + (NSAttributedString*) attributedStringWithAttachmentCell:(id<NSTextAttachmentCell>) attach;
+#endif
 
 @end
 

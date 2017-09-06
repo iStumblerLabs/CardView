@@ -17,9 +17,9 @@
 
 + (NSAttributedString*) attributedString:(NSString*)string withLink:(NSURL*) url
 {
-    NSDictionary* attrs = @{NSFontAttributeName: [NSFont systemFontOfSize:10.0],
+    NSDictionary* attrs = @{NSFontAttributeName: [ILFont systemFontOfSize:10.0],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-        NSForegroundColorAttributeName: [NSColor blueColor], // TODO get link color from safari
+        NSForegroundColorAttributeName: [ILColor blueColor], // TODO get link color from safari
         NSLinkAttributeName: [url absoluteString]};
     return [[NSAttributedString alloc] initWithString:string
                                             attributes:attrs];
@@ -31,12 +31,14 @@
     return [[NSAttributedString alloc] initWithString:string attributes:attrs];
 }
 
+#ifdef IL_APP_KIT
 + (NSAttributedString*) attributedStringWithAttachmentCell:(id<NSTextAttachmentCell>) attach
 {
     NSTextAttachment* attachment = [NSTextAttachment new];
     [attachment setAttachmentCell:attach];
     return [NSAttributedString attributedStringWithAttachment:attachment];
 }
+#endif
 
 @end
 

@@ -47,8 +47,8 @@
 #pragma mark - Non-Resizeable Styles
 
 - (NSAttributedString*) appendHorizontalRule;
-- (NSAttributedString*) appendHorizontalRuleWithColor:(NSColor*) color width:(CGFloat) width;
-- (NSAttributedString*) appendImage:(NSImage*) image;
+- (NSAttributedString*) appendHorizontalRuleWithColor:(UIColor*) color width:(CGFloat) width;
+- (NSAttributedString*) appendImage:(UIImage*) image;
 - (NSAttributedString*) appendContentString:(NSString*) string;
 - (NSAttributedString*) appendContentFormatted:(id) object;
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
