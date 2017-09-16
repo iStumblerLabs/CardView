@@ -29,7 +29,6 @@
 		75BE80C21F5F670500453938 /* NSPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* NSPasteboard+CardView.m */; };
 		75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80C71F5F671700453938 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75BE80C81F5F671700453938 /* CardViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DE4323196E6A1B0022311F /* CardViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80CA1F5F671700453938 /* NSImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* NSImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80CB1F5F671700453938 /* NSPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* NSPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -208,12 +207,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				75BE80D31F5F710300453938 /* CardView.h in Headers */,
-				75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */,
 				75BE80C71F5F671700453938 /* CardTextView.h in Headers */,
-				75BE80C81F5F671700453938 /* CardViewCell.h in Headers */,
-				75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */,
+				75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */,
 				75BE80CA1F5F671700453938 /* NSImage+CardView.h in Headers */,
 				75BE80CB1F5F671700453938 /* NSPasteboard+CardView.h in Headers */,
+				75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,11 +355,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */,
 				75BE80BE1F5F670500453938 /* CardTextView.m in Sources */,
-				75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */,
+				75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */,
 				75BE80C11F5F670500453938 /* NSImage+CardView.m in Sources */,
 				75BE80C21F5F670500453938 /* NSPasteboard+CardView.m in Sources */,
+				75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +609,7 @@
 				75BE80B61F5F66C200453938 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
