@@ -66,6 +66,15 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return self;
 }
 
+#pragma mark -
+
+- (void) clearCard
+{
+    [[self textStorage] setAttributedString:[NSAS attributedString:@""]];
+}
+
+#pragma mark -
+
 - (NSTextAttachment*) clickedAttachment
 {
     NSTextAttachment* attachment = nil;
@@ -248,6 +257,18 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
         attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [[self textStorage] appendAttributedString:attrString];
+    }
+    return attrString;
+}
+
+- (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label
+{
+    NSAS* attrString = nil;
+    if (url) {
+        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        attrs[NSLinkAttributeName] = url;
+        attrString = [[NSAS alloc] initWithString:(label ? label : url) attributes:attrs];
         [[self textStorage] appendAttributedString:attrString];
     }
     return attrString;

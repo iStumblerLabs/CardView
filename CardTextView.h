@@ -14,6 +14,10 @@
 + (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
 + (NSFormatter*) registeredFormatterForClass:(Class) clzz;
 
+#pragma mark -
+
+- (void) clearCard;
+
 #pragma mark - Attachments
 
 - (NSTextAttachment*) clickedAttachment;
@@ -42,6 +46,7 @@
 - (NSAttributedString*) appendValueString:(NSString*) string;
 - (NSAttributedString*) appendKeywordString:(NSString*) string;
 - (NSAttributedString*) appendMonospaceString:(NSString*) string;
+- (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label;
 - (NSAttributedString*) appendValueFormatted:(id) object;
 
 #pragma mark - Non-Resizeable Styles
