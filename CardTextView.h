@@ -41,6 +41,7 @@
 
 - (NSAttributedString*) appendHeaderString:(NSString*) string;
 - (NSAttributedString*) appendSubheaderString:(NSString*) string;
+- (NSAttributedString*) appendCenteredString:(NSString*) string;
 - (NSAttributedString*) appendLabelString:(NSString*) string;
 - (NSAttributedString*) appendGrayString:(NSString*) string;
 - (NSAttributedString*) appendValueString:(NSString*) string;

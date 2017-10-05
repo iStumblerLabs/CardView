@@ -189,7 +189,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
         attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(self.fontSize * 1.2)];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -201,7 +201,18 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
         attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
+    }
+    return attrString;
+}
+
+- (NSAttributedString*) appendCenteredString:(NSString*) string
+{
+    NSAS* attrString = nil;
+    if (string) {
+        NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
+        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -212,7 +223,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     if (string) {
         NSDictionary* attrs = [self labelAttributesForSize:self.fontSize];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -223,7 +234,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     if (string) {
         NSDictionary* attrs = [self grayAttributesForSize:self.fontSize];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -234,7 +245,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     if (string) {
         NSDictionary* attrs = [self valueAttributesForSize:self.fontSize];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -245,7 +256,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     if (string) {
         NSDictionary* attrs = [self keywordAttributesForSize:self.fontSize];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -257,7 +268,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
         attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -269,7 +280,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
         attrs[NSLinkAttributeName] = url;
         attrString = [[NSAS alloc] initWithString:(label ? label : url) attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
@@ -280,7 +291,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     if (string) {
         NSDictionary* attrs = [self contentAttributesForSize:self.fontSize];
         attrString = [[NSAS alloc] initWithString:string attributes:attrs];
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
