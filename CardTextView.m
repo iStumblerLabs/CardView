@@ -101,16 +101,19 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         NSTextTabType tabType = NSLeftTabStopType;
         if (stopValue < 0) { // it's a right tab
             tabType = NSRightTabStopType;
-            stopValue = fabs(stopValue); // be positive
         }
         
-        if (stopValue > 0 && stopValue < 1) { // it's a fraction of the width of the frame
-            stopValue = (self.frame.size.width * stopValue);
+        if ((stopValue > -1.0) && (stopValue < 1.0)) { // it's a fraction of the width of the frame
+            stopValue = (self.frame.size.width * fabs(stopValue)); // be positive
+        }
+        else {
+            stopValue = fabs(stopValue); // be positive
         }
         
         columnEdge += stopValue;
         [stops addObject:[[NSTextTab alloc] initWithType:tabType location:columnEdge]];
     }
+    // NSLog(@"tab stops: %@", stops);
     style.firstLineHeadIndent = 0;
     style.headIndent = columnEdge;
     [style setTabStops:stops];
