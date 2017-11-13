@@ -32,9 +32,9 @@
 									characterIndex:charIndex];
 	NSSize size = [textContainer containerSize];
     NSSize image = [[image_cell image] size];
-    float width = size.width -= 2.0*[textContainer lineFragmentPadding];
-    float height = image.height*(width/image.width);
-    NSSize preview = NSMakeSize(width,height);
+    float width = size.width -= (2.0 * [textContainer lineFragmentPadding]);
+    float height = image.height * (width / image.width);
+    NSSize preview = NSMakeSize(width, height);
 	frag.size.width = preview.width;
     frag.size.height = fminf(image.height, preview.height);
 	return frag;
