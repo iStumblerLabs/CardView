@@ -47,7 +47,11 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) initView {
     self.columns = @[@(-0.33), @(5)]; // 40% right-aligned with a ten pt gutter
+#if TARGET_OS_TV
+    self.fontSize = 24;
+#else
     self.fontSize = [ILFont smallSystemFontSize];
+#endif
 }
 
 - (id) initWithFrame:(CGRect)frame
