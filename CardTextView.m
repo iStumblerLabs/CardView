@@ -325,15 +325,33 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSAttributedString*) appendImage:(ILImage*) image
 {
+    return [self appendImage:image withAttributes:nil];
+}
+
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes
+{
     NSAttributedString* attrString = nil;
-#if IL_APP_KIT
     if (image) {
+#if IL_APP_KIT
         CardImageCell* cell = [CardImageCell cellWithImage:image];
         attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
+#elif IL_UI_KIT
+        NSTextAttachment* attachment = [NSTextAttachment new];
+        attachment.image = image;
+        attachment.bounds = CGRectMake(0, 0, attachment.image.size.width, attachment.image.size.height);
+        attrString = [NSAttributedString attributedStringWithAttachment:attachment];
+#endif
+        if (attributes) {
+            NSMutableDictionary* attrs = [attributes mutableCopy];
+            NSMutableAttributedString* styled = [attrString mutableCopy];
+
+            attrs[NSAttachmentAttributeName] = attachment;
+            [styled setAttributes:attrs range:NSMakeRange(0, styled.length)];
+            attrString = styled;
+        }
+        
         [[self textStorage] appendAttributedString:attrString];
     }
-// TODO #elif IL_UI_KIT
-#endif
     return attrString;
 }
 

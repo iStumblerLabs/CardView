@@ -55,6 +55,7 @@
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width;
 - (NSAttributedString*) appendImage:(ILImage*) image;
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes;
 - (NSAttributedString*) appendContentString:(NSString*) string;
 - (NSAttributedString*) appendContentFormatted:(id) object;
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
