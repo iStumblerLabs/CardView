@@ -333,8 +333,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAttributedString* attrString = nil;
     if (image) {
 #if IL_APP_KIT
-        CardImageCell* cell = [CardImageCell cellWithImage:image];
-        attrString = [NSAttributedString attributedStringWithAttachmentCell:cell];
+        CardImageCell* attachment = [CardImageCell cellWithImage:image];
+        attrString = [NSAttributedString attributedStringWithAttachmentCell:attachment];
 #elif IL_UI_KIT
         NSTextAttachment* attachment = [NSTextAttachment new];
         attachment.image = image;
@@ -345,7 +345,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
             NSMutableDictionary* attrs = [attributes mutableCopy];
             NSMutableAttributedString* styled = [attrString mutableCopy];
 
-            attrs[NSAttachmentAttributeName] = attachment;
+            attrs[NSAttachmentAttributeName] = [attrString attribute:NSAttachmentAttributeName atIndex:0 effectiveRange:nil];
             [styled setAttributes:attrs range:NSMakeRange(0, styled.length)];
             attrString = styled;
         }
