@@ -61,6 +61,7 @@
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter andAttributes:(NSDictionary*) attributes;
 - (NSAttributedString*) appendNewline;
+- (NSAttributedString*) appendTab;
 
 @end
 

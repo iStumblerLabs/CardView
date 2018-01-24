@@ -412,6 +412,14 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return newline;
 }
 
+- (NSAttributedString*) appendTab
+{
+    NSAS* newline = [self appendValueString:@"\t"];
+    return newline;
+}
+
+#pragma mark -
+
 - (void) replaceParagraphStyle:(NSParagraphStyle*)newStyle
 {
 #if IL_APP_KIT
@@ -439,7 +447,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     BOOL isValid = YES;
     
-    if( menuItem.action == @selector(cut:)
+    if (menuItem.action == @selector(cut:)
      || menuItem.action == @selector(copy:)
      || menuItem.action == @selector(paste:)
      || menuItem.action == @selector(pasteSearch:)
