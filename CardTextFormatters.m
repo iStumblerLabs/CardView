@@ -185,7 +185,7 @@ static CGFloat unit_scale = 0.9;
     CardUnitsFormatter* unitsFormat = [CardUnitsFormatter new];
     unitsFormat.units = units;
     unitsFormat.multiplier = @(multiplier);
-    unitsFormat.groupingSeparator = NSLocalizedString(@",", @"Grouping Separator");
+    unitsFormat.groupingSeparator = NSLocalizedStringFromTableInBundle(@",", nil, [NSBundle bundleForClass:[self class]], @"Grouping Separator");
     unitsFormat.usesGroupingSeparator = YES;
 
     return unitsFormat;
@@ -262,43 +262,43 @@ static unsigned long long const EB = (PB * KB);
     CGFloat scaledSize = (CGFloat)fileSize;
 
     if (fileSize < KB) { // display Bytes
-        self.units = NSLocalizedString( @"Bytes", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"Bytes", nil, [NSBundle bundleForClass:[self class]], nil);
     }
     else if (fileSize < MB) { // display kB
         scaledSize = fileSize / (CGFloat)KB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"kB", nil); // opinions differ
+        self.units = NSLocalizedStringFromTableInBundle(@"kB", nil, [NSBundle bundleForClass:[self class]], nil); // opinions differ
     }
     else if ( fileSize < GB) { // display MB
         scaledSize = fileSize / (CGFloat)MB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"MB", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"MB", nil, [NSBundle bundleForClass:[self class]], nil);
     }
     else if ( fileSize < TB) { // display GB
         scaledSize = fileSize / (CGFloat)GB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"GB", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"GB", nil, [NSBundle bundleForClass:[self class]], nil);
     }
     else if ( fileSize < PB) { // display TB
         scaledSize = fileSize / (CGFloat)TB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"TB", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"TB", nil, [NSBundle bundleForClass:[self class]], nil);
     }
     else if ( fileSize < EB) { // display PB
         scaledSize = fileSize / (CGFloat)PB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"PB", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"PB", nil, [NSBundle bundleForClass:[self class]], nil);
     }
     else { // display EB
         scaledSize = fileSize / (CGFloat)EB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
-        self.units = NSLocalizedString( @"EB", nil);
+        self.units = NSLocalizedStringFromTableInBundle(@"EB", nil, [NSBundle bundleForClass:[self class]], nil);
     }
 
     return [super attributedStringForObjectValue:@(scaledSize) withDefaultAttributes:attrs];
