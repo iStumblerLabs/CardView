@@ -130,7 +130,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     ILFont* tagFont = [ILFont systemFontOfSize:fontSize];
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: tagFont};
+              NSFontAttributeName: tagFont,
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops
@@ -138,7 +139,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     ILFont* tag_font = [ILFont boldSystemFontOfSize:fontSize];
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: tag_font};
+              NSFontAttributeName: tag_font,
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize
@@ -148,14 +150,16 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     style.alignment = NSTextAlignmentCenter;
     style.tabStops = @[]; // clear tabs
     return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: font};
+              NSFontAttributeName: font,
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize
@@ -170,20 +174,23 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize
 {
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 - (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize
 {
     return @{ NSParagraphStyleAttributeName: [NSParagraphStyle defaultParagraphStyle],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize]};
+              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
+              NSForegroundColorAttributeName: [ILColor textColor]};
 }
 
 
