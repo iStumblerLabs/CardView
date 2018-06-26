@@ -314,7 +314,19 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSAttributedString*) appendHorizontalRule;
 {
-    NSAS* rule = [self appendHorizontalRuleWithColor:[ILColor grayColor] width:1];
+    NSAS* rule = [self appendHorizontalRuleWithColor:[ILColor disabledControlTextColor] width:1];
+    return rule;
+}
+
+- (NSAttributedString*) appendHorizontalRuleWithAccentColor;
+{
+    ILColor* color = [ILColor disabledControlTextColor];
+#if MAC_OS_X_VERSION_10_14
+    if (@available(macOS 10.14, *)) {
+        color = [NSColor controlAccentColor];
+    }
+#endif
+    NSAS* rule = [self appendHorizontalRuleWithColor:color width:1];
     return rule;
 }
 
