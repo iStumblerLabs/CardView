@@ -321,7 +321,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 - (NSAttributedString*) appendHorizontalRuleWithAccentColor;
 {
     ILColor* color = [ILColor disabledControlTextColor];
-#if MAC_OS_X_VERSION_10_14
+#if IL_APP_KIT && MAC_OS_X_VERSION_10_14
     if (@available(macOS 10.14, *)) {
         color = [NSColor controlAccentColor];
     }
