@@ -5,7 +5,7 @@
     @abstract Implements an Address Book Card style text view
     @discussion subclass of ILTextView with support for columns and styled text on macOS and iOS
 */
-@interface CardTextView : ILTextView
+@interface CardTextView : ILTextView <ILViews>
 @property(nonatomic, assign) CGFloat fontSize;
 @property(nonatomic, retain) NSArray<NSNumber*>* columns;
 

@@ -43,9 +43,10 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return formatter;
 }
 
-#pragma mark -
+#pragma mark - NSViews
 
-- (void) initView {
+- (void) initView
+{
     self.columns = @[@(-0.33), @(5)]; // 40% right-aligned with a ten pt gutter
 #if TARGET_OS_TV
     self.fontSize = 24;
@@ -53,6 +54,17 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     self.fontSize = [ILFont smallSystemFontSize];
 #endif
 }
+
+- (void) updateView
+{
+#if IL_APP_KIT
+    [self setNeedsDisplay:YES];
+#elif IL_UI_KIT
+    [self setNeedsDisplay];
+#endif
+}
+
+#pragma mark - ILView
 
 - (id) initWithFrame:(CGRect)frame
 {
