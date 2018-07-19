@@ -10,16 +10,20 @@
 
 + (NSAttributedString*) attributedString:(NSString*) string withFont:(NSFont*) font
 {
-    NSDictionary* attrs = @{NSFontAttributeName: font};
+    NSDictionary* attrs = @{
+        NSFontAttributeName: font,
+        NSForegroundColorAttributeName: [ILColor textColor]
+    };
     return [[NSAttributedString alloc] initWithString:string
                                             attributes:attrs];
 }
 
 + (NSAttributedString*) attributedString:(NSString*)string withLink:(NSURL*) url
 {
-    NSDictionary* attrs = @{NSFontAttributeName: [ILFont systemFontOfSize:10.0],
+    NSDictionary* attrs = @{
+        NSFontAttributeName: [ILFont systemFontOfSize:10.0],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-        NSForegroundColorAttributeName: [ILColor blueColor], // TODO get link color from safari
+        NSForegroundColorAttributeName: [ILColor linkColor],
         NSLinkAttributeName: [url absoluteString]};
     return [[NSAttributedString alloc] initWithString:string
                                             attributes:attrs];
