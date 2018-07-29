@@ -23,7 +23,7 @@
     NSDictionary* attrs = @{
         NSFontAttributeName: [ILFont systemFontOfSize:10.0],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-        NSForegroundColorAttributeName: [ILColor linkColor],
+        NSForegroundColorAttributeName: [ILColor textColor],
         NSLinkAttributeName: [url absoluteString]};
     return [[NSAttributedString alloc] initWithString:string
                                             attributes:attrs];
