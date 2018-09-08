@@ -356,7 +356,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSAttributedString*) appendImage:(ILImage*) image
 {
-    return [self appendImage:image withAttributes:nil];
+    return [self appendImage:image withAttributes:[self centeredAttributesForSize:self.fontSize]];
 }
 
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes
@@ -369,7 +369,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 #elif IL_UI_KIT
         NSTextAttachment* attachment = [NSTextAttachment new];
         attachment.image = image;
-        attachment.bounds = CGRectMake(0, 0, attachment.image.size.width, attachment.image.size.height);
+        attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
         attrString = [NSAttributedString attributedStringWithAttachment:attachment];
 #endif
         if (attributes) {
