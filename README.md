@@ -4,6 +4,13 @@
 
 iStumbler Labs CardView.Framework
 
+<a id="support"></a>
+## Support CardView!
+
+Are you using CardView in your apps? Would you like to help support the project and get a sponsor credit?
+
+Visit our [Patreon Page](https://www.patreon.com/istumblerlabs) and patronize us in exchange for great rewards!
+
 ## Classes
 
 ### CardTextView
