@@ -86,7 +86,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) clearCard
 {
-    [[self textStorage] setAttributedString:[NSAS attributedString:@""]];
+    [self.textStorage setAttributedString:[NSAS attributedString:@""]];
 }
 
 #pragma mark -
@@ -95,11 +95,11 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSTextAttachment* attachment = nil;
 #if IL_APP_KIT
-    CGPoint click = [self convertPoint:[[NSApp currentEvent] locationInWindow] fromView:nil];
-            click.y -= [self textContainerInset].height;
-            click.x -= [self textContainerInset].width;
-    NSUInteger index = [[self layoutManager] glyphIndexForPoint:click inTextContainer:[self textContainer]];
-    attachment = [[self textStorage] attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+    CGPoint click = [self convertPoint:NSApp.currentEvent.locationInWindow fromView:nil];
+            click.y -= self.textContainerInset.height;
+            click.x -= self.textContainerInset.width;
+    NSUInteger index = [self.layoutManager glyphIndexForPoint:click inTextContainer:[self textContainer]];
+    attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
 #endif
     return attachment;
 }
@@ -113,7 +113,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSMutableArray* stops = [NSMutableArray new];
     CGFloat columnEdge = 0;
     for (NSNumber* stop in columnWidths) {
-        CGFloat stopValue = [stop doubleValue];
+        CGFloat stopValue = stop.doubleValue;
         NSTextTabType tabType = NSLeftTabStopType;
         if (stopValue < 0) { // it's a right tab
             tabType = NSRightTabStopType;
@@ -127,7 +127,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         }
         
         columnEdge += stopValue;
-        [stops addObject:[[NSTextTab alloc] initWithType:tabType location:columnEdge]];
+        [stops addObject:[NSTextTab.alloc initWithType:tabType location:columnEdge]];
     }
     // NSLog(@"tab stops: %@", stops);
     style.firstLineHeadIndent = 0;
@@ -143,7 +143,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tagFont,
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops
@@ -152,18 +152,18 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: tag_font,
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize
 {
     ILFont* font = [ILFont systemFontOfSize:fontSize];
-    NSMutableParagraphStyle* style = [NSMutableParagraphStyle new];
+    NSMutableParagraphStyle* style = NSMutableParagraphStyle.new;
     style.alignment = NSTextAlignmentCenter;
     style.tabStops = @[]; // clear tabs
     return @{ NSParagraphStyleAttributeName: style,
               NSFontAttributeName: font,
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize
@@ -171,7 +171,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize
@@ -179,7 +179,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [ILColor grayColor]};
+              NSForegroundColorAttributeName: ILColor.grayColor};
 }
 
 - (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize
@@ -187,7 +187,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize
@@ -195,14 +195,14 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return @{ CardTextReplaceableStyleAttributeName: @(YES),
               NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
               NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 - (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize
 {
     return @{ NSParagraphStyleAttributeName: [NSParagraphStyle defaultParagraphStyle],
               NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: [ILColor textColor]};
+              NSForegroundColorAttributeName: ILColor.textColor};
 }
 
 
@@ -212,9 +212,9 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (string) {
-        NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
+        NSMutableDictionary* attrs = [self centeredAttributesForSize:self.fontSize].mutableCopy;
         attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(self.fontSize * 1.2)];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -224,9 +224,9 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (string) {
-        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
         attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -236,8 +236,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (string) {
-        NSMutableDictionary* attrs = [[self centeredAttributesForSize:self.fontSize] mutableCopy];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        NSMutableDictionary* attrs = [self centeredAttributesForSize:self.fontSize].mutableCopy;
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -248,7 +248,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self labelAttributesForSize:self.fontSize];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -259,7 +259,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self grayAttributesForSize:self.fontSize];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -270,7 +270,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self valueAttributesForSize:self.fontSize];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -281,7 +281,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self keywordAttributesForSize:self.fontSize];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -291,9 +291,9 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (string) {
-        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
         attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -303,9 +303,9 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 {
     NSAS* attrString = nil;
     if (url) {
-        NSMutableDictionary* attrs = [[self attributesForSize:self.fontSize] mutableCopy];
+        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
         attrs[NSLinkAttributeName] = url;
-        attrString = [[NSAS alloc] initWithString:(label ? label : url) attributes:attrs];
+        attrString = [NSAS.alloc initWithString:(label ?: url) attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -316,7 +316,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSAS* attrString = nil;
     if (string) {
         NSDictionary* attrs = [self contentAttributesForSize:self.fontSize];
-        attrString = [[NSAS alloc] initWithString:string attributes:attrs];
+        attrString = [NSAS.alloc initWithString:string attributes:attrs];
         [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
@@ -326,16 +326,16 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (NSAttributedString*) appendHorizontalRule;
 {
-    NSAS* rule = [self appendHorizontalRuleWithColor:[ILColor disabledControlTextColor] width:1];
+    NSAS* rule = [self appendHorizontalRuleWithColor:ILColor.disabledControlTextColor width:1];
     return rule;
 }
 
 - (NSAttributedString*) appendHorizontalRuleWithAccentColor;
 {
-    ILColor* color = [ILColor disabledControlTextColor];
+    ILColor* color = ILColor.disabledControlTextColor;
 #if IL_APP_KIT && MAC_OS_X_VERSION_10_14
     if (@available(macOS 10.14, *)) {
-        color = [NSColor controlAccentColor];
+        color = NSColor.controlAccentColor;
     }
 #endif
     NSAS* rule = [self appendHorizontalRuleWithColor:color width:1];
@@ -348,7 +348,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 #if IL_APP_KIT
     attrString = [CardSeparatorCell separatorWithColor:color width:width];
     [self appendNewline]; // each rule is it's own paragrah
-    [[self textStorage] appendAttributedString:attrString];
+    [self.textStorage appendAttributedString:attrString];
     [self appendNewline]; // and clears the next line below it
 #endif
     return attrString;
@@ -373,8 +373,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         attrString = [NSAttributedString attributedStringWithAttachment:attachment];
 #endif
         if (attributes) {
-            NSMutableDictionary* attrs = [attributes mutableCopy];
-            NSMutableAttributedString* styled = [attrString mutableCopy];
+            NSMutableDictionary* attrs = attributes.mutableCopy;
+            NSMutableAttributedString* styled = attrString.mutableCopy;
 
             attrs[NSAttachmentAttributeName] = [attrString attribute:NSAttachmentAttributeName atIndex:0 effectiveRange:nil];
             [styled setAttributes:attrs range:NSMakeRange(0, styled.length)];
@@ -391,22 +391,22 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
     NSAttributedString* formatted = nil;
     if (!object) {
-        formatted = [[NSAttributedString alloc] initWithString:@"-" attributes:attributes];
+        formatted = [NSAttributedString.alloc initWithString:@"-" attributes:attributes];
     }
     else if (formatter) {
         if ([formatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
             formatted = [formatter attributedStringForObjectValue:object withDefaultAttributes:attributes];
         }
         else {
-            formatted = [[NSAttributedString alloc] initWithString:[formatter stringForObjectValue:object] attributes:attributes];
+            formatted = [NSAttributedString.alloc initWithString:[formatter stringForObjectValue:object] attributes:attributes];
         }
     }
     else {
-        formatted = [[NSAttributedString alloc] initWithString:[object description] attributes:attributes];
+        formatted = [NSAttributedString.alloc initWithString:[object description] attributes:attributes];
     }
 
     if (formatted) {
-        [[self textStorage] appendAttributedString:formatted];
+        [self.textStorage appendAttributedString:formatted];
     }
     
     return formatted;
@@ -433,7 +433,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter andAttributes:(NSDictionary*) attributes;
 {
     NSAttributedString* attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:attributes];
-    [[self textStorage] appendAttributedString:attributed];
+    [self.textStorage appendAttributedString:attributed];
     return attributed;
 }
 
@@ -500,7 +500,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) cut:(id) sender
 {
-    if ([self selectedRange].location > 0) {
+    if (self.selectedRange.location > 0) {
         [super copy:sender]; // don't modify the contents here
     }
     else if ([self.delegate respondsToSelector:@selector(card:cut:)]) {
@@ -510,7 +510,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) copy:(id) sender
 {
-    if ([self selectedRange].length > 0) {
+    if (self.selectedRange.length > 0) {
         [super copy:sender]; // do the superclass thing with the contents
     }
     else if ([self.delegate respondsToSelector:@selector(card:copy:)]) {
