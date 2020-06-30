@@ -5,16 +5,16 @@
 
 + (CardImageCell*) cellWithImage:(NSImage*) cell_image
 {
-    return [[CardImageCell alloc] initWithImage:cell_image];
+    return [CardImageCell.alloc initWithImage:cell_image];
 }
 
 #pragma mark -
 
 - (id) initWithImage:(NSImage*) cell_image
 {
-    if ((self = [super init])) {
-        image_cell = [[NSImageCell alloc] initImageCell:cell_image];
-        [image_cell setImageScaling:NSImageScaleProportionallyUpOrDown];
+    if ((self = super.init)) {
+        image_cell = [NSImageCell.alloc initImageCell:cell_image];
+        image_cell.imageScaling = NSImageScaleProportionallyUpOrDown;
     }
     return self;
 }
@@ -30,9 +30,9 @@
 							  proposedLineFragment:lineFrag
 									 glyphPosition:position
 									characterIndex:charIndex];
-	NSSize size = [textContainer containerSize];
-    NSSize image = [[image_cell image] size];
-    float width = size.width -= (2.0 * [textContainer lineFragmentPadding]);
+	NSSize size = textContainer.containerSize;
+    NSSize image = image_cell.image.size;
+    float width = size.width -= (2.0 * textContainer.lineFragmentPadding);
     float height = image.height * (width / image.width);
     NSSize preview = NSMakeSize(width, height);
 	frag.size.width = preview.width;
@@ -47,5 +47,5 @@
 
 @end
 
-/** Copyright © 2014-2017, Alf Watt (alf@istumbler.net). All rights reserved.
+/** Copyright © 2014-2020, Alf Watt (alf@istumbler.net). All rights reserved.
     Redistribution and use permitted under MIT License in README.md. **/
