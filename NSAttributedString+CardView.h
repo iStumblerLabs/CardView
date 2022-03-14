@@ -5,7 +5,7 @@
 @interface NSAttributedString (CardView)
 
 + (NSAttributedString*) attributedString:(NSString*) string;
-+ (NSAttributedString*) attributedString:(NSString*) string withFont:(NSFont*) font;
++ (NSAttributedString*) attributedString:(NSString*) string withFont:(ILFont*) font;
 + (NSAttributedString*) attributedString:(NSString*) string withLink:(NSURL*) url;
 + (NSAttributedString*) attributedString:(NSString*) string withAttributes:(NSDictionary*) attrs;
 #ifdef IL_APP_KIT

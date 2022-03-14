@@ -8,7 +8,7 @@
     return [[NSAttributedString alloc] initWithString:string];
 }
 
-+ (NSAttributedString*) attributedString:(NSString*) string withFont:(NSFont*) font
++ (NSAttributedString*) attributedString:(NSString*) string withFont:(ILFont*) font
 {
     NSDictionary* attrs = @{
         NSFontAttributeName: font,
