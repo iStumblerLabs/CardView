@@ -12,7 +12,7 @@
 {
     BOOL result = NO;
     ILImage* scalingImage = [ILImage imageWithSize:self.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-        [self drawAtPoint:NSMakePoint(0.0, 0.0) fromRect:dstRect operation:NSCompositeSourceOver fraction:1.0];
+        [self drawAtPoint:NSMakePoint(0.0, 0.0) fromRect:dstRect operation:NSCompositingOperationSourceOver fraction:1.0];
         return YES;
     }];
     CGRect proposedRect = CGRectMake(0.0, 0.0, outputSizePx.width, outputSizePx.height);
