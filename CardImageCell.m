@@ -3,15 +3,13 @@
 
 @implementation CardImageCell
 
-+ (CardImageCell*) cellWithImage:(NSImage*) cell_image
-{
++ (CardImageCell*) cellWithImage:(NSImage*) cell_image {
     return [CardImageCell.alloc initWithImage:cell_image];
 }
 
-#pragma mark -
+// MARK: -
 
-- (id) initWithImage:(NSImage*) cell_image
-{
+- (id) initWithImage:(NSImage*) cell_image {
     if ((self = super.init)) {
         image_cell = [NSImageCell.alloc initImageCell:cell_image];
         image_cell.imageScaling = NSImageScaleProportionallyUpOrDown;
@@ -19,13 +17,12 @@
     return self;
 }
 
-#pragma mark NSTextFieldCell Methods
+// MARK: - NSTextFieldCell Methods
 
 - (NSRect) cellFrameForTextContainer:(NSTextContainer*) textContainer
                 proposedLineFragment:(NSRect) lineFrag
                        glyphPosition:(NSPoint)position
-                      characterIndex:(NSUInteger)charIndex
-{
+                      characterIndex:(NSUInteger)charIndex {
 	NSRect frag = [super cellFrameForTextContainer:textContainer
 							  proposedLineFragment:lineFrag
 									 glyphPosition:position
@@ -40,8 +37,7 @@
 	return frag;
 }
 
-- (void) drawWithFrame:(NSRect) frame inView:(NSView*) aView
-{
+- (void) drawWithFrame:(NSRect) frame inView:(NSView*) aView {
 	[image_cell drawInteriorWithFrame:frame inView:aView];
 }
 

@@ -9,20 +9,20 @@
 @property(nonatomic, assign) CGFloat fontSize;
 @property(nonatomic, retain) NSArray<NSNumber*>* columns;
 
-#pragma mark - Formatter Registry
+// MARK: - Formatter Registry
 
 + (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
 + (NSFormatter*) registeredFormatterForClass:(Class) clzz;
 
-#pragma mark -
+// MARK: -
 
 - (void) clearCard;
 
-#pragma mark - Attachments
+// MARK: - Attachments
 
 - (NSTextAttachment*) clickedAttachment;
 
-#pragma mark - Styles
+// MARK: - Styles
 
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*) columnWidths;
 
@@ -33,11 +33,11 @@
 - (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize;
 - (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize;
 
-#pragma mark - Appending
+// MARK: - Appending
 
 - (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes;
 
-#pragma mark - Resizeable Styles
+// MARK: - Resizeable Styles
 
 - (NSAttributedString*) appendHeaderString:(NSString*) string;
 - (NSAttributedString*) appendSubheaderString:(NSString*) string;
@@ -50,7 +50,7 @@
 - (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label;
 - (NSAttributedString*) appendValueFormatted:(id) object;
 
-#pragma mark - Non-Resizeable Styles
+// MARK: - Non-Resizeable Styles
 
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width;
@@ -65,7 +65,7 @@
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! @protocol CardTextViewDelegate */
 @protocol CardTextViewDelegate <NSObject>

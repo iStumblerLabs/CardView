@@ -25,7 +25,7 @@
     return [NSAttributedString attributedStringWithAttachment:divider];
 }
 
-#pragma mark -
+// MARK: -
 
 - (id) initWithColor:(NSColor*) color width:(CGFloat) width
 {
@@ -36,7 +36,7 @@
     return self;
 }
 
-#pragma mark - NSTextAttachmentCell
+// MARK: - NSTextAttachmentCell
 
 - (NSRect) cellFrameForTextContainer:(NSTextContainer*)textContainer proposedLineFragment:(NSRect)lineFrag glyphPosition:(NSPoint)position characterIndex:(NSUInteger)charIndex
 {

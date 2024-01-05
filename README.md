@@ -37,6 +37,12 @@ An NSCell for displaying a button in a CardTextView
 
 ### NSPasteboard+CardView
 
+<a id="Changes"></a>
+## Changes
+
+- 1.0 Initial Version
+- 1.1 
+
 ========
 
 <a id="license"></a>

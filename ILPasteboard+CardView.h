@@ -11,7 +11,7 @@
 @end
 
 #if IL_APP_KIT
-#pragma mark -
+// MARK: -
 
 @interface ILPasteboardItem (CardView)
 

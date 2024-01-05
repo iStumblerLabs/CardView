@@ -1,4 +1,3 @@
-
 #import "CardViewCell.h"
 
 @implementation CardViewCell

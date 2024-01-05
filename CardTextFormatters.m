@@ -4,8 +4,7 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardTextFormatter
               
-+ (NSDictionary*) unitsAttrs:(NSDictionary*) attrs
-{
++ (NSDictionary*) unitsAttrs:(NSDictionary*) attrs {
     NSMutableDictionary* unitsAttrs = [attrs mutableCopy];
     ILFont* fullSize = attrs[NSFontAttributeName];
     ILFont* halfSize = [ILFont fontWithName:[fullSize fontName] size:([fullSize pointSize] * unit_scale)];
@@ -14,15 +13,13 @@ static CGFloat unit_scale = 0.9;
     return unitsAttrs;
 }
 
-+ (NSDictionary*) cardinalAttrs:(NSDictionary*) attrs
-{
++ (NSDictionary*) cardinalAttrs:(NSDictionary*) attrs {
     NSMutableDictionary* cardinalAttrs = [attrs mutableCopy];
     cardinalAttrs[NSForegroundColorAttributeName] = [ILColor grayColor];
     return cardinalAttrs;
 }
 
-+ (NSDictionary*) monospaceAttrs:(NSDictionary*) attrs
-{
++ (NSDictionary*) monospaceAttrs:(NSDictionary*) attrs {
     NSMutableDictionary* monoAttrs = [attrs mutableCopy];
     ILFont* attrsFont = attrs[NSFontAttributeName];
     ILFont* monoFont = [ILFont userFixedPitchFontOfSize:[attrsFont pointSize]];
@@ -30,24 +27,22 @@ static CGFloat unit_scale = 0.9;
     return monoAttrs;
 }
 
-#pragma mark -
+// MARK: -
 
-- (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs
-{
+- (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
-    return [[NSAttributedString alloc] initWithString:formattedString attributes:defaultAttrs];
+    return [NSAttributedString.alloc initWithString:formattedString attributes:defaultAttrs];
 }
 
 @end
 
-#pragma mark - Boolean Formatter
+// MARK: - Boolean Formatter
 
 @implementation CardBooleanFormatter
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* string = @"-";
-    if ([obj isKindOfClass:[NSNumber class]]) {
+    if ([obj isKindOfClass:NSNumber.class]) {
         if ([(NSNumber*)obj boolValue]) {
             string = @"Yes";
         }
@@ -61,14 +56,13 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-#pragma mark - Data Formatter
+// MARK: - Data Formatter
 
 @implementation CardDataFormatter
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* sizeString = [obj description];
-    if ([obj isKindOfClass:[NSData class]]) {
+    if ([obj isKindOfClass:NSData.class]) {
         sizeString = [NSString stringWithFormat:@"%lu Bytes", (unsigned long)[obj length]];
     }
 
@@ -77,14 +71,13 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-#pragma mark - 
+// MARK: -
 
 @implementation CardArrayFormatter
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* arrayString = [obj description];
-    if ([obj isKindOfClass:[NSArray class]]) {
+    if ([obj isKindOfClass:NSArray.class]) {
         NSArray* attributeArray = (NSArray*)obj;
         BOOL first = YES;
         for( id valueItem in attributeArray) {
@@ -108,32 +101,29 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-#pragma mark - URL Formatter
+// MARK: - URL Formatter
 
 @implementation CardURLFormatter
 
-+ (CardURLFormatter*) formatterWithLinkColor:(ILColor*) color
-{
-    CardURLFormatter* urlFormatter = [CardURLFormatter new];
++ (CardURLFormatter*) formatterWithLinkColor:(ILColor*) color {
+    CardURLFormatter* urlFormatter = CardURLFormatter.new;
     urlFormatter.linkColor = color;
     return urlFormatter;
 }
 
-#pragma mark -
+// MARK: -
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* stringValue = [obj description];
-    if ([obj isKindOfClass:[NSURL class]]) {
+    if ([obj isKindOfClass:NSURL.class]) {
         stringValue = [(NSURL*)obj absoluteString];
     }
     return stringValue;
 }
 
-- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs
-{
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs {
     NSAttributedString* urlString = nil;
-    if ([obj isKindOfClass:[NSURL class]]) {
+    if ([obj isKindOfClass:NSURL.class]) {
         NSMutableDictionary* linkAttrs = [attrs mutableCopy];
         linkAttrs[NSLinkAttributeName] = (NSURL*)obj;
         linkAttrs[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
@@ -141,24 +131,23 @@ static CGFloat unit_scale = 0.9;
             [linkAttrs setObject:self.linkColor forKey:NSForegroundColorAttributeName];
         }
 
-        urlString = [[NSAttributedString alloc] initWithString:[self stringForObjectValue:obj] attributes:linkAttrs];
+        urlString = [NSAttributedString.alloc initWithString:[self stringForObjectValue:obj] attributes:linkAttrs];
     }
     return urlString;
 }
 
 @end
 
-#pragma mark - Date Formatter
+// MARK: - Date Formatter
 
 @implementation CardDateFormatter
 
 /*! @discussion singleton NSDateFormatter for the users's current locale */
-+ (CardDateFormatter*) cardDateFormat
-{
++ (CardDateFormatter*) cardDateFormat {
     static CardDateFormatter* cardFormat = nil;
     if (!cardFormat) {
-        cardFormat = [CardDateFormatter new];
-        cardFormat.locale = [NSLocale autoupdatingCurrentLocale];
+        cardFormat = CardDateFormatter.new;
+        cardFormat.locale = NSLocale.autoupdatingCurrentLocale;
         cardFormat.doesRelativeDateFormatting = YES;
         cardFormat.dateStyle = NSDateFormatterMediumStyle;
         cardFormat.timeStyle = NSDateFormatterMediumStyle;
@@ -166,23 +155,21 @@ static CGFloat unit_scale = 0.9;
     return cardFormat;
 }
 
-#pragma mark -
+// MARK: -
 
-- (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs
-{
+- (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
-    return [[NSAttributedString alloc] initWithString:formattedString attributes:defaultAttrs];
+    return [NSAttributedString.alloc initWithString:formattedString attributes:defaultAttrs];
 }
 
 @end
 
-#pragma mark - Units Formatter
+// MARK: - Units Formatter
 
 @implementation CardUnitsFormatter
 
-+ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier
-{
-    CardUnitsFormatter* unitsFormat = [CardUnitsFormatter new];
++ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier {
+    CardUnitsFormatter* unitsFormat = CardUnitsFormatter.new;
     unitsFormat.units = units;
     unitsFormat.multiplier = @(multiplier);
     unitsFormat.groupingSeparator = NSLocalizedStringFromTableInBundle(@",", nil, [NSBundle bundleForClass:self.class], @"Grouping Separator");
@@ -191,8 +178,7 @@ static CGFloat unit_scale = 0.9;
     return unitsFormat;
 }
 
-- (instancetype) init
-{
+- (instancetype) init {
     if (self = [super init]) {
         self.formatterBehavior = NSNumberFormatterBehavior10_4;
         self.numberStyle = NSNumberFormatterDecimalStyle;
@@ -204,10 +190,9 @@ static CGFloat unit_scale = 0.9;
     return self;
 }
 
-- (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs
-{
+- (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     NSMutableAttributedString* formatted = nil;
-    if ([anObject isKindOfClass:[NSNumber class]]) {
+    if ([anObject isKindOfClass:NSNumber.class]) {
         formatted = [NSMutableAttributedString new];
         NSString* valueString = [self stringForObjectValue:anObject];
         NSDictionary* unitsAttrs = [CardTextFormatter unitsAttrs:attrs];
@@ -225,13 +210,12 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-#pragma mark -
+// MARK: -
 
 @implementation CardBytesFormatter
 
-+ (CardBytesFormatter*) cardBytesFormatter
-{
-    return [CardBytesFormatter new];
++ (CardBytesFormatter*) cardBytesFormatter {
+    return CardBytesFormatter.new;
 }
 
 // https://en.wikipedia.org/wiki/Kibibyte
@@ -256,8 +240,7 @@ static unsigned long long const EB = (PB * KB);
 // static unsigned long long const ZB = (EB * KB);
 // static unsigned long long const YB = (ZB * KB);
 
-- (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs
-{
+- (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     unsigned long long fileSize = [anObject unsignedLongLongValue]; // NSUInteger is 32 bits on smaller systems
     CGFloat scaledSize = (CGFloat)fileSize;
 
@@ -306,20 +289,18 @@ static unsigned long long const EB = (PB * KB);
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! CardListFormatter formats arrays with commas between the elements */
 @implementation CardListFormatter
 
-+ (CardListFormatter*) cardListFormatter
-{
-    return [CardListFormatter new];
++ (CardListFormatter*) cardListFormatter {
+    return CardListFormatter.new;
 }
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* listString = [obj description];
-    if ([obj isKindOfClass:[NSArray class]]) {
+    if ([obj isKindOfClass:NSArray.class]) {
         NSArray* attributeArray = (NSArray*)obj;
         listString = [attributeArray componentsJoinedByString:@", "];
     }
@@ -329,36 +310,32 @@ static unsigned long long const EB = (PB * KB);
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! PListFormatter formatts plists into various forms */
 @implementation PListFormatter : CardTextFormatter
 
-+ (PListFormatter*) pListFormatter
-{
-    return [PListFormatter new];
++ (PListFormatter*) pListFormatter {
+    return PListFormatter.new;
 }
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* plistString = [obj description];
     return plistString;
 }
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! PListJSONFormatter formatts plists into various forms */
 @implementation PListJSONFormatter : CardTextFormatter
 
-+ (PListJSONFormatter*) pListJSONFormatter
-{
-    return [PListJSONFormatter new];
++ (PListJSONFormatter*) pListJSONFormatter {
+    return PListJSONFormatter.new;
 }
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* plistJSONString = nil;
 
     NSError *error;
@@ -376,21 +353,19 @@ static unsigned long long const EB = (PB * KB);
 
 @end
 
-#pragma mark -
+// MARK: -
 
 /*! https://daringfireball.net/projects/markdown/syntax.text */
 @implementation PListMarkdownFormatter : CardTextFormatter
 
-+ (PListMarkdownFormatter*) pListMarkdownFormatter
-{
-    return [PListMarkdownFormatter new];
++ (PListMarkdownFormatter*) pListMarkdownFormatter {
+    return PListMarkdownFormatter.new;
 }
 
 #pragma mark -
 
-- (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level
-{
-    NSMutableString* objectMarkdown = [NSMutableString new];
+- (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level {
+    NSMutableString* objectMarkdown = NSMutableString.new;
 
     unsigned indent = level;
     while (indent-- > 0) {
@@ -399,13 +374,13 @@ static unsigned long long const EB = (PB * KB);
 
     // NSLog(@"level: %u indent: **%@**", level, objectMarkdown);
 
-    if ([obj isKindOfClass:[NSString class]]) {
+    if ([obj isKindOfClass:NSString.class]) {
         [objectMarkdown appendString:obj];
     }
-    else if ([obj isKindOfClass:[NSNumber class]]) {
+    else if ([obj isKindOfClass:NSNumber.class]) {
         [objectMarkdown appendString:[obj stringValue]];
     }
-    else if ([obj isKindOfClass:[NSArray class]]) {
+    else if ([obj isKindOfClass:NSArray.class]) {
         NSArray* array = (NSArray*)obj;
         unsigned index = 1;
         for (id item in array) {
@@ -413,7 +388,7 @@ static unsigned long long const EB = (PB * KB);
             [objectMarkdown appendString:[self stringForObjectValue:item indent:(level + 1)]];
         }
     }
-    else if ([obj isKindOfClass:[NSDictionary class]]) {
+    else if ([obj isKindOfClass:NSDictionary.class]) {
         NSDictionary* dictionary = (NSDictionary*)obj;
         for (NSString* key in [dictionary allKeys]) {
             id value = [dictionary objectForKey:key];
@@ -421,11 +396,11 @@ static unsigned long long const EB = (PB * KB);
             [objectMarkdown appendString:@"* *"];
             [objectMarkdown appendString:key];
             [objectMarkdown appendString:@"* : "];
-            if ([value isKindOfClass:[NSString class]]) {
+            if ([value isKindOfClass:NSString.class]) {
                 [objectMarkdown appendString:value];
                 [objectMarkdown appendString:@"\n"];
             }
-            else if ([value isKindOfClass:[NSNumber class]]) {
+            else if ([value isKindOfClass:NSNumber.class]) {
                 [objectMarkdown appendString:[value stringValue]];
                 [objectMarkdown appendString:@"\n"];
             }
@@ -447,8 +422,7 @@ static unsigned long long const EB = (PB * KB);
     return objectMarkdown;
 }
 
-- (NSString*) stringForObjectValue:(id)obj
-{
+- (NSString*) stringForObjectValue:(id)obj {
     NSString* markdownString = [self stringForObjectValue:obj indent:0];
     // NSLog(@"markdownString %@", markdownString);
     return markdownString;

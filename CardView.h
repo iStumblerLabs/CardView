@@ -2,12 +2,12 @@
 #import <CardView/CardTextView.h>
 #import <CardView/CardTextFormatters.h>
 
-#pragma mark - Categories
+// MARK: - Categories
 #import <CardView/NSImage+CardView.h>
 #import <CardView/NSPasteboard+CardView.h>
 #import <CardView/NSAttributedString+CardView.h>
 
-#pragma mark - Cells
+// MARK: - Cells
 #import <KitBridge/KitBridgeDefines.h>
 
 #ifdef IL_APP_KIT

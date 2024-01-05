@@ -1,23 +1,21 @@
-#import "NSPasteboard+CardView.h"
+#import "ILPasteboard+CardView.h"
 
 @implementation ILPasteboard (CardView)
 
-- (ILPasteboard*) clone
-{
+- (ILPasteboard*) clone {
     ILPasteboard* clone = [ILPasteboard pasteboardWithUniqueName];
 #if IL_APP_KIT
-    [clone writeObjects:[self clonedItems]];
+    [clone writeObjects:self.clonedItems];
 // TODO #elif IL_UI_KIT
 #endif
     return clone;
 }
 
-- (NSArray*) clonedItems
-{
-    NSMutableArray* clonedItems = [NSMutableArray array];
+- (NSArray*) clonedItems {
+    NSMutableArray* clonedItems = NSMutableArray.array;
 #if IL_APP_KIT
     for (ILPasteboardItem* item in self.pasteboardItems) {
-        [clonedItems addObject:[item clone]];
+        [clonedItems addObject:item.clone];
     }
 // TODO #elif IL_UI_KIT
 #endif
@@ -27,13 +25,12 @@
 @end
 
 #if IL_APP_KIT
-#pragma mark -
+// MARK: -
 
 @implementation ILPasteboardItem (CardView)
 
-- (ILPasteboardItem*) clone
-{
-    ILPasteboardItem* clone = [NSPasteboardItem new];
+- (ILPasteboardItem*) clone {
+    ILPasteboardItem* clone = NSPasteboardItem.new;
     for (NSString* type in self.types) {
         NSData* data = [self dataForType:type];
         if (data) {
