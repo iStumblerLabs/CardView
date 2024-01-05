@@ -44,7 +44,7 @@ An NSCell for displaying a button in a CardTextView
 
     The MIT License (MIT)
 
-    Copyright © 2014-2017 Alf Watt
+    Copyright © 2014-2024 Alf Watt
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
