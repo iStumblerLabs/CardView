@@ -3,8 +3,8 @@
 #import <CardView/CardTextFormatters.h>
 
 // MARK: - Categories
-#import <CardView/NSImage+CardView.h>
-#import <CardView/NSPasteboard+CardView.h>
+#import <CardView/ILImage+CardView.h>
+#import <CardView/ILPasteboard+CardView.h>
 #import <CardView/NSAttributedString+CardView.h>
 
 // MARK: - Cells
