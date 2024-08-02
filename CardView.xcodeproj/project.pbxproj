@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BD2C56E84100C7C25C /* AppDelegate.swift */; };
+		754780C02C56E84100C7C25C /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BF2C56E84100C7C25C /* CardController.swift */; };
+		754780C22C56E84300C7C25C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754780C12C56E84300C7C25C /* Assets.xcassets */; };
+		754780C52C56E84300C7C25C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 754780C42C56E84300C7C25C /* Base */; };
+		754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; };
+		754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		754780D42C56F2FB00C7C25C /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7552D94C21619156004FF8C8 /* KitBridge.framework */; };
+		754780D52C56F2FB00C7C25C /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7552D94C21619156004FF8C8 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		7553319B1EBE43B300B35345 /* ILImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* ILImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553319C1EBE43B300B35345 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
-		7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
+		7571BFBA1CD579CF00021159 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7571BFBB1CD579CF00021159 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
 		75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C470A8F78D1003AAE72 /* CardActionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C480A8F78D1003AAE72 /* CardActionCell.m */; };
 		75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C490A8F78D1003AAE72 /* CardImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -22,12 +30,12 @@
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
-		75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardTextFormatters.m */; };
+		75BE80BD1F5F670500453938 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
 		75BE80BE1F5F670500453938 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
 		75BE80C11F5F670500453938 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
 		75BE80C21F5F670500453938 /* ILPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */; };
-		75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardTextFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BE80C61F5F671700453938 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80C71F5F671700453938 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75BE80CA1F5F671700453938 /* ILImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* ILImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		754780D12C56E88100C7C25C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = "CardView (macOS)";
+		};
 		7550C5B71F5A43D0003A0691 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
@@ -93,15 +108,36 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		754780D32C56E88100C7C25C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				754780D52C56F2FB00C7C25C /* KitBridge.framework in Embed Frameworks */,
+				754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		754780BB2C56E84100C7C25C /* Deck (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deck (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		754780BD2C56E84100C7C25C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		754780BF2C56E84100C7C25C /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		754780C12C56E84300C7C25C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		754780C42C56E84300C7C25C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		754780C62C56E84300C7C25C /* Deck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Deck.entitlements; sourceTree = "<group>"; };
 		7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = "<group>"; };
 		7552D94D21619181004FF8C8 /* config.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = config.yml; path = .circleci/config.yml; sourceTree = SOURCE_ROOT; };
 		755331991EBE43B300B35345 /* ILImage+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ILImage+CardView.h"; sourceTree = "<group>"; };
 		7553319A1EBE43B300B35345 /* ILImage+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ILImage+CardView.m"; sourceTree = "<group>"; };
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7571BFB81CD579CF00021159 /* CardTextFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextFormatters.h; sourceTree = "<group>"; };
-		7571BFB91CD579CF00021159 /* CardTextFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextFormatters.m; sourceTree = "<group>"; };
+		7571BFB81CD579CF00021159 /* CardFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFormatters.h; sourceTree = "<group>"; };
+		7571BFB91CD579CF00021159 /* CardFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardFormatters.m; sourceTree = "<group>"; };
 		75AC2C470A8F78D1003AAE72 /* CardActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardActionCell.h; sourceTree = "<group>"; };
 		75AC2C480A8F78D1003AAE72 /* CardActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardActionCell.m; sourceTree = "<group>"; };
 		75AC2C490A8F78D1003AAE72 /* CardImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImageCell.h; sourceTree = "<group>"; };
@@ -126,6 +162,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		754780B82C56E84100C7C25C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754780D42C56F2FB00C7C25C /* KitBridge.framework in Frameworks */,
+				754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75BE80AB1F5F66C200453938 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,6 +195,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* CardView.framework */,
 				75BE80AF1F5F66C200453938 /* CardView.framework */,
+				754780BB2C56E84100C7C25C /* Deck (macOS).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +207,7 @@
 				8DC2EF5A0486A6940098B216 /* CardView.plist */,
 				7585A8331D307B8C00F5C869 /* Sources */,
 				7553319E1EBE94DD00B35345 /* Categories */,
+				754780BC2C56E84100C7C25C /* Deck */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				7552D94521619156004FF8C8 /* Packaging */,
@@ -178,6 +225,18 @@
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		754780BC2C56E84100C7C25C /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				754780BD2C56E84100C7C25C /* AppDelegate.swift */,
+				754780BF2C56E84100C7C25C /* CardController.swift */,
+				754780C12C56E84300C7C25C /* Assets.xcassets */,
+				754780C32C56E84300C7C25C /* Main.storyboard */,
+				754780C62C56E84300C7C25C /* Deck.entitlements */,
+			);
+			path = Deck;
 			sourceTree = "<group>";
 		};
 		7550C5B31F5A43D0003A0691 /* Products */ = {
@@ -223,8 +282,8 @@
 				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
 				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
 				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
-				7571BFB81CD579CF00021159 /* CardTextFormatters.h */,
-				7571BFB91CD579CF00021159 /* CardTextFormatters.m */,
+				7571BFB81CD579CF00021159 /* CardFormatters.h */,
+				7571BFB91CD579CF00021159 /* CardFormatters.m */,
 				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
 				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
 				75DE4323196E6A1B0022311F /* CardViewCell.h */,
@@ -242,7 +301,7 @@
 			files = (
 				75BE80D31F5F710300453938 /* CardView.h in Headers */,
 				75BE80C71F5F671700453938 /* CardTextView.h in Headers */,
-				75BE80C61F5F671700453938 /* CardTextFormatters.h in Headers */,
+				75BE80C61F5F671700453938 /* CardFormatters.h in Headers */,
 				75BE80CA1F5F671700453938 /* ILImage+CardView.h in Headers */,
 				75BE80CB1F5F671700453938 /* ILPasteboard+CardView.h in Headers */,
 				75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */,
@@ -254,7 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */,
-				7571BFBA1CD579CF00021159 /* CardTextFormatters.h in Headers */,
+				7571BFBA1CD579CF00021159 /* CardFormatters.h in Headers */,
 				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
 				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
 				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
@@ -269,6 +328,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		754780BA2C56E84100C7C25C /* Deck (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 754780CE2C56E84300C7C25C /* Build configuration list for PBXNativeTarget "Deck (macOS)" */;
+			buildPhases = (
+				754780B72C56E84100C7C25C /* Sources */,
+				754780B82C56E84100C7C25C /* Frameworks */,
+				754780B92C56E84100C7C25C /* Resources */,
+				754780D32C56E88100C7C25C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				754780D22C56E88100C7C25C /* PBXTargetDependency */,
+			);
+			name = "Deck (macOS)";
+			productName = Deck;
+			productReference = 754780BB2C56E84100C7C25C /* Deck (macOS).app */;
+			productType = "com.apple.product-type.application";
+		};
 		75BE80AE1F5F66C200453938 /* CardView (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75BE80B41F5F66C200453938 /* Build configuration list for PBXNativeTarget "CardView (iOS)" */;
@@ -315,8 +393,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1510;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					754780BA2C56E84100C7C25C = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					75BE80AE1F5F66C200453938 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = E8G8ARB44Z;
@@ -348,6 +430,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* CardView (macOS) */,
 				75BE80AE1F5F66C200453938 /* CardView (iOS) */,
+				754780BA2C56E84100C7C25C /* Deck (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -391,6 +474,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		754780B92C56E84100C7C25C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754780C22C56E84300C7C25C /* Assets.xcassets in Resources */,
+				754780C52C56E84300C7C25C /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75BE80AD1F5F66C200453938 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -408,12 +500,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		754780B72C56E84100C7C25C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754780C02C56E84100C7C25C /* CardController.swift in Sources */,
+				754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75BE80AA1F5F66C200453938 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				75BE80BE1F5F670500453938 /* CardTextView.m in Sources */,
-				75BE80BD1F5F670500453938 /* CardTextFormatters.m in Sources */,
+				75BE80BD1F5F670500453938 /* CardFormatters.m in Sources */,
 				75BE80C11F5F670500453938 /* ILImage+CardView.m in Sources */,
 				75BE80C21F5F670500453938 /* ILPasteboard+CardView.m in Sources */,
 				75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */,
@@ -427,7 +528,7 @@
 				75FA0B861981A52A000AFFE3 /* ILPasteboard+CardView.m in Sources */,
 				75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */,
 				75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */,
-				7571BFBB1CD579CF00021159 /* CardTextFormatters.m in Sources */,
+				7571BFBB1CD579CF00021159 /* CardFormatters.m in Sources */,
 				75FD72E11967CAB9004C54DD /* NSAttributedString+CardView.m in Sources */,
 				7553319C1EBE43B300B35345 /* ILImage+CardView.m in Sources */,
 				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
@@ -439,6 +540,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		754780D22C56E88100C7C25C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* CardView (macOS) */;
+			targetProxy = 754780D12C56E88100C7C25C /* PBXContainerItemProxy */;
+		};
 		7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "KitBridge (macOS)";
@@ -450,6 +556,17 @@
 			targetProxy = 75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		754780C32C56E84300C7C25C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754780C42C56E84300C7C25C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
@@ -584,6 +701,113 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		754780C72C56E84300C7C25C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Deck/Deck.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Deck;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.cardview.Deck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		754780C82C56E84300C7C25C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Deck/Deck.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Deck;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.cardview.Deck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -704,6 +928,15 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		754780CE2C56E84300C7C25C /* Build configuration list for PBXNativeTarget "Deck (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754780C72C56E84300C7C25C /* Debug */,
+				754780C82C56E84300C7C25C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

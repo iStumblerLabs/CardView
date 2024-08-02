@@ -1,6 +1,6 @@
 
 #import <CardView/CardTextView.h>
-#import <CardView/CardTextFormatters.h>
+#import <CardView/CardFormatters.h>
 
 // MARK: - Categories
 #import <CardView/ILImage+CardView.h>

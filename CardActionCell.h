@@ -1,8 +1,7 @@
 #import <KitBridge/KitBridge.h>
 
 
-@interface CardActionCell : NSProxy <NSTextAttachmentCell>
-{
+@interface CardActionCell : NSProxy <NSTextAttachmentCell> {
     NSPoint baseline_offset;
     NSActionCell* action_cell;
     NSTextAttachment* attachment;

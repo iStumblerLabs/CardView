@@ -2,21 +2,26 @@
 
 @interface CardTextFormatter : NSFormatter
 
+/// String attributes for units, based on the attributes provided
 + (NSDictionary*) unitsAttrs:(NSDictionary*) attrs;
+
+/// String attributes for cardinal units, based on the attributes provided
 + (NSDictionary*) cardinalAttrs:(NSDictionary*) attrs;
+
+/// String attributes for monospaced text, based on the attributes provided
 + (NSDictionary*) monospaceAttrs:(NSDictionary*) attrs;
 
 @end
 
 // MARK: -
 
-/*! @class CardBooleanFormatter formats numeric values into boolean value strings: "Yes" or "No" */
+/// CardBooleanFormatter formats numeric values into boolean value strings: "Yes" or "No"
 @interface CardBooleanFormatter : CardTextFormatter
 @end
 
 // MARK: -
 
-/*! @class CardDataFormatter formats data values into string with byte count: "420 Bytes" */
+/// CardDataFormatter formats data values into string with byte count: "420 Bytes"
 @interface CardDataFormatter : CardTextFormatter
 @end
 
@@ -36,7 +41,7 @@
 
 // MARK: -
 
-/*! @class CardDateFormatter formats dates into the users preferred medium date and long time format */
+/// CardDateFormatter formats dates into the users preferred medium date and long time format
 @interface CardDateFormatter : NSDateFormatter
 
 + (CardDateFormatter*) cardDateFormat;
@@ -45,21 +50,20 @@
 
 // MARK: -
 
-/*! @class CardUnitsFormatter formats number vales with units in grey text */
+/// CardUnitsFormatter formats number vales with units in grey text
 @interface CardUnitsFormatter : NSNumberFormatter
 
-/*! @discussion unit name string to add to the number */
+/// unit name string to add using the unit style after the number
 @property(nonatomic, retain) NSString* units;
 
-/*! @discussion creates a new formatter with the units and scaling provided
-    e.g. if the source is meters, pass "Km" and 0.001 to get "1 Km" when the value is 1000 */
-+ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier;
+/// prefix unit name to add before the number using the unit style
+@property(nonatomic, retain) NSString* prefix;
 
 @end
 
 // MARK: -
 
-/*! @class CardBytesFormatter formats byte sizes */
+/// CardBytesFormatter formats byte sizes
 @interface CardBytesFormatter : CardUnitsFormatter
 
 + (CardBytesFormatter*) cardBytesFormatter;
@@ -68,7 +72,7 @@
 
 // MARK: -
 
-/*! @class CardListFormatter formats arrays with commas between the elements */
+/// CardListFormatter formats arrays with commas between the elements
 @interface CardListFormatter : CardArrayFormatter
 
 + (CardListFormatter*) cardListFormatter;
@@ -77,7 +81,7 @@
 
 // MARK: -
 
-/*! @class PListFormatter formatts plists into various forms */
+/// PListFormatter formatts plists into various forms
 @interface PListFormatter : CardTextFormatter
 
 + (PListFormatter*) pListFormatter;
@@ -86,7 +90,7 @@
 
 // MARK: -
 
-/*! @class PListJSONFormatter formatts plists into various forms */
+/// PListJSONFormatter formatts plists into various forms
 @interface PListJSONFormatter : CardTextFormatter
 
 + (PListJSONFormatter*) pListJSONFormatter;
@@ -95,9 +99,17 @@
 
 // MARK: -
 
-/*! @class PListMarkdownFormatter formatts plists into various forms */
+/// PListMarkdownFormatter formatts plists into various forms
 @interface PListMarkdownFormatter : CardTextFormatter
 
 + (PListMarkdownFormatter*) pListMarkdownFormatter;
+
+@end
+
+// MARK: - Number Formatters
+
+/// Format a NSNumber as a fractional value using the continued fraction method
+/// https://en.wikipedia.org/wiki/Continued_fraction
+@interface CardFractionFormatter: CardUnitsFormatter
 
 @end

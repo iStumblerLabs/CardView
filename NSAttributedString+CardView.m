@@ -17,7 +17,7 @@
 
 + (NSAttributedString*) attributedString:(NSString*)string withLink:(NSURL*) url {
     NSDictionary* attrs = @{
-        NSFontAttributeName: [ILFont systemFontOfSize:10.0],
+        NSFontAttributeName: [ILFont systemFontOfSize:ILFont.systemFontSize],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
         NSForegroundColorAttributeName: ILColor.textColor,
         NSLinkAttributeName: url.absoluteString

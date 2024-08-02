@@ -22,7 +22,7 @@
     CGContextRef cgContext = CGBitmapContextCreate(NULL,
         proposedRect.size.width, proposedRect.size.height,
         bitsPerComponent, bytesPerRow, colorSpace, (alpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst));
-    NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:cgContext flipped:NO];
+    NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithCGContext:cgContext flipped:NO];
     NSDictionary* hints = @{(id)kCGImagePropertyHasAlpha: @(alpha)};
     CGImageRef cgImage = [scalingImage CGImageForProposedRect:&proposedRect context:context hints:hints];
     CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)(URL), kUTTypePNG, 1, NULL);

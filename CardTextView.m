@@ -47,7 +47,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 #if TARGET_OS_TV
     self.fontSize = 24;
 #else
-    self.fontSize = ILFont.smallSystemFontSize;
+    self.fontSize = ILFont.systemFontSize;
 #endif
 }
 
@@ -431,7 +431,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 }
 
 #if IL_APP_KIT
-#pragma mark - NSMenuValidation
+// MARK: - NSMenuValidation
 
 - (BOOL) validateMenuItem:(NSMenuItem*)menuItem {
     BOOL isValid = YES;

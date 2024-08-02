@@ -1,28 +1,28 @@
-#import "CardTextFormatters.h"
+#import "CardFormatters.h"
 
 static CGFloat unit_scale = 0.9;
 
 @implementation CardTextFormatter
               
 + (NSDictionary*) unitsAttrs:(NSDictionary*) attrs {
-    NSMutableDictionary* unitsAttrs = [attrs mutableCopy];
+    NSMutableDictionary* unitsAttrs = attrs.mutableCopy;
     ILFont* fullSize = attrs[NSFontAttributeName];
-    ILFont* halfSize = [ILFont fontWithName:[fullSize fontName] size:([fullSize pointSize] * unit_scale)];
-    unitsAttrs[NSForegroundColorAttributeName] = [ILColor grayColor];
+    ILFont* halfSize = [ILFont fontWithName:fullSize.fontName size:(fullSize.pointSize * unit_scale)];
+    unitsAttrs[NSForegroundColorAttributeName] = ILColor.grayColor;
     unitsAttrs[NSFontAttributeName] = halfSize;
     return unitsAttrs;
 }
 
 + (NSDictionary*) cardinalAttrs:(NSDictionary*) attrs {
-    NSMutableDictionary* cardinalAttrs = [attrs mutableCopy];
-    cardinalAttrs[NSForegroundColorAttributeName] = [ILColor grayColor];
+    NSMutableDictionary* cardinalAttrs = attrs.mutableCopy;
+    cardinalAttrs[NSForegroundColorAttributeName] = ILColor.grayColor;
     return cardinalAttrs;
 }
 
 + (NSDictionary*) monospaceAttrs:(NSDictionary*) attrs {
-    NSMutableDictionary* monoAttrs = [attrs mutableCopy];
+    NSMutableDictionary* monoAttrs = attrs.mutableCopy;
     ILFont* attrsFont = attrs[NSFontAttributeName];
-    ILFont* monoFont = [ILFont userFixedPitchFontOfSize:[attrsFont pointSize]];
+    ILFont* monoFont = [ILFont userFixedPitchFontOfSize:attrsFont.pointSize];
     monoAttrs[NSFontAttributeName] = monoFont;
     return monoAttrs;
 }
@@ -52,6 +52,10 @@ static CGFloat unit_scale = 0.9;
     }
 
     return string;
+}
+
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs {
+    return [NSAttributedString.alloc initWithString:[self stringForObjectValue:obj] attributes:[CardTextFormatter cardinalAttrs:attrs]];
 }
 
 @end
@@ -168,24 +172,14 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardUnitsFormatter
 
-+ (CardUnitsFormatter*) formatterForUnits:(NSString*) units withMultiplier:(CGFloat) multiplier {
-    CardUnitsFormatter* unitsFormat = CardUnitsFormatter.new;
-    unitsFormat.units = units;
-    unitsFormat.multiplier = @(multiplier);
-    unitsFormat.groupingSeparator = NSLocalizedStringFromTableInBundle(@",", nil, [NSBundle bundleForClass:self.class], @"Grouping Separator");
-    unitsFormat.usesGroupingSeparator = YES;
-
-    return unitsFormat;
-}
-
 - (instancetype) init {
-    if (self = [super init]) {
-        self.formatterBehavior = NSNumberFormatterBehavior10_4;
+    if ((self = super.init)) {
         self.numberStyle = NSNumberFormatterDecimalStyle;
         self.minimumIntegerDigits = 1;
         self.maximumIntegerDigits = 99;
         self.minimumFractionDigits = 0;
         self.maximumFractionDigits = 9;
+        self.usesGroupingSeparator = YES;
     }
     return self;
 }
@@ -193,14 +187,19 @@ static CGFloat unit_scale = 0.9;
 - (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     NSMutableAttributedString* formatted = nil;
     if ([anObject isKindOfClass:NSNumber.class]) {
-        formatted = [NSMutableAttributedString new];
-        NSString* valueString = [self stringForObjectValue:anObject];
+        formatted = NSMutableAttributedString.new;
         NSDictionary* unitsAttrs = [CardTextFormatter unitsAttrs:attrs];
-        NSAttributedString* formattedValue = [[NSAttributedString alloc] initWithString:valueString attributes:attrs];
+        if (self.prefix) {
+            NSAttributedString* formattedPrefix = [NSAttributedString.alloc initWithString:self.prefix attributes:unitsAttrs];
+            [formatted appendAttributedString:formattedPrefix];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:@" "]];
+        }
+        NSString* valueString = [self stringForObjectValue:anObject];
+        NSAttributedString* formattedValue = [NSAttributedString.alloc initWithString:valueString attributes:attrs];
         [formatted appendAttributedString:formattedValue];
         if (self.units) {
-            NSAttributedString* formattedUnits = [[NSAttributedString alloc] initWithString:self.units attributes:unitsAttrs];
-            [formatted appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+            NSAttributedString* formattedUnits = [NSAttributedString.alloc initWithString:self.units attributes:unitsAttrs];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:@" "]];
             [formatted appendAttributedString:formattedUnits];
         }
     }
@@ -313,7 +312,7 @@ static unsigned long long const EB = (PB * KB);
 // MARK: -
 
 /*! PListFormatter formatts plists into various forms */
-@implementation PListFormatter : CardTextFormatter
+@implementation PListFormatter
 
 + (PListFormatter*) pListFormatter {
     return PListFormatter.new;
@@ -329,7 +328,7 @@ static unsigned long long const EB = (PB * KB);
 // MARK: -
 
 /*! PListJSONFormatter formatts plists into various forms */
-@implementation PListJSONFormatter : CardTextFormatter
+@implementation PListJSONFormatter
 
 + (PListJSONFormatter*) pListJSONFormatter {
     return PListJSONFormatter.new;
@@ -356,13 +355,13 @@ static unsigned long long const EB = (PB * KB);
 // MARK: -
 
 /*! https://daringfireball.net/projects/markdown/syntax.text */
-@implementation PListMarkdownFormatter : CardTextFormatter
+@implementation PListMarkdownFormatter
 
 + (PListMarkdownFormatter*) pListMarkdownFormatter {
     return PListMarkdownFormatter.new;
 }
 
-#pragma mark -
+// MARK: -
 
 - (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level {
     NSMutableString* objectMarkdown = NSMutableString.new;
@@ -430,3 +429,75 @@ static unsigned long long const EB = (PB * KB);
 
 @end
 
+// MARK: - Number Formatters
+
+/// accuracy like 1.0e+4
+void fractionDouble(double floating, double accuracy, long* numerator, long* denominator) {
+    
+    // generate a vector of fraction terms
+    double floatPart = floating;
+    long wholePart = floor(floatPart);
+    long terms[64] = { 0.0 }; // TODO figure a better limit here
+    long termIndex = 0;
+    terms[termIndex++] = wholePart;
+    
+    floatPart -= wholePart;
+    
+    double multiple = 1;
+    while (floatPart != 0.0 && (floatPart > -accuracy) && (multiple < accuracy)) {
+        floatPart = 1.0 / floatPart;
+        multiple = multiple * (floatPart + 1);
+        wholePart = floor(floatPart);
+        terms[termIndex++] = wholePart; // TODO check terms count
+        floatPart -= wholePart;
+    }
+    
+    // reduce terms into numerator and denominator, unwinding termIndex
+    long num = 1;
+    double den = terms[termIndex];
+    
+    while(--termIndex > 0) {
+        double num2 = terms[termIndex];
+        // swap numerator and denominator
+        if (den >= 1.0) {
+            num = floor(den);
+        }
+        den = num2;
+    }
+    
+    // write the num and dem to the out parameters
+    if (numerator != NULL) {
+        *numerator = num;
+    }
+    
+    if (denominator != NULL) {
+        *denominator = floor(den);
+    }
+}
+
+/// Format a NSNumber as a fractional value using the continued fraction method
+/// https://en.wikipedia.org/wiki/Continued_fraction
+@implementation CardFractionFormatter
+
+- (NSString*) stringFromNumber:(NSNumber *)number {
+    long numerator = 0;
+    long denominator = 0;
+    fractionDouble(number.doubleValue, 1.0e+4, &numerator, &denominator);
+    unichar fractionSlash = 0x2044;
+    return [NSString stringWithFormat:@"%ld%C%ld", numerator, fractionSlash, denominator];
+}
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* string = nil;
+    
+    if ([obj isKindOfClass:NSNumber.class]) {
+        string = [self stringFromNumber:(NSNumber*)obj];
+    }
+    else {
+        string = [obj description];
+    }
+    
+    return string;
+}
+
+@end

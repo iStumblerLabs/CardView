@@ -1,7 +1,6 @@
 #import <KitBridge/KitBridge.h>
 
-@interface CardImageCell : NSTextAttachmentCell
-{
+@interface CardImageCell : NSTextAttachmentCell {
     NSImageCell* image_cell;
 }
 
