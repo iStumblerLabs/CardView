@@ -2,7 +2,7 @@
 
 static CGFloat unit_scale = 0.9;
 
-@implementation CardTextFormatter
+@implementation CardFormatters
               
 + (NSDictionary*) unitsAttrs:(NSDictionary*) attrs {
     NSMutableDictionary* unitsAttrs = attrs.mutableCopy;
@@ -27,50 +27,9 @@ static CGFloat unit_scale = 0.9;
     return monoAttrs;
 }
 
-// MARK: -
-
 - (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
     return [NSAttributedString.alloc initWithString:formattedString attributes:defaultAttrs];
-}
-
-@end
-
-// MARK: - Boolean Formatter
-
-@implementation CardBooleanFormatter
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* string = @"-";
-    if ([obj isKindOfClass:NSNumber.class]) {
-        if ([(NSNumber*)obj boolValue]) {
-            string = @"Yes";
-        }
-        else {
-            string = @"No";
-        }
-    }
-
-    return string;
-}
-
-- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs {
-    return [NSAttributedString.alloc initWithString:[self stringForObjectValue:obj] attributes:[CardTextFormatter cardinalAttrs:attrs]];
-}
-
-@end
-
-// MARK: - Data Formatter
-
-@implementation CardDataFormatter
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* sizeString = [obj description];
-    if ([obj isKindOfClass:NSData.class]) {
-        sizeString = [NSString stringWithFormat:@"%lu Bytes", (unsigned long)[obj length]];
-    }
-
-    return sizeString;
 }
 
 @end
@@ -105,7 +64,39 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-// MARK: - URL Formatter
+// MARK: -
+
+@implementation CardDataFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* sizeString = [obj description];
+    if ([obj isKindOfClass:NSData.class]) {
+        sizeString = [NSString stringWithFormat:@"%lu Bytes", (unsigned long)[obj length]];
+    }
+
+    return sizeString;
+}
+
+@end
+
+// MARK: -
+
+/*! CardListFormatter formats arrays with commas between the elements */
+@implementation CardListFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* listString = [obj description];
+    if ([obj isKindOfClass:NSArray.class]) {
+        NSArray* attributeArray = (NSArray*)obj;
+        listString = [attributeArray componentsJoinedByString:@", "];
+    }
+
+    return listString;
+}
+
+@end
+
+// MARK: -
 
 @implementation CardURLFormatter
 
@@ -114,8 +105,6 @@ static CGFloat unit_scale = 0.9;
     urlFormatter.linkColor = color;
     return urlFormatter;
 }
-
-// MARK: -
 
 - (NSString*) stringForObjectValue:(id)obj {
     NSString* stringValue = [obj description];
@@ -142,12 +131,122 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
+// MARK: -
+
+/*! PListFormatter formatts plists into various forms */
+@implementation PListFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* plistString = [obj description];
+    return plistString;
+}
+
+@end
+
+// MARK: -
+
+/*! PListJSONFormatter formatts plists into various forms */
+@implementation PListJSONFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* plistJSONString = nil;
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization
+        dataWithJSONObject:obj
+        options:NSJSONWritingPrettyPrinted
+        error:&error];
+    plistJSONString = [[NSString alloc]
+        initWithData:jsonData
+        encoding:NSUTF8StringEncoding];
+
+    return plistJSONString;
+}
+
+
+@end
+
+// MARK: -
+
+/*! https://daringfireball.net/projects/markdown/syntax.text */
+@implementation PListMarkdownFormatter
+
++ (PListMarkdownFormatter*) pListMarkdownFormatter {
+    return PListMarkdownFormatter.new;
+}
+
+- (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level {
+    NSMutableString* objectMarkdown = NSMutableString.new;
+
+    unsigned indent = level;
+    while (indent-- > 0) {
+        [objectMarkdown appendString:@"  "]; // two spaces
+    }
+
+    // NSLog(@"level: %u indent: **%@**", level, objectMarkdown);
+
+    if ([obj isKindOfClass:NSString.class]) {
+        [objectMarkdown appendString:obj];
+    }
+    else if ([obj isKindOfClass:NSNumber.class]) {
+        [objectMarkdown appendString:[obj stringValue]];
+    }
+    else if ([obj isKindOfClass:NSArray.class]) {
+        NSArray* array = (NSArray*)obj;
+        unsigned index = 1;
+        for (id item in array) {
+            [objectMarkdown appendFormat:@"%ui. ", index++];
+            [objectMarkdown appendString:[self stringForObjectValue:item indent:(level + 1)]];
+        }
+    }
+    else if ([obj isKindOfClass:NSDictionary.class]) {
+        NSDictionary* dictionary = (NSDictionary*)obj;
+        for (NSString* key in [dictionary allKeys]) {
+            id value = [dictionary objectForKey:key];
+
+            [objectMarkdown appendString:@"* *"];
+            [objectMarkdown appendString:key];
+            [objectMarkdown appendString:@"* : "];
+            if ([value isKindOfClass:NSString.class]) {
+                [objectMarkdown appendString:value];
+                [objectMarkdown appendString:@"\n"];
+            }
+            else if ([value isKindOfClass:NSNumber.class]) {
+                [objectMarkdown appendString:[value stringValue]];
+                [objectMarkdown appendString:@"\n"];
+            }
+            else { // we need to go deeper
+                [objectMarkdown appendString:@"\n"];
+                NSString* valueMarkdown = [self stringForObjectValue:value indent:(level + 1)];
+                // NSLog(@"valueMarkdown %@", valueMarkdown);
+                [objectMarkdown appendString:valueMarkdown];
+            }
+        }
+        [objectMarkdown appendString:@"\n"];
+    }
+    else {
+        [objectMarkdown appendString:[obj description]]; // *shrug*
+    }
+
+    // [objectMarkdown appendString:@"\n"];
+
+    return objectMarkdown;
+}
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* markdownString = [self stringForObjectValue:obj indent:0];
+    // NSLog(@"markdownString %@", markdownString);
+    return markdownString;
+}
+
+@end
+
 // MARK: - Date Formatter
 
 @implementation CardDateFormatter
 
 /*! @discussion singleton NSDateFormatter for the users's current locale */
-+ (CardDateFormatter*) cardDateFormat {
++ (CardDateFormatter*) localDateFormatter {
     static CardDateFormatter* cardFormat = nil;
     if (!cardFormat) {
         cardFormat = CardDateFormatter.new;
@@ -158,8 +257,6 @@ static CGFloat unit_scale = 0.9;
     }
     return cardFormat;
 }
-
-// MARK: -
 
 - (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
@@ -188,7 +285,7 @@ static CGFloat unit_scale = 0.9;
     NSMutableAttributedString* formatted = nil;
     if ([anObject isKindOfClass:NSNumber.class]) {
         formatted = NSMutableAttributedString.new;
-        NSDictionary* unitsAttrs = [CardTextFormatter unitsAttrs:attrs];
+        NSDictionary* unitsAttrs = [CardFormatters unitsAttrs:attrs];
         if (self.prefix) {
             NSAttributedString* formattedPrefix = [NSAttributedString.alloc initWithString:self.prefix attributes:unitsAttrs];
             [formatted appendAttributedString:formattedPrefix];
@@ -209,13 +306,29 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
+// MARK: - Number Formatters
+
+@implementation CardBooleanFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* string = @"-";
+    if ([obj isKindOfClass:NSNumber.class]) {
+        if ([(NSNumber*)obj boolValue]) {
+            string = @"Yes";
+        }
+        else {
+            string = @"No";
+        }
+    }
+
+    return string;
+}
+
+@end
+
 // MARK: -
 
 @implementation CardBytesFormatter
-
-+ (CardBytesFormatter*) cardBytesFormatter {
-    return CardBytesFormatter.new;
-}
 
 // https://en.wikipedia.org/wiki/Kibibyte
 
@@ -290,147 +403,7 @@ static unsigned long long const EB = (PB * KB);
 
 // MARK: -
 
-/*! CardListFormatter formats arrays with commas between the elements */
-@implementation CardListFormatter
-
-+ (CardListFormatter*) cardListFormatter {
-    return CardListFormatter.new;
-}
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* listString = [obj description];
-    if ([obj isKindOfClass:NSArray.class]) {
-        NSArray* attributeArray = (NSArray*)obj;
-        listString = [attributeArray componentsJoinedByString:@", "];
-    }
-
-    return listString;
-}
-
-@end
-
-// MARK: -
-
-/*! PListFormatter formatts plists into various forms */
-@implementation PListFormatter
-
-+ (PListFormatter*) pListFormatter {
-    return PListFormatter.new;
-}
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* plistString = [obj description];
-    return plistString;
-}
-
-@end
-
-// MARK: -
-
-/*! PListJSONFormatter formatts plists into various forms */
-@implementation PListJSONFormatter
-
-+ (PListJSONFormatter*) pListJSONFormatter {
-    return PListJSONFormatter.new;
-}
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* plistJSONString = nil;
-
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization
-        dataWithJSONObject:obj
-        options:NSJSONWritingPrettyPrinted
-        error:&error];
-    plistJSONString = [[NSString alloc]
-        initWithData:jsonData
-        encoding:NSUTF8StringEncoding];
-
-    return plistJSONString;
-}
-
-
-@end
-
-// MARK: -
-
-/*! https://daringfireball.net/projects/markdown/syntax.text */
-@implementation PListMarkdownFormatter
-
-+ (PListMarkdownFormatter*) pListMarkdownFormatter {
-    return PListMarkdownFormatter.new;
-}
-
-// MARK: -
-
-- (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level {
-    NSMutableString* objectMarkdown = NSMutableString.new;
-
-    unsigned indent = level;
-    while (indent-- > 0) {
-        [objectMarkdown appendString:@"  "]; // two spaces
-    }
-
-    // NSLog(@"level: %u indent: **%@**", level, objectMarkdown);
-
-    if ([obj isKindOfClass:NSString.class]) {
-        [objectMarkdown appendString:obj];
-    }
-    else if ([obj isKindOfClass:NSNumber.class]) {
-        [objectMarkdown appendString:[obj stringValue]];
-    }
-    else if ([obj isKindOfClass:NSArray.class]) {
-        NSArray* array = (NSArray*)obj;
-        unsigned index = 1;
-        for (id item in array) {
-            [objectMarkdown appendFormat:@"%ui. ", index++];
-            [objectMarkdown appendString:[self stringForObjectValue:item indent:(level + 1)]];
-        }
-    }
-    else if ([obj isKindOfClass:NSDictionary.class]) {
-        NSDictionary* dictionary = (NSDictionary*)obj;
-        for (NSString* key in [dictionary allKeys]) {
-            id value = [dictionary objectForKey:key];
-
-            [objectMarkdown appendString:@"* *"];
-            [objectMarkdown appendString:key];
-            [objectMarkdown appendString:@"* : "];
-            if ([value isKindOfClass:NSString.class]) {
-                [objectMarkdown appendString:value];
-                [objectMarkdown appendString:@"\n"];
-            }
-            else if ([value isKindOfClass:NSNumber.class]) {
-                [objectMarkdown appendString:[value stringValue]];
-                [objectMarkdown appendString:@"\n"];
-            }
-            else { // we need to go deeper
-                [objectMarkdown appendString:@"\n"];
-                NSString* valueMarkdown = [self stringForObjectValue:value indent:(level + 1)];
-                // NSLog(@"valueMarkdown %@", valueMarkdown);
-                [objectMarkdown appendString:valueMarkdown];
-            }
-        }
-        [objectMarkdown appendString:@"\n"];
-    }
-    else {
-        [objectMarkdown appendString:[obj description]]; // *shrug*
-    }
-
-    // [objectMarkdown appendString:@"\n"];
-
-    return objectMarkdown;
-}
-
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* markdownString = [self stringForObjectValue:obj indent:0];
-    // NSLog(@"markdownString %@", markdownString);
-    return markdownString;
-}
-
-@end
-
-// MARK: - Number Formatters
-
+/// https://en.wikipedia.org/wiki/Continued_fraction
 /// accuracy like 1.0e+4
 void fractionDouble(double floating, double accuracy, long* numerator, long* denominator) {
     
@@ -476,10 +449,9 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
 }
 
 /// Format a NSNumber as a fractional value using the continued fraction method
-/// https://en.wikipedia.org/wiki/Continued_fraction
 @implementation CardFractionFormatter
 
-- (NSString*) stringFromNumber:(NSNumber *)number {
++ (NSString*) fractionStringForNumber:(NSNumber *)number {
     long numerator = 0;
     long denominator = 0;
     fractionDouble(number.doubleValue, 1.0e+4, &numerator, &denominator);
@@ -491,13 +463,116 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
     NSString* string = nil;
     
     if ([obj isKindOfClass:NSNumber.class]) {
-        string = [self stringFromNumber:(NSNumber*)obj];
+        string = [CardFractionFormatter fractionStringForNumber:(NSNumber*)obj];
     }
     else {
         string = [obj description];
     }
     
     return string;
+}
+
+@end
+
+// MARK: -
+
+void timecode(double totalSeconds, double frameInterval, long* hours, long* minutes, long* seconds, long* frames, double* decimalSeconds) {
+    double integralSeconds;
+    double fractionalSeconds = modf(totalSeconds, &integralSeconds);
+    long hoursCount = floor(integralSeconds / (60 * 60)); // 60 seconds x 60 minutes
+    long minutesCount = floor((integralSeconds - (hoursCount * 60 * 60)) / 60); // 60 seconds
+    if (frameInterval == 0.0) { // assume 24 FPS
+        frameInterval = (1.0 / 24);
+    }
+    long frameCount = floor(fractionalSeconds / frameInterval); // need to convert decimal seconds to 24 FPS frames (1/24)
+
+    // get the integer values we need
+    if (hours) {
+        *hours = hoursCount;
+    }
+    
+    if (minutes) {
+        *minutes = minutesCount;
+    }
+    
+    if (seconds) {
+        *seconds = (integralSeconds - (hoursCount * 60 * 60) - (minutesCount * 60)); // remove the hours and minutes seconds
+    }
+    
+    if (frames) {
+        *frames = frameCount;
+    }
+    
+    if (decimalSeconds) {
+        *decimalSeconds = (totalSeconds - (hoursCount * 60 * 60) - (minutesCount * 60));
+    }
+}
+
+@implementation CardTimecodeFormatter
+
+- (instancetype) init {
+    if ((self = super.init)) {
+        self.unitSeperators = YES;
+        self.decimalSeconds = YES;
+    }
+
+    return self;
+}
+
+- (NSString*) stringForObjectValue:(id)obj {
+    NSString* string = nil;
+    if ([obj isKindOfClass:NSNumber.class]) {
+        double totalSeconds = ((NSNumber*)obj).doubleValue;
+        double decimalSeconds;
+        long hours, minutes, seconds, frames;
+        timecode(totalSeconds, self.frameInterval, &hours, &minutes, &seconds, &frames, &decimalSeconds);
+        if (self.decimalSeconds) {
+            string = [NSString stringWithFormat:(self.unitSeperators ? @"%02ldh %02ldm %2.4fs" : @"%02ld:%02ld:%2.4f"), hours, minutes, decimalSeconds];
+        }
+        else {
+            string = [NSString stringWithFormat:(self.unitSeperators ? @"%02ldh %02ldm %02lds %02ldf" : @"%02ld:%02ld:%02ld:%02ld"), hours, minutes, seconds, frames];
+        }
+    }
+    else {
+        string = [obj description];
+    }
+    
+    return string;
+}
+
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSAttributedStringKey,id> *)attrs {
+    NSMutableAttributedString* timecodeString = NSMutableAttributedString.new;
+    if ([obj isKindOfClass:NSNumber.class]) {
+        NSDictionary* seperatorAttrs = (self.unitSeperators ? [CardFormatters unitsAttrs:attrs] : [CardFormatters cardinalAttrs:attrs]);
+
+        double totalSeconds = ((NSNumber*) obj).doubleValue;
+        double decimalSeconds;
+        long hours, minutes, seconds, frames;
+        timecode(totalSeconds, self.frameInterval, &hours, &minutes, &seconds, &frames, &decimalSeconds);
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", hours] attributes:attrs]];
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"h " : @":") attributes:seperatorAttrs]];
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", minutes] attributes:attrs]];
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"m " : @":") attributes:seperatorAttrs]];
+        if (self.decimalSeconds) {
+            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%2.4f", decimalSeconds] attributes:attrs]];
+            if (self.unitSeperators) {
+                [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:@"s" attributes:seperatorAttrs]];
+            }
+        }
+        else {
+            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", seconds] attributes:attrs]];
+            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"s " : @":") attributes:seperatorAttrs]];
+            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", frames] attributes:attrs]];
+            if (self.unitSeperators) {
+                [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:@"f" attributes:seperatorAttrs]];
+            }
+        }
+    }
+    else {
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[self stringForObjectValue:obj] attributes:attrs]];
+    }
+    
+    return timecodeString;
 }
 
 @end

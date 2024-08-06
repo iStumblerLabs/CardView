@@ -25,7 +25,7 @@
     NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithCGContext:cgContext flipped:NO];
     NSDictionary* hints = @{(id)kCGImagePropertyHasAlpha: @(alpha)};
     CGImageRef cgImage = [scalingImage CGImageForProposedRect:&proposedRect context:context hints:hints];
-    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)(URL), kUTTypePNG, 1, NULL);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)URL, kUTTypePNG, 1, NULL);
     CFDictionaryRef imageOptions = CFBridgingRetain(hints);
     CGImageDestinationAddImage(destination, cgImage, imageOptions);
 
