@@ -1,4 +1,8 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
 /* http://stackoverflow.com/questions/17507170/how-to-save-png-file-from-nsimage-retina-issues */
 

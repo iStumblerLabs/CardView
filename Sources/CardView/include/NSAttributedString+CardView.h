@@ -1,6 +1,9 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
-#define NSAS NSAttributedString
 
 @interface NSAttributedString (CardView)
 

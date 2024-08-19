@@ -1,11 +1,16 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
+
 
 @interface ILPasteboard (CardView)
 
-/*! @returns a clone of this pasteboard with a new unique name */
+/// @returns a clone of this pasteboard with a new unique name
 - (ILPasteboard*) clone;
 
-/*! @returns a clone of the items on this pasteboard */
+/// @returns a clone of the items on this pasteboard
 - (NSArray*) clonedItems;
 
 @end
@@ -18,5 +23,4 @@
 - (ILPasteboardItem*) clone;
 
 @end
-
 #endif

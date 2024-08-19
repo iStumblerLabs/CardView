@@ -2,7 +2,8 @@
 
 ========
 
-iStumbler Labs CardView.Framework
+iStumbler Labs CardView.Framework — CardView is a good looking text view 
+with convenience methods for formatting text, embedding controls and scaling content.
 
 <a id="support"></a>
 ## Support CardView!
@@ -24,7 +25,7 @@ An NSCell for displaying images in a CardTextView
 
 ### CardSeparatorCell
 
-An NSCell for displaying a seperator line in a CardTextView
+An NSCell for displaying a separator line in a CardTextView
 
 ### CardActionCell
 
@@ -40,8 +41,10 @@ An NSCell for displaying a button in a CardTextView
 <a id="Changes"></a>
 ## Changes
 
-- 1.0 Initial Version
-- 1.1 
+- 1.2 – 19 August 2024: Swift Package Manager Support
+- 1.1 — 29 May 2016: Add CardBytesFormatter
+- 1.0.1 — 13 May 2016: Add CardListFormatter
+- 1.0 — 27 April 2016: Initial Version
 
 ========
 
@@ -64,7 +67,7 @@ An NSCell for displaying a button in a CardTextView
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE

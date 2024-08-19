@@ -6,6 +6,23 @@
 	objectVersion = 54;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		75EA5BBC2C6D66D400EE0783 /* CardView (All) */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 75EA5BBD2C6D66D400EE0783 /* Build configuration list for PBXAggregateTarget "CardView (All)" */;
+			buildPhases = (
+			);
+			dependencies = (
+				75EA5BC12C6D671E00EE0783 /* PBXTargetDependency */,
+				75EA5BC32C6D671E00EE0783 /* PBXTargetDependency */,
+				75EA5BC52C6D671E00EE0783 /* PBXTargetDependency */,
+				75EA5BC72C6D671E00EE0783 /* PBXTargetDependency */,
+			);
+			name = "CardView (All)";
+			productName = "CardView (All)";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BD2C56E84100C7C25C /* AppDelegate.swift */; };
 		754780C02C56E84100C7C25C /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BF2C56E84100C7C25C /* CardController.swift */; };
@@ -13,8 +30,6 @@
 		754780C52C56E84300C7C25C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 754780C42C56E84300C7C25C /* Base */; };
 		754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; };
 		754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		754780D42C56F2FB00C7C25C /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7552D94C21619156004FF8C8 /* KitBridge.framework */; };
-		754780D52C56F2FB00C7C25C /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7552D94C21619156004FF8C8 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		7553319B1EBE43B300B35345 /* ILImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* ILImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553319C1EBE43B300B35345 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
@@ -43,6 +58,19 @@
 		75BE80D31F5F710300453938 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75DE4323196E6A1B0022311F /* CardViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE4324196E6A1B0022311F /* CardViewCell.m */; };
+		75EA5BA52C6D66B800EE0783 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BA62C6D66B800EE0783 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BA72C6D66B800EE0783 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BA82C6D66B800EE0783 /* ILImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* ILImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BA92C6D66B800EE0783 /* ILPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BAA2C6D66B800EE0783 /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75EA5BAC2C6D66B800EE0783 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
+		75EA5BAD2C6D66B800EE0783 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
+		75EA5BAE2C6D66B800EE0783 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
+		75EA5BAF2C6D66B800EE0783 /* ILPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */; };
+		75EA5BB02C6D66B800EE0783 /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
+		75EA5BCA2C6D690800EE0783 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */; };
+		75EA5BCB2C6D690800EE0783 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75FA0B851981A52A000AFFE3 /* ILPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75FA0B861981A52A000AFFE3 /* ILPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */; };
 		75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,22 +103,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 75DCBEE11ED2C81E00538D87;
+			remoteGlobalIDString = 75C6A34D21268C5300367C24;
 			remoteInfo = "KitBridge (macOS)";
-		};
-		7552D94921619156004FF8C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75C6A41B21274CFA00367C24;
-			remoteInfo = "KitBridge (iOS, Swift)";
-		};
-		7552D94B21619156004FF8C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75C6A36E21268C5300367C24;
-			remoteInfo = "KitBridge (macOS, Swift)";
 		};
 		7586880820DB07690029C1E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -103,8 +117,50 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 75DCBEF11ED2C84B00538D87;
+			remoteGlobalIDString = 75C6A3F921274CFA00367C24;
 			remoteInfo = "KitBridge (iOS)";
+		};
+		75EA5BC02C6D671E00EE0783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75BE80AE1F5F66C200453938;
+			remoteInfo = "CardView (iOS)";
+		};
+		75EA5BC22C6D671E00EE0783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = "CardView (macOS)";
+		};
+		75EA5BC42C6D671E00EE0783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75EA5BA12C6D66B800EE0783;
+			remoteInfo = "CardView (tvOS)";
+		};
+		75EA5BC62C6D671E00EE0783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 754780BA2C56E84100C7C25C;
+			remoteInfo = "Deck (macOS)";
+		};
+		75EA5BC82C6D679000EE0783 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 75207C5D2C6B47190057B0A9;
+			remoteInfo = "KitBridge (tvOS)";
+		};
+		75FB2B322C6D3E63004F7FF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75207C812C6B47190057B0A9;
+			remoteInfo = "KitBridge (tvOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -115,8 +171,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				754780D52C56F2FB00C7C25C /* KitBridge.framework in Embed Frameworks */,
 				754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75EA5BCC2C6D690800EE0783 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				75EA5BCB2C6D690800EE0783 /* KitBridge.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,8 +197,8 @@
 		754780C12C56E84300C7C25C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		754780C42C56E84300C7C25C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		754780C62C56E84300C7C25C /* Deck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Deck.entitlements; sourceTree = "<group>"; };
+		754EA43F2C73D4EF004BBC13 /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = "<group>"; };
 		7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KitBridge.xcodeproj; path = ../KitBridge/KitBridge.xcodeproj; sourceTree = "<group>"; };
-		7552D94D21619181004FF8C8 /* config.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = config.yml; path = .circleci/config.yml; sourceTree = SOURCE_ROOT; };
 		755331991EBE43B300B35345 /* ILImage+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ILImage+CardView.h"; sourceTree = "<group>"; };
 		7553319A1EBE43B300B35345 /* ILImage+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ILImage+CardView.m"; sourceTree = "<group>"; };
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -150,13 +216,15 @@
 		75BE80AF1F5F66C200453938 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
 		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
+		75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "CardView (tvOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ILPasteboard+CardView.h"; sourceTree = "<group>"; };
 		75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ILPasteboard+CardView.m"; sourceTree = "<group>"; };
 		75FA0B8D1981B1B1000AFFE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		75FB2B372C6D6545004F7FF0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		75FD72DC1966A44A004C54DD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CardView.h"; sourceTree = "<group>"; };
 		75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CardView.m"; sourceTree = "<group>"; };
-		8DC2EF5A0486A6940098B216 /* CardView.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardView.plist; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -166,7 +234,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				754780D42C56F2FB00C7C25C /* KitBridge.framework in Frameworks */,
 				754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +243,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75EA5BB12C6D66B800EE0783 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75EA5BCA2C6D690800EE0783 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +271,7 @@
 				8DC2EF5B0486A6940098B216 /* CardView.framework */,
 				75BE80AF1F5F66C200453938 /* CardView.framework */,
 				754780BB2C56E84100C7C25C /* Deck (macOS).app */,
+				75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,13 +280,11 @@
 			isa = PBXGroup;
 			children = (
 				7571BF711CCDB68100021159 /* README.md */,
-				8DC2EF5A0486A6940098B216 /* CardView.plist */,
-				7585A8331D307B8C00F5C869 /* Sources */,
-				7553319E1EBE94DD00B35345 /* Categories */,
-				754780BC2C56E84100C7C25C /* Deck */,
+				75FB2B372C6D6545004F7FF0 /* Package.swift */,
+				754EA43F2C73D4EF004BBC13 /* Package.resolved */,
+				75FB2B362C6D64F9004F7FF0 /* Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				7552D94521619156004FF8C8 /* Packaging */,
 			);
 			name = CardView;
 			sourceTree = "<group>";
@@ -243,53 +317,55 @@
 			isa = PBXGroup;
 			children = (
 				7550C5BA1F5A43D0003A0691 /* KitBridge.framework */,
-				7552D94A21619156004FF8C8 /* KitBridge.framework */,
+				75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */,
 				7550C5B81F5A43D0003A0691 /* KitBridge.framework */,
-				7552D94C21619156004FF8C8 /* KitBridge.framework */,
 				7586880920DB07690029C1E5 /* colorist */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7552D94521619156004FF8C8 /* Packaging */ = {
-			isa = PBXGroup;
-			children = (
-				7552D94D21619181004FF8C8 /* config.yml */,
-			);
-			path = Packaging;
-			sourceTree = "<group>";
-		};
-		7553319E1EBE94DD00B35345 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
-				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
-				755331991EBE43B300B35345 /* ILImage+CardView.h */,
-				7553319A1EBE43B300B35345 /* ILImage+CardView.m */,
-				75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */,
-				75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		7585A8331D307B8C00F5C869 /* Sources */ = {
+		75FB2B342C6D64F9004F7FF0 /* include */ = {
 			isa = PBXGroup;
 			children = (
 				75AC2C600A8F78D9003AAE72 /* CardView.h */,
 				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
-				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
-				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
-				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
-				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
-				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
 				7571BFB81CD579CF00021159 /* CardFormatters.h */,
-				7571BFB91CD579CF00021159 /* CardFormatters.m */,
+				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
+				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
 				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
-				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
 				75DE4323196E6A1B0022311F /* CardViewCell.h */,
-				75DE4324196E6A1B0022311F /* CardViewCell.m */,
+				755331991EBE43B300B35345 /* ILImage+CardView.h */,
+				75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */,
+				75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */,
 			);
-			name = Sources;
+			path = include;
+			sourceTree = "<group>";
+		};
+		75FB2B352C6D64F9004F7FF0 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
+				7571BFB91CD579CF00021159 /* CardFormatters.m */,
+				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
+				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
+				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
+				75DE4324196E6A1B0022311F /* CardViewCell.m */,
+				7553319A1EBE43B300B35345 /* ILImage+CardView.m */,
+				75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */,
+				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
+				75FB2B342C6D64F9004F7FF0 /* include */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
+		75FB2B362C6D64F9004F7FF0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				75FB2B352C6D64F9004F7FF0 /* CardView */,
+				754780BC2C56E84100C7C25C /* Deck */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +381,19 @@
 				75BE80CA1F5F671700453938 /* ILImage+CardView.h in Headers */,
 				75BE80CB1F5F671700453938 /* ILPasteboard+CardView.h in Headers */,
 				75BE80C91F5F671700453938 /* NSAttributedString+CardView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75EA5BA42C6D66B800EE0783 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75EA5BA52C6D66B800EE0783 /* CardView.h in Headers */,
+				75EA5BA62C6D66B800EE0783 /* CardTextView.h in Headers */,
+				75EA5BA72C6D66B800EE0783 /* CardFormatters.h in Headers */,
+				75EA5BA82C6D66B800EE0783 /* ILImage+CardView.h in Headers */,
+				75EA5BA92C6D66B800EE0783 /* ILPasteboard+CardView.h in Headers */,
+				75EA5BAA2C6D66B800EE0783 /* NSAttributedString+CardView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +455,26 @@
 			productReference = 75BE80AF1F5F66C200453938 /* CardView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		75EA5BA12C6D66B800EE0783 /* CardView (tvOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75EA5BB42C6D66B800EE0783 /* Build configuration list for PBXNativeTarget "CardView (tvOS)" */;
+			buildPhases = (
+				75EA5BA42C6D66B800EE0783 /* Headers */,
+				75EA5BAB2C6D66B800EE0783 /* Sources */,
+				75EA5BB12C6D66B800EE0783 /* Frameworks */,
+				75EA5BB32C6D66B800EE0783 /* Resources */,
+				75EA5BCC2C6D690800EE0783 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75EA5BC92C6D679000EE0783 /* PBXTargetDependency */,
+			);
+			name = "CardView (tvOS)";
+			productName = CardView;
+			productReference = 75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8DC2EF4F0486A6940098B216 /* CardView (macOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "CardView (macOS)" */;
@@ -404,6 +513,9 @@
 						DevelopmentTeam = E8G8ARB44Z;
 						ProvisioningStyle = Automatic;
 					};
+					75EA5BBC2C6D66D400EE0783 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					8DC2EF4F0486A6940098B216 = {
 						DevelopmentTeam = E8G8ARB44Z;
 					};
@@ -428,8 +540,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* CardView (macOS) */,
+				75EA5BBC2C6D66D400EE0783 /* CardView (All) */,
 				75BE80AE1F5F66C200453938 /* CardView (iOS) */,
+				8DC2EF4F0486A6940098B216 /* CardView (macOS) */,
+				75EA5BA12C6D66B800EE0783 /* CardView (tvOS) */,
 				754780BA2C56E84100C7C25C /* Deck (macOS) */,
 			);
 		};
@@ -450,25 +564,18 @@
 			remoteRef = 7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7552D94A21619156004FF8C8 /* KitBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KitBridge.framework;
-			remoteRef = 7552D94921619156004FF8C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7552D94C21619156004FF8C8 /* KitBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KitBridge.framework;
-			remoteRef = 7552D94B21619156004FF8C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		7586880920DB07690029C1E5 /* colorist */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = colorist;
 			remoteRef = 7586880820DB07690029C1E5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KitBridge.framework;
+			remoteRef = 75FB2B322C6D3E63004F7FF0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -484,6 +591,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		75BE80AD1F5F66C200453938 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75EA5BB32C6D66B800EE0783 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -521,6 +635,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75EA5BAB2C6D66B800EE0783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75EA5BAC2C6D66B800EE0783 /* CardTextView.m in Sources */,
+				75EA5BAD2C6D66B800EE0783 /* CardFormatters.m in Sources */,
+				75EA5BAE2C6D66B800EE0783 /* ILImage+CardView.m in Sources */,
+				75EA5BAF2C6D66B800EE0783 /* ILPasteboard+CardView.m in Sources */,
+				75EA5BB02C6D66B800EE0783 /* NSAttributedString+CardView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,6 +681,31 @@
 			name = "KitBridge (iOS)";
 			targetProxy = 75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */;
 		};
+		75EA5BC12C6D671E00EE0783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75BE80AE1F5F66C200453938 /* CardView (iOS) */;
+			targetProxy = 75EA5BC02C6D671E00EE0783 /* PBXContainerItemProxy */;
+		};
+		75EA5BC32C6D671E00EE0783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* CardView (macOS) */;
+			targetProxy = 75EA5BC22C6D671E00EE0783 /* PBXContainerItemProxy */;
+		};
+		75EA5BC52C6D671E00EE0783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75EA5BA12C6D66B800EE0783 /* CardView (tvOS) */;
+			targetProxy = 75EA5BC42C6D671E00EE0783 /* PBXContainerItemProxy */;
+		};
+		75EA5BC72C6D671E00EE0783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 754780BA2C56E84100C7C25C /* Deck (macOS) */;
+			targetProxy = 75EA5BC62C6D671E00EE0783 /* PBXContainerItemProxy */;
+		};
+		75EA5BC92C6D679000EE0783 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "KitBridge (tvOS)";
+			targetProxy = 75EA5BC82C6D679000EE0783 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -584,7 +735,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = CardView.plist;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -609,7 +760,7 @@
 				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = CardView.plist;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -658,9 +809,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
+				TVOS_DEPLOYMENT_TARGET = 14.7;
 			};
 			name = Debug;
 		};
@@ -699,9 +851,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SWIFT_COMPILATION_MODE = wholemodule;
+				TVOS_DEPLOYMENT_TARGET = 14.7;
 			};
 			name = Release;
 		};
@@ -719,7 +872,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = Deck/Deck.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Deck/Deck.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -775,7 +929,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = Deck/Deck.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Deck/Deck.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -841,7 +996,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = CardView.plist;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -888,7 +1043,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = CardView.plist;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -908,6 +1063,122 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		75EA5BB52C6D66B800EE0783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		75EA5BB62C6D66B800EE0783 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Sources/CardView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		75EA5BBE2C6D66D400EE0783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		75EA5BBF2C6D66D400EE0783 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E8G8ARB44Z;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -946,6 +1217,24 @@
 			buildConfigurations = (
 				75BE80B51F5F66C200453938 /* Debug */,
 				75BE80B61F5F66C200453938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75EA5BB42C6D66B800EE0783 /* Build configuration list for PBXNativeTarget "CardView (tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75EA5BB52C6D66B800EE0783 /* Debug */,
+				75EA5BB62C6D66B800EE0783 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75EA5BBD2C6D66D400EE0783 /* Build configuration list for PBXAggregateTarget "CardView (All)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75EA5BBE2C6D66D400EE0783 /* Debug */,
+				75EA5BBF2C6D66D400EE0783 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

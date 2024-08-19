@@ -1,17 +1,22 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
-/*!
-    @class CartTextView
-    @abstract Implements an Address Book Card style text view
-    @discussion subclass of ILTextView with support for columns and styled text on macOS and iOS
-*/
+
+/// Implements an Address Book Card style text view
+/// @discussion subclass of ILTextView with support for columns and styled text on macOS and iOS
 @interface CardTextView : ILTextView <ILViews>
 @property(nonatomic, assign) CGFloat fontSize;
 @property(nonatomic, retain) NSArray<NSNumber*>* columns;
 
 // MARK: - Formatter Registry
 
+/// Register a formatter do handle instances of the class provided
 + (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
+
+/// Get the registered formatter for the
 + (NSFormatter*) registeredFormatterForClass:(Class) clzz;
 
 // MARK: -
@@ -37,7 +42,7 @@
 
 - (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes;
 
-// MARK: - Resizeable Styles
+// MARK: - Resizable Styles
 
 - (NSAttributedString*) appendHeaderString:(NSString*) string;
 - (NSAttributedString*) appendSubheaderString:(NSString*) string;
@@ -50,7 +55,7 @@
 - (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label;
 - (NSAttributedString*) appendValueFormatted:(id) object;
 
-// MARK: - Non-Resizeable Styles
+// MARK: - Non-Resizable Styles
 
 - (NSAttributedString*) appendHorizontalRule;
 - (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width;
@@ -67,7 +72,6 @@
 
 // MARK: -
 
-/*! @protocol CardTextViewDelegate */
 @protocol CardTextViewDelegate <NSObject>
 
 - (void) card:(CardTextView*) card cut:(id) sender;

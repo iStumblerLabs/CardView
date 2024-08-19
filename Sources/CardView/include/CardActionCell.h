@@ -1,6 +1,12 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
 
+#if IL_APP_KIT
+/// An NSTextAttachmentCell for displaying a button in a CardTextView
 @interface CardActionCell : NSProxy <NSTextAttachmentCell> {
     NSPoint baseline_offset;
     NSActionCell* action_cell;
@@ -17,3 +23,4 @@
 - (void) setCellBaselineOffset:(NSPoint) offset;
 
 @end
+#endif

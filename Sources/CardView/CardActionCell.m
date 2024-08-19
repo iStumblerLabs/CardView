@@ -1,6 +1,6 @@
 #import "CardActionCell.h"
 
-
+#if IL_APP_KIT
 @implementation CardActionCell
 
 + (CardActionCell*) proxyWithActionCell:(NSActionCell*) cell {
@@ -107,3 +107,4 @@
 }
 
 @end
+#endif

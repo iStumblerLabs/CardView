@@ -1,11 +1,13 @@
-#import "CardTextView.h"
+#import "include/CardTextView.h"
+#import "include/NSAttributedString+CardView.h"
 
 #if IL_APP_KIT
-#import "CardSeparatorCell.h"
-#import "CardImageCell.h"
+#import "include/CardSeparatorCell.h"
+#import "include/CardImageCell.h"
 #endif
 
-#import "NSAttributedString+CardView.h"
+#define NSAS NSAttributedString
+
 
 static NSMutableDictionary* formatterRegistry;
 

@@ -1,5 +1,11 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
+
+#if IL_APP_KIT
 @interface CardImageCell : NSTextAttachmentCell {
     NSImageCell* image_cell;
 }
@@ -9,3 +15,4 @@
 - (id) initWithImage:(NSImage*) cell_image;
 
 @end
+#endif

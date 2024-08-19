@@ -1,6 +1,6 @@
 #import "CardSeparatorCell.h"
 
-
+#if IL_APP_KIT
 @implementation CardSeparatorCell
 
 + (NSAttributedString*) separator  {
@@ -58,3 +58,4 @@
 }
 
 @end
+#endif

@@ -1,5 +1,6 @@
-#import "CardViewCell.h"
+#import "include/CardViewCell.h"
 
+#if IL_APP_KIT
 @implementation CardViewCell
 
 + (instancetype) cellWithView:(NSView*) view {
@@ -42,3 +43,4 @@
 }
 
 @end
+#endif

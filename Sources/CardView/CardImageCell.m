@@ -1,6 +1,6 @@
 #import "CardImageCell.h"
 
-
+#if IL_APP_KIT
 @implementation CardImageCell
 
 + (CardImageCell*) cellWithImage:(NSImage*) cell_image {
@@ -42,3 +42,4 @@
 }
 
 @end
+#endif

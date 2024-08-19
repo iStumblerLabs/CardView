@@ -1,5 +1,4 @@
-#import "NSAttributedString+CardView.h"
-
+#import "include/NSAttributedString+CardView.h"
 
 @implementation NSAttributedString (CardView)
 
@@ -17,7 +16,7 @@
 
 + (NSAttributedString*) attributedString:(NSString*)string withLink:(NSURL*) url {
     NSDictionary* attrs = @{
-        NSFontAttributeName: [ILFont systemFontOfSize:ILFont.systemFontSize],
+        NSFontAttributeName: [ILFont systemFontOfSize:ILFont.defaultFontSize],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
         NSForegroundColorAttributeName: ILColor.textColor,
         NSLinkAttributeName: url.absoluteString

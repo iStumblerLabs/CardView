@@ -1,4 +1,4 @@
-#import "CardFormatters.h"
+#import "include/CardFormatters.h"
 
 static CGFloat unit_scale = 0.9;
 
@@ -512,7 +512,7 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
 
 - (instancetype) init {
     if ((self = super.init)) {
-        self.unitSeperators = YES;
+        self.unitSeparators = YES;
         self.decimalSeconds = YES;
     }
 
@@ -527,10 +527,10 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
         long hours, minutes, seconds, frames;
         timecode(totalSeconds, self.frameInterval, &hours, &minutes, &seconds, &frames, &decimalSeconds);
         if (self.decimalSeconds) {
-            string = [NSString stringWithFormat:(self.unitSeperators ? @"%02ldh %02ldm %2.4fs" : @"%02ld:%02ld:%2.4f"), hours, minutes, decimalSeconds];
+            string = [NSString stringWithFormat:(self.unitSeparators ? @"%02ldh %02ldm %2.4fs" : @"%02ld:%02ld:%2.4f"), hours, minutes, decimalSeconds];
         }
         else {
-            string = [NSString stringWithFormat:(self.unitSeperators ? @"%02ldh %02ldm %02lds %02ldf" : @"%02ld:%02ld:%02ld:%02ld"), hours, minutes, seconds, frames];
+            string = [NSString stringWithFormat:(self.unitSeparators ? @"%02ldh %02ldm %02lds %02ldf" : @"%02ld:%02ld:%02ld:%02ld"), hours, minutes, seconds, frames];
         }
     }
     else {
@@ -543,27 +543,27 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
 - (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSAttributedStringKey,id> *)attrs {
     NSMutableAttributedString* timecodeString = NSMutableAttributedString.new;
     if ([obj isKindOfClass:NSNumber.class]) {
-        NSDictionary* seperatorAttrs = (self.unitSeperators ? [CardFormatters unitsAttrs:attrs] : [CardFormatters cardinalAttrs:attrs]);
+        NSDictionary* seperatorAttrs = (self.unitSeparators ? [CardFormatters unitsAttrs:attrs] : [CardFormatters cardinalAttrs:attrs]);
 
         double totalSeconds = ((NSNumber*) obj).doubleValue;
         double decimalSeconds;
         long hours, minutes, seconds, frames;
         timecode(totalSeconds, self.frameInterval, &hours, &minutes, &seconds, &frames, &decimalSeconds);
         [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", hours] attributes:attrs]];
-        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"h " : @":") attributes:seperatorAttrs]];
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeparators ? @"h " : @":") attributes:seperatorAttrs]];
         [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", minutes] attributes:attrs]];
-        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"m " : @":") attributes:seperatorAttrs]];
+        [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeparators ? @"m " : @":") attributes:seperatorAttrs]];
         if (self.decimalSeconds) {
             [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%2.4f", decimalSeconds] attributes:attrs]];
-            if (self.unitSeperators) {
+            if (self.unitSeparators) {
                 [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:@"s" attributes:seperatorAttrs]];
             }
         }
         else {
             [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", seconds] attributes:attrs]];
-            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeperators ? @"s " : @":") attributes:seperatorAttrs]];
+            [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:(self.unitSeparators ? @"s " : @":") attributes:seperatorAttrs]];
             [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[NSString stringWithFormat:@"%02ld", frames] attributes:attrs]];
-            if (self.unitSeperators) {
+            if (self.unitSeparators) {
                 [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:@"f" attributes:seperatorAttrs]];
             }
         }

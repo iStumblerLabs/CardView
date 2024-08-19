@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Deck
-//
-//  Created by Alf Watt on 7/28/24.
-//
-
 import Cocoa
 
 @main

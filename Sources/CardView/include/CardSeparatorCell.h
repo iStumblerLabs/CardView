@@ -1,11 +1,13 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
 
-/*!
-    @class
-    @abstract    Draws a seperator in an CardView
-    @discussion  http://www.cocoadev.com/index.pl?AddressBookCardView
-*/
 
+#if IL_APP_KIT
+/// Draws a separator in an CardView
+/// http://www.cocoadev.com/index.pl?AddressBookCardView
 @interface CardSeparatorCell : NSTextAttachmentCell
 @property(nonatomic,retain) ILColor* separator_color;
 @property(nonatomic,assign) CGFloat separator_width;
@@ -17,3 +19,4 @@
 - (id) initWithColor:(ILColor*) color width:(CGFloat) width;
 
 @end
+#endif

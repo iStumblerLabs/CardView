@@ -1,4 +1,9 @@
+#if SWIFT_PACKAGE
+#import "KitBridge.h"
+#else
 #import <KitBridge/KitBridge.h>
+#endif
+
 
 @interface CardFormatters : NSFormatter
 
@@ -15,7 +20,7 @@
 
 // MARK: -
 
-/// Format Array values into comma seperated lists
+/// Format Array values into comma separated lists
 @interface CardArrayFormatter : CardFormatters
 @end
 
@@ -46,19 +51,19 @@
 
 // MARK: -
 
-/// PListFormatter formatts plists into various forms
+/// PListFormatter formats plists into various forms
 @interface PListFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// PListJSONFormatter formatts plists into various forms
+/// PListJSONFormatter formats plists into various forms
 @interface PListJSONFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// PListMarkdownFormatter formatts plists into various forms
+/// PListMarkdownFormatter formats plists into various forms
 @interface PListMarkdownFormatter : CardFormatters
 @end
 
@@ -108,8 +113,8 @@
 @interface CardTimecodeFormatter : NSNumberFormatter
 /// display seconds as decimal value if true, frames of frameInterval if false
 @property(nonatomic,assign) BOOL decimalSeconds;
-/// display unit seperators 00h 00m 00s 00f if true, colon seperators 00:00:00:00
-@property(nonatomic,assign) BOOL unitSeperators;
+/// display unit separators 00h 00m 00s 00f if true, colon separators 00:00:00:00
+@property(nonatomic,assign) BOOL unitSeparators;
 /// interval for frame calculations, defaults to (1 / 24)
 @property(nonatomic,assign) double frameInterval;
 @end
