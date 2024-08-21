@@ -41,7 +41,8 @@ An NSCell for displaying a button in a CardTextView
 <a id="Changes"></a>
 ## Changes
 
-- 1.2 – 19 August 2024: Swift Package Manager Support
+- 1.3 — 19 August 2024: Swift Package Manager Support
+- 1.2 – 19 May 2017: 
 - 1.1 — 29 May 2016: Add CardBytesFormatter
 - 1.0.1 — 13 May 2016: Add CardListFormatter
 - 1.0 — 27 April 2016: Initial Version
