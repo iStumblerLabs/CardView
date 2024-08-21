@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -69,8 +69,6 @@
 		75EA5BAE2C6D66B800EE0783 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
 		75EA5BAF2C6D66B800EE0783 /* ILPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */; };
 		75EA5BB02C6D66B800EE0783 /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
-		75EA5BCA2C6D690800EE0783 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */; };
-		75EA5BCB2C6D690800EE0783 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75FA0B851981A52A000AFFE3 /* ILPasteboard+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75FA0B861981A52A000AFFE3 /* ILPasteboard+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */; };
 		75FD72E01967CAB9004C54DD /* NSAttributedString+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD72DE1967CAB9004C54DD /* NSAttributedString+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,6 +76,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7503F5E12C7420B000B8CFC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7503F5CF2C74205400B8CFC9;
+			remoteInfo = "KitBridge (tvOS)";
+		};
+		7503F5E32C7420B000B8CFC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7503F5D12C74205400B8CFC9;
+			remoteInfo = colorist;
+		};
 		754780D12C56E88100C7C25C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -105,13 +117,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 75C6A34D21268C5300367C24;
 			remoteInfo = "KitBridge (macOS)";
-		};
-		7586880820DB07690029C1E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75A0CEE020D997330091D26A;
-			remoteInfo = colorist;
 		};
 		75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -155,13 +160,6 @@
 			remoteGlobalIDString = 75207C5D2C6B47190057B0A9;
 			remoteInfo = "KitBridge (tvOS)";
 		};
-		75FB2B322C6D3E63004F7FF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75207C812C6B47190057B0A9;
-			remoteInfo = "KitBridge (tvOS)";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -182,7 +180,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				75EA5BCB2C6D690800EE0783 /* KitBridge.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +247,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75EA5BCA2C6D690800EE0783 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,9 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				7550C5BA1F5A43D0003A0691 /* KitBridge.framework */,
-				75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */,
+				7503F5E22C7420B000B8CFC9 /* KitBridge.framework */,
 				7550C5B81F5A43D0003A0691 /* KitBridge.framework */,
-				7586880920DB07690029C1E5 /* colorist */,
+				7503F5E42C7420B000B8CFC9 /* colorist */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,8 +498,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				CLASSPREFIX = IL;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
+				ORGANIZATIONNAME = "iStumbler Labs";
 				TargetAttributes = {
 					754780BA2C56E84100C7C25C = {
 						CreatedOnToolsVersion = 15.4;
@@ -522,7 +520,7 @@
 				};
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CardView" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -550,6 +548,22 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7503F5E22C7420B000B8CFC9 /* KitBridge.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			name = KitBridge.framework;
+			path = "/Users/alf/Developer/KitBridge/build/Debug-appletvos/KitBridge.framework";
+			remoteRef = 7503F5E12C7420B000B8CFC9 /* PBXContainerItemProxy */;
+			sourceTree = "<absolute>";
+		};
+		7503F5E42C7420B000B8CFC9 /* colorist */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = colorist;
+			path = /Users/alf/Developer/KitBridge/build/Debug/colorist;
+			remoteRef = 7503F5E32C7420B000B8CFC9 /* PBXContainerItemProxy */;
+			sourceTree = "<absolute>";
+		};
 		7550C5B81F5A43D0003A0691 /* KitBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -562,20 +576,6 @@
 			fileType = wrapper.framework;
 			path = KitBridge.framework;
 			remoteRef = 7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7586880920DB07690029C1E5 /* colorist */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = colorist;
-			remoteRef = 7586880820DB07690029C1E5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		75FB2B332C6D3E63004F7FF0 /* KitBridge.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KitBridge.framework;
-			remoteRef = 75FB2B322C6D3E63004F7FF0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
