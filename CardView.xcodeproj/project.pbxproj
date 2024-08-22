@@ -24,13 +24,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; platformFilters = (ios, maccatalyst, ); };
+		7503F6D12C76B4D000B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
+		7503F6D42C76B4F300B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
+		7503F6D92C76B53900B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BD2C56E84100C7C25C /* AppDelegate.swift */; };
 		754780C02C56E84100C7C25C /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BF2C56E84100C7C25C /* CardController.swift */; };
 		754780C22C56E84300C7C25C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754780C12C56E84300C7C25C /* Assets.xcassets */; };
 		754780C52C56E84300C7C25C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 754780C42C56E84300C7C25C /* Base */; };
 		754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; };
 		754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		7553319B1EBE43B300B35345 /* ILImage+CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 755331991EBE43B300B35345 /* ILImage+CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553319C1EBE43B300B35345 /* ILImage+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553319A1EBE43B300B35345 /* ILImage+CardView.m */; };
 		7571BFBA1CD579CF00021159 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,7 +49,6 @@
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
 		75BE80BD1F5F670500453938 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
 		75BE80BE1F5F670500453938 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75BE80C01F5F670500453938 /* NSAttributedString+CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */; };
@@ -111,20 +115,6 @@
 			remoteGlobalIDString = 75DCBEF21ED2C84B00538D87;
 			remoteInfo = "KitBridge (iOS)";
 		};
-		7550C5BB1F5A43D7003A0691 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 75C6A34D21268C5300367C24;
-			remoteInfo = "KitBridge (macOS)";
-		};
-		75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 75C6A3F921274CFA00367C24;
-			remoteInfo = "KitBridge (iOS)";
-		};
 		75EA5BC02C6D671E00EE0783 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -157,12 +147,45 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 75207C5D2C6B47190057B0A9;
+			remoteGlobalIDString = 7503F6602C76744900B8CFC9;
 			remoteInfo = "KitBridge (tvOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7503F6D22C76B4D000B8CFC9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7503F6D12C76B4D000B8CFC9 /* KitBridge.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7503F6D52C76B4F300B8CFC9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7503F6D42C76B4F300B8CFC9 /* KitBridge.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7503F6DA2C76B53900B8CFC9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7503F6D92C76B53900B8CFC9 /* KitBridge.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		754780D32C56E88100C7C25C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,16 +193,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		75EA5BCC2C6D690800EE0783 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75BE80B91F5F66F600453938 /* KitBridge.framework in Frameworks */,
+				7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7550C5BD1F5A43F2003A0691 /* KitBridge.framework in Frameworks */,
+				7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,11 +454,11 @@
 				75BE80AA1F5F66C200453938 /* Sources */,
 				75BE80AB1F5F66C200453938 /* Frameworks */,
 				75BE80AD1F5F66C200453938 /* Resources */,
+				7503F6D22C76B4D000B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				75BE80B81F5F66EF00453938 /* PBXTargetDependency */,
 			);
 			name = "CardView (iOS)";
 			productName = CardView;
@@ -459,7 +473,7 @@
 				75EA5BAB2C6D66B800EE0783 /* Sources */,
 				75EA5BB12C6D66B800EE0783 /* Frameworks */,
 				75EA5BB32C6D66B800EE0783 /* Resources */,
-				75EA5BCC2C6D690800EE0783 /* Embed Frameworks */,
+				7503F6DA2C76B53900B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -479,11 +493,11 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				8DC2EF520486A6940098B216 /* Resources */,
+				7503F6D52C76B4F300B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */,
 			);
 			name = "CardView (macOS)";
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -551,18 +565,16 @@
 		7503F5E22C7420B000B8CFC9 /* KitBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			name = KitBridge.framework;
-			path = "/Users/alf/Developer/KitBridge/build/Debug-appletvos/KitBridge.framework";
+			path = KitBridge.framework;
 			remoteRef = 7503F5E12C7420B000B8CFC9 /* PBXContainerItemProxy */;
-			sourceTree = "<absolute>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7503F5E42C7420B000B8CFC9 /* colorist */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			name = colorist;
-			path = /Users/alf/Developer/KitBridge/build/Debug/colorist;
+			path = colorist;
 			remoteRef = 7503F5E32C7420B000B8CFC9 /* PBXContainerItemProxy */;
-			sourceTree = "<absolute>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7550C5B81F5A43D0003A0691 /* KitBridge.framework */ = {
 			isa = PBXReferenceProxy;
@@ -670,16 +682,6 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* CardView (macOS) */;
 			targetProxy = 754780D12C56E88100C7C25C /* PBXContainerItemProxy */;
-		};
-		7550C5BC1F5A43D7003A0691 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KitBridge (macOS)";
-			targetProxy = 7550C5BB1F5A43D7003A0691 /* PBXContainerItemProxy */;
-		};
-		75BE80B81F5F66EF00453938 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KitBridge (iOS)";
-			targetProxy = 75BE80B71F5F66EF00453938 /* PBXContainerItemProxy */;
 		};
 		75EA5BC12C6D671E00EE0783 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1011,7 +1013,8 @@
 				PRODUCT_NAME = CardView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1058,7 +1061,8 @@
 				PRODUCT_NAME = CardView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
