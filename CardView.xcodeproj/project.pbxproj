@@ -226,7 +226,7 @@
 		75BE80AF1F5F66C200453938 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
 		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
-		75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "CardView (tvOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75EA5BB72C6D66B800EE0783 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FA0B831981A52A000AFFE3 /* ILPasteboard+CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ILPasteboard+CardView.h"; sourceTree = "<group>"; };
 		75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ILPasteboard+CardView.m"; sourceTree = "<group>"; };
 		75FA0B8D1981B1B1000AFFE3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -281,7 +281,7 @@
 				8DC2EF5B0486A6940098B216 /* CardView.framework */,
 				75BE80AF1F5F66C200453938 /* CardView.framework */,
 				754780BB2C56E84100C7C25C /* Deck (macOS).app */,
-				75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */,
+				75EA5BB72C6D66B800EE0783 /* CardView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -482,7 +482,7 @@
 			);
 			name = "CardView (tvOS)";
 			productName = CardView;
-			productReference = 75EA5BB72C6D66B800EE0783 /* CardView (tvOS).framework */;
+			productReference = 75EA5BB72C6D66B800EE0783 /* CardView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8DC2EF4F0486A6940098B216 /* CardView (macOS) */ = {
@@ -1111,7 +1111,7 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CardView;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -1157,7 +1157,7 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.istumbler.labs.CardView;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CardView;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
