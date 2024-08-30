@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "75EA5BA12C6D66B800EE0783"
-               BuildableName = "CardView (tvOS).framework"
+               BuildableName = "CardView.framework"
                BlueprintName = "CardView (tvOS)"
                ReferencedContainer = "container:CardView.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75EA5BA12C6D66B800EE0783"
-            BuildableName = "CardView (tvOS).framework"
+            BuildableName = "CardView.framework"
             BlueprintName = "CardView (tvOS)"
             ReferencedContainer = "container:CardView.xcodeproj">
          </BuildableReference>

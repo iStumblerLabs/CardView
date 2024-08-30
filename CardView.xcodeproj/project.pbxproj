@@ -355,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				75FB2B342C6D64F9004F7FF0 /* include */,
 				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
 				7571BFB91CD579CF00021159 /* CardFormatters.m */,
 				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
@@ -364,7 +365,6 @@
 				7553319A1EBE43B300B35345 /* ILImage+CardView.m */,
 				75FA0B841981A52A000AFFE3 /* ILPasteboard+CardView.m */,
 				75FD72DF1967CAB9004C54DD /* NSAttributedString+CardView.m */,
-				75FB2B342C6D64F9004F7FF0 /* include */,
 			);
 			path = CardView;
 			sourceTree = "<group>";

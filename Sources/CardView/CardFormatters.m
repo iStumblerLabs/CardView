@@ -324,6 +324,11 @@ static CGFloat unit_scale = 0.9;
     return string;
 }
 
+- (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
+    NSString* formattedString = [self stringForObjectValue:object];
+    return [NSAttributedString.alloc initWithString:formattedString attributes:defaultAttrs];
+}
+
 @end
 
 // MARK: -

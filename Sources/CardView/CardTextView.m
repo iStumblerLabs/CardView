@@ -396,7 +396,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 }
 
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter andAttributes:(NSDictionary*) attributes {
-    NSAttributedString* attributed = [formatter attributedStringForObjectValue: object withDefaultAttributes:attributes];
+    NSAttributedString* attributed = [formatter attributedStringForObjectValue:object withDefaultAttributes:attributes];
     [self.textStorage appendAttributedString:attributed];
     return attributed;
 }
