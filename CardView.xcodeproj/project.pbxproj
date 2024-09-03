@@ -25,11 +25,8 @@
 
 /* Begin PBXBuildFile section */
 		7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; platformFilters = (ios, maccatalyst, ); };
-		7503F6D12C76B4D000B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
-		7503F6D42C76B4F300B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
-		7503F6D92C76B53900B8CFC9 /* KitBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BD2C56E84100C7C25C /* AppDelegate.swift */; };
 		754780C02C56E84100C7C25C /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BF2C56E84100C7C25C /* CardController.swift */; };
 		754780C22C56E84300C7C25C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754780C12C56E84300C7C25C /* Assets.xcassets */; };
@@ -153,39 +150,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7503F6D22C76B4D000B8CFC9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7503F6D12C76B4D000B8CFC9 /* KitBridge.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7503F6D52C76B4F300B8CFC9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7503F6D42C76B4F300B8CFC9 /* KitBridge.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7503F6DA2C76B53900B8CFC9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7503F6D92C76B53900B8CFC9 /* KitBridge.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		754780D32C56E88100C7C25C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,7 +418,6 @@
 				75BE80AA1F5F66C200453938 /* Sources */,
 				75BE80AB1F5F66C200453938 /* Frameworks */,
 				75BE80AD1F5F66C200453938 /* Resources */,
-				7503F6D22C76B4D000B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -473,7 +436,6 @@
 				75EA5BAB2C6D66B800EE0783 /* Sources */,
 				75EA5BB12C6D66B800EE0783 /* Frameworks */,
 				75EA5BB32C6D66B800EE0783 /* Resources */,
-				7503F6DA2C76B53900B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -493,7 +455,6 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				8DC2EF520486A6940098B216 /* Resources */,
-				7503F6D52C76B4F300B8CFC9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
