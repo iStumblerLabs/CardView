@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 import CardView
 
 class CardController: NSViewController {

@@ -16,8 +16,8 @@
 }
 
 + (NSAttributedString*) separatorWithColor:(NSColor*) color width:(CGFloat) width {
-    CardSeparatorCell* cell = [CardSeparatorCell.alloc initWithColor:color width:width];
     NSTextAttachment* divider = NSTextAttachment.new;
+    CardSeparatorCell* cell = [CardSeparatorCell.alloc initWithColor:color width:width];
     [divider setAttachmentCell:cell];
     return [NSAttributedString attributedStringWithAttachment:divider];
 }

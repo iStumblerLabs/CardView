@@ -4,6 +4,7 @@
 #import <KitBridge/KitBridge.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface CardFormatters : NSFormatter
 
@@ -22,6 +23,10 @@
 
 /// Format Array values into comma separated lists
 @interface CardArrayFormatter : CardFormatters
+
+/// formatter to use for each item in the array
+@property(nonatomic,retain,nullable) NSFormatter* itemFormatter;
+
 @end
 
 // MARK: -
@@ -117,5 +122,21 @@
 @property(nonatomic,assign) BOOL unitSeparators;
 /// interval for frame calculations, defaults to (1 / 24)
 @property(nonatomic,assign) double frameInterval;
+
 @end
+
+// MARK: -
+
+/// NSValueTransformer which uses an NSFormatter to format the value.
+/// This allows for using NSFormatters in Interface Builder and registering
+/// them as NSValueTransformers
+@interface CardFormattingTransformer : NSValueTransformer
+@property(nonatomic,retain) NSFormatter* formatter;
+
+/// wrap the formatter in a transformer and register it with the name provided
++ (void)setFormattingTransformer:(NSFormatter*) formatter forName:(NSString*) name;
+
+@end
+
+NS_ASSUME_NONNULL_END
 

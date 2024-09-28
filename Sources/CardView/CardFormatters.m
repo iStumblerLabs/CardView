@@ -3,7 +3,7 @@
 static CGFloat unit_scale = 0.9;
 
 @implementation CardFormatters
-              
+
 + (NSDictionary*) unitsAttrs:(NSDictionary*) attrs {
     NSMutableDictionary* unitsAttrs = attrs.mutableCopy;
     ILFont* fullSize = attrs[NSFontAttributeName];
@@ -39,24 +39,67 @@ static CGFloat unit_scale = 0.9;
 @implementation CardArrayFormatter
 
 - (NSString*) stringForObjectValue:(id)obj {
-    NSString* arrayString = [obj description];
+    NSString* arrayString = nil;
+
     if ([obj isKindOfClass:NSArray.class]) {
-        NSArray* attributeArray = (NSArray*)obj;
-        BOOL first = YES;
-        for( id valueItem in attributeArray) {
-            if( first) {
-                first = NO;
-                arrayString = @"";
+        NSArray* valueArray = (NSArray*)obj;
+        NSMutableArray* formattedStrings = NSMutableArray.new;
+
+        for (id valueItem in valueArray) {
+            if (self.itemFormatter) {
+                [formattedStrings addObject:[self.itemFormatter stringForObjectValue:valueItem]];
             }
             else {
-                arrayString = [arrayString stringByAppendingString:@"\t\t"];
-            }
-
-            arrayString = [arrayString stringByAppendingString:[valueItem description]];
-            if( valueItem != [attributeArray lastObject]) {
-                arrayString = [arrayString stringByAppendingString:@"\n"];
+                [formattedStrings addObject:[valueItem description]];
             }
         }
+
+        arrayString = [formattedStrings componentsJoinedByString:@", "];
+    }
+    else if (self.itemFormatter) {
+        arrayString = [self.itemFormatter stringForObjectValue:obj];
+    }
+    else {
+        arrayString = [obj description];
+    }
+
+    return arrayString;
+}
+
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSString *,id> *)attrs {
+    NSAttributedString* arrayString = nil;
+    if ([obj isKindOfClass:NSArray.class]) {
+        NSArray* attributeArray = (NSArray*)obj;
+        NSMutableAttributedString* formattedString = NSMutableAttributedString.new;
+
+        BOOL first = YES;
+        for (id valueItem in attributeArray) {
+            NSAttributedString* formattedItem = nil;
+            if (!first) {
+                [formattedString appendAttributedString:
+                 [NSAttributedString.alloc initWithString:@", " attributes:[CardFormatters unitsAttrs:attrs]]];
+            }
+
+            if (self.itemFormatter) {
+                if ([self.itemFormatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
+                    formattedItem = [self.itemFormatter attributedStringForObjectValue:valueItem withDefaultAttributes:attrs];
+                }
+                else {
+                    formattedItem = [NSAttributedString.alloc initWithString:[self.itemFormatter stringForObjectValue:valueItem] attributes:attrs];
+                }
+            }
+            else {
+                formattedItem = [NSAttributedString.alloc initWithString:[valueItem description] attributes:attrs];
+            }
+
+            if (first) {
+                first = NO;
+            }
+
+            [formattedString appendAttributedString:formattedItem];
+        }
+
+        arrayString = formattedString;
     }
 
     return arrayString;
@@ -156,7 +199,7 @@ static CGFloat unit_scale = 0.9;
         dataWithJSONObject:obj
         options:NSJSONWritingPrettyPrinted
         error:&error];
-    plistJSONString = [[NSString alloc]
+    plistJSONString = [NSString.alloc
         initWithData:jsonData
         encoding:NSUTF8StringEncoding];
 
@@ -314,10 +357,10 @@ static CGFloat unit_scale = 0.9;
     NSString* string = @"-";
     if ([obj isKindOfClass:NSNumber.class]) {
         if ([(NSNumber*)obj boolValue]) {
-            string = @"Yes";
+            string = NSLocalizedString(@"Yes", @"Yes");
         }
         else {
-            string = @"No";
+            string = NSLocalizedString(@"No", @"No");
         }
     }
 
@@ -370,25 +413,25 @@ static unsigned long long const EB = (PB * KB);
         self.maximumFractionDigits = 2;
         self.units = NSLocalizedStringFromTableInBundle(@"kB", nil, [NSBundle bundleForClass:self.class], nil); // opinions differ
     }
-    else if ( fileSize < GB) { // display MB
+    else if (fileSize < GB) { // display MB
         scaledSize = fileSize / (CGFloat)MB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
         self.units = NSLocalizedStringFromTableInBundle(@"MB", nil, [NSBundle bundleForClass:self.class], nil);
     }
-    else if ( fileSize < TB) { // display GB
+    else if (fileSize < TB) { // display GB
         scaledSize = fileSize / (CGFloat)GB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
         self.units = NSLocalizedStringFromTableInBundle(@"GB", nil, [NSBundle bundleForClass:self.class], nil);
     }
-    else if ( fileSize < PB) { // display TB
+    else if (fileSize < PB) { // display TB
         scaledSize = fileSize / (CGFloat)TB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
         self.units = NSLocalizedStringFromTableInBundle(@"TB", nil, [NSBundle bundleForClass:self.class], nil);
     }
-    else if ( fileSize < EB) { // display PB
+    else if (fileSize < EB) { // display PB
         scaledSize = fileSize / (CGFloat)PB;
         self.minimumFractionDigits = 1;
         self.maximumFractionDigits = 2;
@@ -411,16 +454,16 @@ static unsigned long long const EB = (PB * KB);
 /// https://en.wikipedia.org/wiki/Continued_fraction
 /// accuracy like 1.0e+4
 void fractionDouble(double floating, double accuracy, long* numerator, long* denominator) {
-    
+
     // generate a vector of fraction terms
     double floatPart = floating;
     long wholePart = floor(floatPart);
     long terms[64] = { 0.0 }; // TODO figure a better limit here
     long termIndex = 0;
     terms[termIndex++] = wholePart;
-    
+
     floatPart -= wholePart;
-    
+
     double multiple = 1;
     while (floatPart != 0.0 && (floatPart > -accuracy) && (multiple < accuracy)) {
         floatPart = 1.0 / floatPart;
@@ -429,11 +472,11 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
         terms[termIndex++] = wholePart; // TODO check terms count
         floatPart -= wholePart;
     }
-    
+
     // reduce terms into numerator and denominator, unwinding termIndex
     long num = 1;
     double den = terms[termIndex];
-    
+
     while(--termIndex > 0) {
         double num2 = terms[termIndex];
         // swap numerator and denominator
@@ -442,12 +485,12 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
         }
         den = num2;
     }
-    
+
     // write the num and dem to the out parameters
     if (numerator != NULL) {
         *numerator = num;
     }
-    
+
     if (denominator != NULL) {
         *denominator = floor(den);
     }
@@ -466,14 +509,14 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
 
 - (NSString*) stringForObjectValue:(id)obj {
     NSString* string = nil;
-    
+
     if ([obj isKindOfClass:NSNumber.class]) {
         string = [CardFractionFormatter fractionStringForNumber:(NSNumber*)obj];
     }
     else {
         string = [obj description];
     }
-    
+
     return string;
 }
 
@@ -495,19 +538,19 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
     if (hours) {
         *hours = hoursCount;
     }
-    
+
     if (minutes) {
         *minutes = minutesCount;
     }
-    
+
     if (seconds) {
         *seconds = (integralSeconds - (hoursCount * 60 * 60) - (minutesCount * 60)); // remove the hours and minutes seconds
     }
-    
+
     if (frames) {
         *frames = frameCount;
     }
-    
+
     if (decimalSeconds) {
         *decimalSeconds = (totalSeconds - (hoursCount * 60 * 60) - (minutesCount * 60));
     }
@@ -541,7 +584,7 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
     else {
         string = [obj description];
     }
-    
+
     return string;
 }
 
@@ -576,8 +619,50 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
     else {
         [timecodeString appendAttributedString:[NSAttributedString.alloc initWithString:[self stringForObjectValue:obj] attributes:attrs]];
     }
-    
+
     return timecodeString;
+}
+
+@end
+
+// MARK: -
+
+@implementation CardFormattingTransformer : NSValueTransformer
+
++ (void)setFormattingTransformer:(nonnull NSFormatter *)formatter forName:(nonnull NSString *)name {
+    CardFormattingTransformer* transformer = CardFormattingTransformer.new;
+    transformer.formatter = formatter;
+    [NSValueTransformer setValueTransformer:transformer forName:name];
+}
+
+// MARK: - NSValueTransformer
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
++ (Class)transformedValueClass {
+    return NSObject.class; // if this needs to be different, subclass and register a new transformer
+}
+
+// MARK: -
+
+- (id)transformedValue:(id)value {
+    id transformed = nil;
+
+    if (self.formatter) {
+        if ([self.formatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
+            transformed = [self.formatter attributedStringForObjectValue:value withDefaultAttributes:nil];
+        }
+        else {
+            transformed = [self.formatter stringForObjectValue:value];
+        }
+    }
+    else {
+        transformed = [value description]; // fallback transform, might be better to return the value as is
+    }
+
+    return transformed;;
 }
 
 @end

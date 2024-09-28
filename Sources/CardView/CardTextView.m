@@ -1,5 +1,4 @@
 #import "include/CardTextView.h"
-#import "include/NSAttributedString+CardView.h"
 
 #if IL_APP_KIT
 #import "include/CardSeparatorCell.h"
@@ -7,7 +6,7 @@
 #endif
 
 #define NSAS NSAttributedString
-
+#define NSMAS NSMutableAttributedString
 
 static NSMutableDictionary* formatterRegistry;
 
@@ -102,7 +101,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths {
     NSMutableParagraphStyle* style = NSMutableParagraphStyle.new;
 #if IL_APP_KIT
-    NSMutableArray* stops = [NSMutableArray new];
+    NSMutableArray* stops = NSMutableArray.new;
     CGFloat columnEdge = 0;
     for (NSNumber* stop in columnWidths) {
         CGFloat stopValue = stop.doubleValue;
@@ -321,6 +320,8 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     [self appendNewline]; // each rule is it's own paragrah
     [self.textStorage appendAttributedString:attrString];
     [self appendNewline]; // and clears the next line below it
+#elif IL_UI_KIT
+    // TODO: NSTextAttachment* attachment = [NSTextAttachment textAttachmentWithImage:nil];
 #endif
     return attrString;
 }
@@ -336,7 +337,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         CardImageCell* attachment = [CardImageCell cellWithImage:image];
         attrString = [NSAttributedString attributedStringWithAttachmentCell:attachment];
 #elif IL_UI_KIT
-        NSTextAttachment* attachment = [NSTextAttachment new];
+        NSTextAttachment* attachment = NSTextAttachment.new;
         attachment.image = image;
         attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
         attrString = [NSAttributedString attributedStringWithAttachment:attachment];
@@ -415,13 +416,13 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (void) replaceParagraphStyle:(NSParagraphStyle*)newStyle {
 #if IL_APP_KIT
-    NSMAS* updatedString = [NSMAS new];
+    NSMAS* updatedString = NSMAS.new;
     for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
         NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:nil];
         if (runAttrs[CardTextReplaceableStyleAttributeName]) {
             NSMutableDictionary* newAttrs = [runAttrs mutableCopy];
             [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
-            NSMAS* updatedRange = [[NSMAS alloc] initWithString:storage.string attributes:newAttrs];
+            NSMAS* updatedRange = [NSMAS.alloc initWithString:storage.string attributes:newAttrs];
             [updatedString appendAttributedString:updatedRange];
         }
         else {
