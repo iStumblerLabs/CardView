@@ -29,7 +29,7 @@ static CGFloat unit_scale = 0.9;
 
 - (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
-    return [NSAttributedString.alloc initWithString:formattedString attributes:defaultAttrs];
+    return [NSAttributedString.alloc initWithString:(formattedString ? formattedString : @"") attributes:defaultAttrs];
 }
 
 @end
@@ -111,13 +111,138 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardDataFormatter
 
-- (NSString*) stringForObjectValue:(id)obj {
-    NSString* sizeString = [obj description];
-    if ([obj isKindOfClass:NSData.class]) {
-        sizeString = [NSString stringWithFormat:@"%lu Bytes", (unsigned long)[obj length]];
+static NSString* lineFeed;
+static NSString* lineFeedSymbol;
+static NSString* verticalTab;
+static NSString* verticalTabSymbol;
+static NSString* formFeed;
+static NSString* formFeedSymbol;
+static NSString* carrageReturn;
+static NSString* carrageReturnSymbol;
+static NSString* middleDot;
+static NSString* nextLine;
+static NSString* lineSeparator;
+static NSString* paragraphSeparator;
+static NSString* tab;
+static NSString* tabSymbol;
+
++ (NSString*) replaceSpecialCharactersWithSymbols:(NSString*) lines {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //  LF:    Line Feed, U+000A
+        lineFeed = [NSString stringWithFormat:@"%C", 0x000A];
+        // ␊ SYMBOL FOR LINE FEED Unicode: U+240A, UTF-8: E2 90 8A
+        lineFeedSymbol = [NSString stringWithFormat:@"%C", 0x240A];
+        //  VT:    Vertical Tab, U+000B
+        verticalTab = [NSString stringWithFormat:@"%C", 0x000B];
+        // ␋ SYMBOL FOR VERTICAL TABULATION Unicode: U+240B, UTF-8: E2 90 8B
+        verticalTabSymbol = [NSString stringWithFormat:@"%C", 0x240B];
+        // FF:    Form Feed, U+000C
+        formFeed = [NSString stringWithFormat:@"%C", 0x000C];
+        // ␌ SYMBOL FOR FORM FEED Unicode: U+240C, UTF-8: E2 90 8C
+        formFeedSymbol = [NSString stringWithFormat:@"%C", 0x240C];
+        // CR:    Carriage Return, U+000D
+        carrageReturn = [NSString stringWithFormat:@"%C", 0x000D];
+        // ␍ SYMBOL FOR CARRIAGE RETURN Unicode: U+240D, UTF-8: E2 90 8D
+        carrageReturnSymbol = [NSString stringWithFormat:@"%C", 0x240D];
+        // · MIDDLE DOT Unicode: U+00B7, UTF-8: C2 B7
+        middleDot = [NSString stringWithFormat:@"%C", 0x00B7];
+        // NEL:   Next Line, U+0085
+        nextLine = [NSString stringWithFormat:@"%C", 0x0085];
+        // LS:    Line Separator, U+2028
+        lineSeparator = [NSString stringWithFormat:@"%C", 0x2028];
+        // PS:    Paragraph Separator, U+2029
+        paragraphSeparator = [NSString stringWithFormat:@"%C", 0x2029];
+        // CHARACTER TABULATION Unicode: U+0009, UTF-8: 09
+        tab = [NSString stringWithFormat:@"%C", 0x0009];
+        // ␉ SYMBOL FOR HORIZONTAL TABULATION Unicode: U+2409, UTF-8: E2 90 89
+        tabSymbol = [NSString stringWithFormat:@"%C", 0x2409];
+    });
+
+    lines = [lines stringByReplacingOccurrencesOfString:lineFeed withString:lineFeedSymbol];
+    lines = [lines stringByReplacingOccurrencesOfString:verticalTab withString:verticalTabSymbol];
+    lines = [lines stringByReplacingOccurrencesOfString:formFeed withString:formFeedSymbol];
+    lines = [lines stringByReplacingOccurrencesOfString:carrageReturn withString:carrageReturnSymbol];
+    lines = [lines stringByReplacingOccurrencesOfString:nextLine withString:middleDot];
+    lines = [lines stringByReplacingOccurrencesOfString:lineSeparator withString:middleDot];
+    lines = [lines stringByReplacingOccurrencesOfString:paragraphSeparator withString:middleDot];
+    lines = [lines stringByReplacingOccurrencesOfString:tab withString:tabSymbol];
+    lines = [lines stringByReplacingOccurrencesOfString:@"\n" withString:middleDot];
+
+    return lines;
+}
+
+- (instancetype) init {
+    if ((self = super.init)) {
+        self.formatAsHex = NO;
+        self.hexLineBytes = 16;
+        self.hexMaxBytes = UINT64_MAX;
+        self.bytesFormatter = CardBytesFormatter.new;
     }
 
-    return sizeString;
+    return self;
+}
+
+- (NSString*) stringForObjectValue:(id)obj {
+    return [self attributedStringForObjectValue:obj withDefaultAttributes:@{}].string;
+}
+
+- (NSAttributedString*) attributedStringForObjectValue:(id)obj withDefaultAttributes:(NSDictionary<NSAttributedStringKey,id> *)attrs {
+    NSAttributedString* dataString = [NSAttributedString.alloc initWithString:[obj description]];
+    if ([obj isKindOfClass:NSData.class]) {
+        NSData* data = (NSData*) obj;
+        if (self.formatAsHex && data.length > 0 && data.length < self.hexMaxBytes) {
+            NSUInteger lineBytes = self.hexLineBytes;
+            NSUInteger dataIndex = 0;
+            NSMutableAttributedString* hexDump = NSMutableAttributedString.new;
+            while (dataIndex < data.length) {
+                NSUInteger remainingBytes = (data.length - dataIndex);
+                if (remainingBytes < lineBytes) { // last line
+                    lineBytes = remainingBytes;
+                }
+
+                NSData* lineData = [obj subdataWithRange:NSMakeRange(dataIndex, lineBytes)];
+                NSString* hexString = [NSString hexStringWithData:lineData];
+                hexString = [hexString stringByPaddingToLength:(self.hexLineBytes * 2) withString:@" " startingAtIndex:0];
+                [hexDump appendAttributedString:
+                 [NSAttributedString.alloc initWithString:@"0x"
+                                               attributes:[CardFormatters unitsAttrs:[CardFormatters monospaceAttrs:attrs]]]];
+                [hexDump appendAttributedString:
+                 [NSAttributedString.alloc initWithString:hexString
+                                               attributes:[CardFormatters monospaceAttrs:attrs]]];
+
+                NSString* decoded = [NSString.alloc initWithData:lineData encoding:NSUTF8StringEncoding];
+                NSUInteger dotCount = MIN(self.hexLineBytes, data.length) * 2;
+                decoded = [CardDataFormatter replaceSpecialCharactersWithSymbols:decoded];
+                decoded = [NSString stringWithFormat:@" %@", (decoded
+                 ? decoded
+                 : [@"" stringByPaddingToLength:dotCount withString:middleDot startingAtIndex:0])];
+                [hexDump appendAttributedString:
+                 [NSAttributedString.alloc initWithString:decoded
+                                               attributes:[CardFormatters unitsAttrs:[CardFormatters monospaceAttrs:attrs]]]];
+                [hexDump appendAttributedString:[NSAttributedString.alloc initWithString:@"\n"]];
+
+                dataIndex += lineBytes;
+            }
+
+            dataString = hexDump;
+        }
+        else {
+            dataString = [self.bytesFormatter attributedStringForObjectValue:@(data.length) withDefaultAttributes:attrs];
+        }
+    }
+
+    return dataString;
+}
+
+@end
+
+// MARK: -
+
+@implementation CardStringDataFormatter
+
+- (NSString*) stringForObjectValue:(id)obj {
+    return [NSString.alloc initWithData:obj encoding:[NSString UTFEncodingOfData:obj]];
 }
 
 @end
@@ -176,11 +301,14 @@ static CGFloat unit_scale = 0.9;
 
 // MARK: -
 
-/*! PListFormatter formatts plists into various forms */
-@implementation PListFormatter
+// PListFormatter formatts plists into various forms
+@implementation CardPListDataFormatter
 
 - (NSString*) stringForObjectValue:(id)obj {
-    NSString* plistString = [obj description];
+    NSPropertyListFormat format = 0;
+    NSError* error = nil;
+    id plistObject = [NSPropertyListSerialization propertyListWithData:obj options:NSPropertyListImmutable format:&format error:&error];
+    NSString* plistString = [plistObject description];
     return plistString;
 }
 
@@ -188,35 +316,24 @@ static CGFloat unit_scale = 0.9;
 
 // MARK: -
 
-/*! PListJSONFormatter formatts plists into various forms */
-@implementation PListJSONFormatter
+@implementation CardJSONObjectFormatter
 
 - (NSString*) stringForObjectValue:(id)obj {
     NSString* plistJSONString = nil;
 
     NSError *error;
-    NSData *jsonData = [NSJSONSerialization
-        dataWithJSONObject:obj
-        options:NSJSONWritingPrettyPrinted
-        error:&error];
-    plistJSONString = [NSString.alloc
-        initWithData:jsonData
-        encoding:NSUTF8StringEncoding];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:&error];
+    plistJSONString = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
 
     return plistJSONString;
 }
-
 
 @end
 
 // MARK: -
 
-/*! https://daringfireball.net/projects/markdown/syntax.text */
-@implementation PListMarkdownFormatter
-
-+ (PListMarkdownFormatter*) pListMarkdownFormatter {
-    return PListMarkdownFormatter.new;
-}
+// https://daringfireball.net/projects/markdown/syntax.text
+@implementation CardMarkdownFormatter
 
 - (NSString*) stringForObjectValue:(id)obj indent:(const unsigned) level {
     NSMutableString* objectMarkdown = NSMutableString.new;
@@ -271,20 +388,18 @@ static CGFloat unit_scale = 0.9;
         [objectMarkdown appendString:[obj description]]; // *shrug*
     }
 
-    // [objectMarkdown appendString:@"\n"];
-
     return objectMarkdown;
 }
 
 - (NSString*) stringForObjectValue:(id)obj {
     NSString* markdownString = [self stringForObjectValue:obj indent:0];
-    // NSLog(@"markdownString %@", markdownString);
+
     return markdownString;
 }
 
 @end
 
-// MARK: - Date Formatter
+// MARK: -
 
 @implementation CardDateFormatter
 
@@ -308,7 +423,7 @@ static CGFloat unit_scale = 0.9;
 
 @end
 
-// MARK: - Units Formatter
+// MARK: -
 
 @implementation CardUnitsFormatter
 
@@ -324,6 +439,27 @@ static CGFloat unit_scale = 0.9;
     return self;
 }
 
+- (NSString*) stringForObjectValue:(id) anObject {
+    NSMutableString* formatted = nil;
+    if ([anObject isKindOfClass:NSNumber.class]) {
+        formatted = NSMutableString.new;
+
+        if (self.prefix) {
+            [formatted appendString:self.prefix];
+            [formatted appendString:@" "];
+        }
+
+        NSString* valueString = [super stringForObjectValue:anObject];
+        [formatted appendString:valueString];
+        if (self.units) {
+            [formatted appendString:@" "];
+            [formatted appendString:self.units];
+        }
+    }
+
+    return formatted;
+}
+
 - (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     NSMutableAttributedString* formatted = nil;
     if ([anObject isKindOfClass:NSNumber.class]) {
@@ -334,7 +470,7 @@ static CGFloat unit_scale = 0.9;
             [formatted appendAttributedString:formattedPrefix];
             [formatted appendAttributedString:[NSAttributedString.alloc initWithString:@" "]];
         }
-        NSString* valueString = [self stringForObjectValue:anObject];
+        NSString* valueString = [super stringForObjectValue:anObject];
         NSAttributedString* formattedValue = [NSAttributedString.alloc initWithString:valueString attributes:attrs];
         [formatted appendAttributedString:formattedValue];
         if (self.units) {
@@ -399,6 +535,53 @@ static unsigned long long const PB = (TB * KB);
 static unsigned long long const EB = (PB * KB);
 // static unsigned long long const ZB = (EB * KB);
 // static unsigned long long const YB = (ZB * KB);
+
+- (NSString*) stringForObjectValue:(id) anObject {
+    unsigned long long fileSize = [anObject unsignedLongLongValue]; // NSUInteger is 32 bits on smaller systems
+    CGFloat scaledSize = (CGFloat)fileSize;
+
+    if (fileSize < KB) { // display Bytes
+        self.units = NSLocalizedStringFromTableInBundle(@"Bytes", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+    else if (fileSize < MB) { // display kB
+        scaledSize = fileSize / (CGFloat)KB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"kB", nil, [NSBundle bundleForClass:self.class], nil); // opinions differ
+    }
+    else if (fileSize < GB) { // display MB
+        scaledSize = fileSize / (CGFloat)MB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"MB", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+    else if (fileSize < TB) { // display GB
+        scaledSize = fileSize / (CGFloat)GB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"GB", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+    else if (fileSize < PB) { // display TB
+        scaledSize = fileSize / (CGFloat)TB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"TB", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+    else if (fileSize < EB) { // display PB
+        scaledSize = fileSize / (CGFloat)PB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"PB", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+    else { // display EB
+        scaledSize = fileSize / (CGFloat)EB;
+        self.minimumFractionDigits = 1;
+        self.maximumFractionDigits = 2;
+        self.units = NSLocalizedStringFromTableInBundle(@"EB", nil, [NSBundle bundleForClass:self.class], nil);
+    }
+
+    return [super stringForObjectValue:@(scaledSize)];
+}
 
 - (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     unsigned long long fileSize = [anObject unsignedLongLongValue]; // NSUInteger is 32 bits on smaller systems
@@ -503,7 +686,7 @@ void fractionDouble(double floating, double accuracy, long* numerator, long* den
     long numerator = 0;
     long denominator = 0;
     fractionDouble(number.doubleValue, 1.0e+4, &numerator, &denominator);
-    unichar fractionSlash = 0x2044;
+    static unichar fractionSlash = 0x2044;
     return [NSString stringWithFormat:@"%ld%C%ld", numerator, fractionSlash, denominator];
 }
 
@@ -629,7 +812,7 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
 
 @implementation CardFormattingTransformer : NSValueTransformer
 
-+ (void)setFormattingTransformer:(nonnull NSFormatter *)formatter forName:(nonnull NSString *)name {
++ (void) setFormattingTransformer:(nonnull NSFormatter*) formatter forName:(nonnull NSString*) name {
     CardFormattingTransformer* transformer = CardFormattingTransformer.new;
     transformer.formatter = formatter;
     [NSValueTransformer setValueTransformer:transformer forName:name];
@@ -637,17 +820,17 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
 
 // MARK: - NSValueTransformer
 
-+ (BOOL)allowsReverseTransformation {
++ (BOOL) allowsReverseTransformation {
     return NO;
 }
 
-+ (Class)transformedValueClass {
++ (Class) transformedValueClass {
     return NSObject.class; // if this needs to be different, subclass and register a new transformer
 }
 
 // MARK: -
 
-- (id)transformedValue:(id)value {
+- (id) transformedValue:(id) value {
     id transformed = nil;
 
     if (self.formatter) {

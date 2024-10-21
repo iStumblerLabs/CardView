@@ -34,6 +34,24 @@ NS_ASSUME_NONNULL_BEGIN
 /// CardDataFormatter formats data values into string with byte count: "420 Bytes"
 @interface CardDataFormatter : CardFormatters
 
+/// YES to have the formatter display data as a
+@property(nonatomic,assign) BOOL formatAsHex;
+
+/// Number of bytes for each line if formatAsHex is YES
+@property(nonatomic,assign) NSUInteger hexLineBytes;
+
+/// Maxium number of bytes to show as hex
+@property(nonatomic,assign) NSUInteger hexMaxBytes;
+
+/// Formatter for the bytes representation
+@property(nonatomic,retain) NSFormatter* bytesFormatter;
+
+@end
+
+// MARK: -
+
+@interface CardStringDataFormatter : CardFormatters
+
 @end
 
 // MARK: -
@@ -56,20 +74,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: -
 
-/// PListFormatter formats plists into various forms
-@interface PListFormatter : CardFormatters
+/// PListFormatter formats plist data
+@interface CardPListDataFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// PListJSONFormatter formats plists into various forms
-@interface PListJSONFormatter : CardFormatters
+/// Format a plist dictionary as JSON data
+@interface CardJSONObjectFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// PListMarkdownFormatter formats plists into various forms
-@interface PListMarkdownFormatter : CardFormatters
+/// Format a plist dictionary as markdown text
+@interface CardMarkdownFormatter : CardFormatters
 @end
 
 // MARK: - Date Formatters
@@ -125,7 +143,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-// MARK: -
+// MARK: - Value Transformer
 
 /// NSValueTransformer which uses an NSFormatter to format the value.
 /// This allows for using NSFormatters in Interface Builder and registering
