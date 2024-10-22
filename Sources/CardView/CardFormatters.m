@@ -38,6 +38,14 @@ static CGFloat unit_scale = 0.9;
 
 @implementation CardArrayFormatter
 
+- (instancetype) init {
+    if ((self = super.init)) {
+        self.separator = @", ";
+    }
+
+    return self;
+}
+
 - (NSString*) stringForObjectValue:(id)obj {
     NSString* arrayString = nil;
 
@@ -54,7 +62,7 @@ static CGFloat unit_scale = 0.9;
             }
         }
 
-        arrayString = [formattedStrings componentsJoinedByString:@", "];
+        arrayString = [formattedStrings componentsJoinedByString:self.separator];
     }
     else if (self.itemFormatter) {
         arrayString = [self.itemFormatter stringForObjectValue:obj];
@@ -77,7 +85,7 @@ static CGFloat unit_scale = 0.9;
             NSAttributedString* formattedItem = nil;
             if (!first) {
                 [formattedString appendAttributedString:
-                 [NSAttributedString.alloc initWithString:@", " attributes:[CardFormatters unitsAttrs:attrs]]];
+                 [NSAttributedString.alloc initWithString:self.separator attributes:[CardFormatters unitsAttrs:attrs]]];
             }
 
             if (self.itemFormatter) {
@@ -212,7 +220,7 @@ static NSString* tabSymbol;
                                                attributes:[CardFormatters monospaceAttrs:attrs]]];
 
                 NSString* decoded = [NSString.alloc initWithData:lineData encoding:NSUTF8StringEncoding];
-                NSUInteger dotCount = MIN(self.hexLineBytes, data.length) * 2;
+                NSUInteger dotCount = MIN(self.hexLineBytes, data.length);
                 decoded = [CardDataFormatter replaceSpecialCharactersWithSymbols:decoded];
                 decoded = [NSString stringWithFormat:@" %@", (decoded
                  ? decoded

@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Format Array values into comma separated lists
 @interface CardArrayFormatter : CardFormatters
 
+/// String to use between each item in the array
+@property(nonatomic,retain,nullable) NSString* separator;
+
 /// formatter to use for each item in the array
 @property(nonatomic,retain,nullable) NSFormatter* itemFormatter;
 
