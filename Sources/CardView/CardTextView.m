@@ -351,7 +351,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
             attrString = styled;
         }
         
-        [[self textStorage] appendAttributedString:attrString];
+        [self.textStorage appendAttributedString:attrString];
     }
     return attrString;
 }
