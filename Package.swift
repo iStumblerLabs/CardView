@@ -9,12 +9,13 @@ let package = Package(
         .library( name: "CardView", type: .dynamic, targets: ["CardView"])
     ],
     dependencies: [
-      .package( url: "https://github.com/iStumblerLabs/KitBridge.git", from: "1.3.2")
+      .package( url: "https://github.com/iStumblerLabs/KitBridge.git", from: "1.3.2"),
+      .package( url: "https://github.com/iStumblerLabs/ILFoundation.git", from: "1.0")
     ],
     targets: [
         .target(
             name: "CardView",
-            dependencies: ["KitBridge"]
+            dependencies: ["KitBridge", "ILFoundation"]
         )
     ]
 )

@@ -24,7 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; platformFilters = (ios, maccatalyst, ); };
+		7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
 		7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
 		754780BE2C56E84100C7C25C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754780BD2C56E84100C7C25C /* AppDelegate.swift */; };
@@ -44,6 +44,9 @@
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75B654382D6F6BFA000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
+		75B654392D6F6C00000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
+		75B6543A2D6F6C05000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
 		75BE80BD1F5F670500453938 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
 		75BE80BE1F5F670500453938 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75BE80C61F5F671700453938 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,6 +103,69 @@
 			proxyType = 2;
 			remoteGlobalIDString = 75DCBEF21ED2C84B00538D87;
 			remoteInfo = "KitBridge (iOS)";
+		};
+		75B654232D6F6B50000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7582F6692D3F642F008588DD;
+			remoteInfo = ILFoundation;
+		};
+		75B654282D6F6B50000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7582F67B2D3F642F008588DD;
+			remoteInfo = ILFoundation;
+		};
+		75B6542A2D6F6B50000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75EEF6A92D638CFB00B2EE80;
+			remoteInfo = ILFoundationSwift;
+		};
+		75B6542C2D6F6B50000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75CB089F2C9B945D00B83BC3;
+			remoteInfo = ILFoundationTests;
+		};
+		75B6542E2D6F6B55000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7582F6692D3F642F008588DD;
+			remoteInfo = ILFoundation;
+		};
+		75B654302D6F6B5E000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7503F63B2C76732E00B8CFC9;
+			remoteInfo = "KitBridge (iOS)";
+		};
+		75B654322D6F6B64000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7503F6892C7674C400B8CFC9;
+			remoteInfo = "KitBridge (macOS)";
+		};
+		75B654342D6F6B6B000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7582F6692D3F642F008588DD;
+			remoteInfo = ILFoundation;
+		};
+		75B654362D6F6B7B000A139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7582F6692D3F642F008588DD;
+			remoteInfo = ILFoundation;
 		};
 		75EA5BC02C6D671E00EE0783 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -174,6 +240,8 @@
 		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
 		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
 		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ILFoundation.xcodeproj; path = ../ILFoundation/ILFoundation.xcodeproj; sourceTree = SOURCE_ROOT; };
+		75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ILFoundation.xcodeproj; path = /Users/alf/Developer/ILFoundation/ILFoundation.xcodeproj; sourceTree = "<absolute>"; };
 		75BE80AF1F5F66C200453938 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
 		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
@@ -199,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75B654382D6F6BFA000A139E /* ILFoundation.framework in Frameworks */,
 				7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75B6543A2D6F6C05000A139E /* ILFoundation.framework in Frameworks */,
 				7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75B654392D6F6C00000A139E /* ILFoundation.framework in Frameworks */,
 				7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +313,7 @@
 				75FB2B362C6D64F9004F7FF0 /* Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */,
 			);
 			name = CardView;
 			sourceTree = "<group>";
@@ -249,6 +321,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */,
 				7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */,
 				75FA0B8D1981B1B1000AFFE3 /* Security.framework */,
 				75FD72DC1966A44A004C54DD /* WebKit.framework */,
@@ -278,6 +351,16 @@
 				7550C5B81F5A43D0003A0691 /* KitBridge.framework */,
 				7503F5E42C7420B000B8CFC9 /* colorist */,
 				75070DAE2CA8721100C7E64D /* KitBridgeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75B654212D6F6B50000A139E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75B654292D6F6B50000A139E /* ILFoundation.framework */,
+				75B6542B2D6F6B50000A139E /* ILFoundationSwift.framework */,
+				75B6542D2D6F6B50000A139E /* ILFoundationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,6 +455,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				75B654372D6F6B7B000A139E /* PBXTargetDependency */,
 				754780D22C56E88100C7C25C /* PBXTargetDependency */,
 			);
 			name = "Deck (macOS)";
@@ -391,6 +475,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				75B654312D6F6B5E000A139E /* PBXTargetDependency */,
+				75B654242D6F6B50000A139E /* PBXTargetDependency */,
 			);
 			name = "CardView (iOS)";
 			productName = CardView;
@@ -409,6 +495,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				75B654352D6F6B6B000A139E /* PBXTargetDependency */,
 				75EA5BC92C6D679000EE0783 /* PBXTargetDependency */,
 			);
 			name = "CardView (tvOS)";
@@ -428,6 +515,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				75B654332D6F6B64000A139E /* PBXTargetDependency */,
+				75B6542F2D6F6B55000A139E /* PBXTargetDependency */,
 			);
 			name = "CardView (macOS)";
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -475,6 +564,10 @@
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 75B654212D6F6B50000A139E /* Products */;
+					ProjectRef = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+				},
 				{
 					ProductGroup = 7550C5B31F5A43D0003A0691 /* Products */;
 					ProjectRef = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
@@ -525,6 +618,27 @@
 			fileType = wrapper.framework;
 			path = KitBridge.framework;
 			remoteRef = 7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		75B654292D6F6B50000A139E /* ILFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ILFoundation.framework;
+			remoteRef = 75B654282D6F6B50000A139E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		75B6542B2D6F6B50000A139E /* ILFoundationSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ILFoundationSwift.framework;
+			remoteRef = 75B6542A2D6F6B50000A139E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		75B6542D2D6F6B50000A139E /* ILFoundationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ILFoundationTests.xctest;
+			remoteRef = 75B6542C2D6F6B50000A139E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -610,6 +724,36 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* CardView (macOS) */;
 			targetProxy = 754780D12C56E88100C7C25C /* PBXContainerItemProxy */;
+		};
+		75B654242D6F6B50000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ILFoundation;
+			targetProxy = 75B654232D6F6B50000A139E /* PBXContainerItemProxy */;
+		};
+		75B6542F2D6F6B55000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ILFoundation;
+			targetProxy = 75B6542E2D6F6B55000A139E /* PBXContainerItemProxy */;
+		};
+		75B654312D6F6B5E000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "KitBridge (iOS)";
+			targetProxy = 75B654302D6F6B5E000A139E /* PBXContainerItemProxy */;
+		};
+		75B654332D6F6B64000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "KitBridge (macOS)";
+			targetProxy = 75B654322D6F6B64000A139E /* PBXContainerItemProxy */;
+		};
+		75B654352D6F6B6B000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ILFoundation;
+			targetProxy = 75B654342D6F6B6B000A139E /* PBXContainerItemProxy */;
+		};
+		75B654372D6F6B7B000A139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ILFoundation;
+			targetProxy = 75B654362D6F6B7B000A139E /* PBXContainerItemProxy */;
 		};
 		75EA5BC12C6D671E00EE0783 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -1,5 +1,7 @@
 #import "include/CardFormatters.h"
 
+#import <ILFoundation/ILFoundation.h>
+
 static CGFloat unit_scale = 0.9;
 
 @implementation CardFormatters
