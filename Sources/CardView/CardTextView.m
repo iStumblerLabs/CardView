@@ -299,10 +299,24 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 - (void) fulfillPromise:(NSUUID*) promise withString:(NSAttributedString*) promisedString {
     for (NSTextStorage* storage in self.textStorage.attributeRuns) {
-        NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:nil];
+        NSRange range = {};
+        NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:&range];
 
-        if (runAttrs[CardTextPromiseUUIDAttributeName] && [runAttrs[CardTextPromiseUUIDAttributeName] isEqualToString:promise.UUIDString]) {
-            storage.attributedString = promisedString;
+        if (runAttrs[CardTextPromiseUUIDAttributeName] && [runAttrs[CardTextPromiseUUIDAttributeName] isEqualToString:promise.UUIDString]) { // match up the uuid
+
+            // scrub any existing ranges for this promise to handle cases where
+            // the promisedString has multiple attribute runs for styling
+            [[self.textStorage rangesForAttribute:CardTextPromiseUUIDAttributeName value:promise.UUIDString] enumerateObjectsUsingBlock:^(NSString* rangeString, NSUInteger idx, BOOL* stop) {
+                NSRange range = NSRangeFromString(rangeString);
+                [self.textStorage replaceCharactersInRange:range withString:@""];
+            }];
+
+            // now tag the promisedString with the promise so it can be replaced with the next fulfillment
+            NSMutableAttributedString* mutablePromise = promisedString.mutableCopy;
+            [mutablePromise addAttributes:@{CardTextPromiseUUIDAttributeName: promise.UUIDString}
+                                    range:NSMakeRange(0, mutablePromise.length)];
+
+            storage.attributedString = mutablePromise;
             break; // only fulfill the first promise
         }
     }
