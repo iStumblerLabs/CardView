@@ -4,13 +4,24 @@
 #import "include/CardSeparatorCell.h"
 #import "include/CardImageCell.h"
 #endif
+#import "include/NSMutableAttributedString+CardView.h"
 
 #define NSAS NSAttributedString
 #define NSMAS NSMutableAttributedString
 
 static NSMutableDictionary* formatterRegistry;
 
-static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplaceableStyleAttribute";
+static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDAttributeName";
+
+// MARK: -
+
+@interface CardTextView ()
+
+@property(nonatomic,retain) NSMutableArray<NSParagraphStyle*>* styleStackStorage;
+
+@end
+
+// MARK: -
 
 @implementation CardTextView
 
@@ -37,13 +48,14 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         }
         else break; // while
     }
-    
+
     return formatter;
 }
 
-// MARK: - NSViews
+// MARK: - ILViewLifecycle
 
 - (void) initView {
+    self.styleStackStorage = NSMutableArray.new;
     self.columns = @[@(-0.33), @(5)]; // 40% right-aligned with a ten pt gutter
 #if TARGET_OS_TV
     self.fontSize = 24;
@@ -96,7 +108,26 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return attachment;
 }
 
-// MARK: - Tabs
+// MARK: - Style
+
+- (NSParagraphStyle*) topStyle {
+    NSParagraphStyle* topStyle = NSParagraphStyle.defaultParagraphStyle;
+    if (self.styleStackStorage.count > 0) {
+        topStyle = self.styleStackStorage.firstObject;
+    }
+    return topStyle;
+}
+
+- (NSUInteger) pushStyle:(NSParagraphStyle*) currentStyle {
+    [self.styleStackStorage insertObject:currentStyle atIndex:0];
+    return self.styleStackStorage.count;
+}
+
+- (NSParagraphStyle*) popStyle {
+    NSParagraphStyle* topStyle = self.topStyle;
+    [self.styleStackStorage removeObjectAtIndex:0];
+    return topStyle;
+}
 
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths {
     NSMutableParagraphStyle* style = NSMutableParagraphStyle.new;
@@ -109,254 +140,110 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         if (stopValue < 0) { // it's a right tab
             tabType = NSRightTabStopType;
         }
-        
+
         if ((stopValue > -1.0) && (stopValue < 1.0)) { // it's a fraction of the width of the frame
             stopValue = (self.frame.size.width * fabs(stopValue)); // be positive
         }
         else {
             stopValue = fabs(stopValue); // be positive
         }
-        
+
         columnEdge += stopValue;
         [stops addObject:[NSTextTab.alloc initWithType:tabType location:columnEdge]];
     }
     // NSLog(@"tab stops: %@", stops);
+    style.lineBreakMode = NSLineBreakByCharWrapping;
     style.firstLineHeadIndent = 0;
     style.headIndent = columnEdge;
-    [style setTabStops:stops];
+    style.tabStops = stops;
 #endif
     return style;
 }
 
-- (NSDictionary*) attributesForSize:(CGFloat)fontSize {
-    ILFont* tagFont = [ILFont systemFontOfSize:fontSize];
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: tagFont,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops {
-    ILFont* tag_font = [ILFont boldSystemFontOfSize:fontSize];
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: tag_font,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize {
-    ILFont* font = [ILFont systemFontOfSize:fontSize];
-    NSMutableParagraphStyle* style = NSMutableParagraphStyle.new;
-    style.alignment = NSTextAlignmentCenter;
-    style.tabStops = @[]; // clear tabs
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: font,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize {
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize {
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.grayColor};
-}
-
-- (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize {
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
-}
-
-- (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize {
-    return @{ CardTextReplaceableStyleAttributeName: @(YES),
-              NSParagraphStyleAttributeName: [self paragraphStyleForColumns:self.columns],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
-}
-
-- (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize {
-    return @{ NSParagraphStyleAttributeName: [NSParagraphStyle defaultParagraphStyle],
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
-}
-
-
-// MARK: - Appending Strings
+// MARK: - Resizable Styles
 
 - (NSAttributedString*) appendHeaderString:(NSString*)string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self centeredAttributesForSize:self.fontSize].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(self.fontSize * 1.2)];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendHeaderString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendSubheaderString:(NSString*)string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendSubheaderString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendCenteredString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self centeredAttributesForSize:self.fontSize].mutableCopy;
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendCenteredString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendLabelString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self labelAttributesForSize:self.fontSize];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendLabelString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendGrayString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self grayAttributesForSize:self.fontSize];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendGrayString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendValueString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self valueAttributesForSize:self.fontSize];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendValueString:string size:self.fontSize style:self.topStyle];
+}
+
+- (NSAttributedString*) appendValueFormatted:(id) object {
+    NSDictionary* valueAttrs = [self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle];
+    return [self appendFormatted:object withAttributes:valueAttrs];
 }
 
 - (NSAttributedString*) appendKeywordString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self keywordAttributesForSize:self.fontSize];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendKeywordString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendMonospaceString:(NSString*)string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendMonospaceString:string size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label {
-    NSAS* attrString = nil;
-    if (url) {
-        NSMutableDictionary* attrs = [self attributesForSize:self.fontSize].mutableCopy;
-        attrs[NSLinkAttributeName] = url;
-        attrString = [NSAS.alloc initWithString:(label ?: url) attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
-}
-
-- (NSAttributedString*) appendContentString:(NSString*) string {
-    NSAS* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self contentAttributesForSize:self.fontSize];
-        attrString = [NSAS.alloc initWithString:string attributes:attrs];
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendLinkTo:url withText:label size:self.fontSize style:self.topStyle];
 }
 
 // MARK: - Rules
 
 - (NSAttributedString*) appendHorizontalRule; {
-    NSAS* rule = [self appendHorizontalRuleWithColor:ILColor.disabledControlTextColor width:1];
-    return rule;
+    return [self.textStorage appendHorizontalRule:self.topStyle];
 }
 
 - (NSAttributedString*) appendHorizontalRuleWithAccentColor {
-    ILColor* color = ILColor.disabledControlTextColor;
-#if IL_APP_KIT && MAC_OS_X_VERSION_10_14
-    if (@available(macOS 10.14, *)) {
-        color = NSColor.controlAccentColor;
-    }
-#endif
-    NSAS* rule = [self appendHorizontalRuleWithColor:color width:1];
-    return rule;
+    return [self.textStorage appendHorizontalRuleWithAccentColor:self.topStyle];
 }
 
 - (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width {
-    NSAttributedString* attrString = nil;
-#if IL_APP_KIT
-    attrString = [CardSeparatorCell separatorWithColor:color width:width];
-    [self appendNewline]; // each rule is it's own paragrah
-    [self.textStorage appendAttributedString:attrString];
-    [self appendNewline]; // and clears the next line below it
-#elif IL_UI_KIT
-    // TODO: NSTextAttachment* attachment = [NSTextAttachment textAttachmentWithImage:nil];
-#endif
-    return attrString;
+    return [self.textStorage appendHorizontalRuleWithColor:color width:width style:self.topStyle];
 }
 
+- (NSAttributedString*) appendNewline {
+    return [self.textStorage appendNewline:self.fontSize style:self.topStyle];
+}
+
+- (NSAttributedString*) appendTab {
+    return [self.textStorage appendTab:self.fontSize style:self.topStyle];
+}
+
+// MARK: - Images
+
 - (NSAttributedString*) appendImage:(ILImage*) image {
-    return [self appendImage:image withAttributes:[self centeredAttributesForSize:self.fontSize]];
+    return [self.textStorage appendImage:image size:self.fontSize style:self.topStyle];
 }
 
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes {
-    NSAttributedString* attrString = nil;
-    if (image) {
-#if IL_APP_KIT
-        CardImageCell* attachment = [CardImageCell cellWithImage:image];
-        attrString = [NSAttributedString attributedStringWithAttachmentCell:attachment];
-#elif IL_UI_KIT
-        NSTextAttachment* attachment = NSTextAttachment.new;
-        attachment.image = image;
-        attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-        attrString = [NSAttributedString attributedStringWithAttachment:attachment];
-#endif
-        if (attributes) {
-            NSMutableDictionary* attrs = attributes.mutableCopy;
-            NSMutableAttributedString* styled = attrString.mutableCopy;
-
-            attrs[NSAttachmentAttributeName] = [attrString attribute:NSAttachmentAttributeName atIndex:0 effectiveRange:nil];
-            [styled setAttributes:attrs range:NSMakeRange(0, styled.length)];
-            attrString = styled;
-        }
-        
-        [self.textStorage appendAttributedString:attrString];
-    }
-    return attrString;
+    return [self.textStorage appendImage:image withAttributes:attributes];
 }
 
-- (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes {
+// MARK: - Strings
+
+- (NSAttributedString*) appendString:(NSString*) string {
+    return [self.textStorage appendString:string size:self.fontSize style:self.topStyle];
+}
+
+// MARK: - Formatted Objects
+
+- (NSAttributedString*) formatted:(id) object withAttributes:(NSDictionary*) attributes {
     NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
     NSAttributedString* formatted = nil;
     if (!object) {
@@ -374,25 +261,23 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         formatted = [NSAttributedString.alloc initWithString:[object description] attributes:attributes];
     }
 
-    if (formatted) {
-        [self.textStorage appendAttributedString:formatted];
-    }
-    
     return formatted;
 }
 
-- (NSAttributedString*) appendValueFormatted:(id) object {
-    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
-    return [self appendFormatted:object withAttributes:valueAttrs];
-}
-
-- (NSAttributedString*) appendContentFormatted:(id) object {
-    NSDictionary* contentAttrs = [self contentAttributesForSize:self.fontSize];
+- (NSAttributedString*) appendFormatted:(id) object {
+    NSDictionary* contentAttrs = [self.textStorage contentAttributesForSize:self.fontSize style:self.topStyle];
     return [self appendFormatted:object withAttributes:contentAttrs];
 }
 
+- (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes {
+    NSAttributedString* formatted = [self formatted:object withAttributes:attributes];
+    [self.textStorage appendAttributedString:formatted];
+    return formatted;
+}
+
+
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter {
-    NSDictionary* valueAttrs = [self valueAttributesForSize:self.fontSize];
+    NSDictionary* valueAttrs = [self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle];
     return [self append:object withFormatter:formatter andAttributes:valueAttrs];
 }
 
@@ -402,35 +287,30 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
     return attributed;
 }
 
-- (NSAttributedString*) appendNewline {
-    NSAS* newline = [self appendValueString:@"\n"];
-    return newline;
+// MARK: - Promises
+
+- (NSUUID*) appendPromiseWithAttributes:(NSDictionary*) attributes {
+    NSUUID* promise = NSUUID.new;
+    NSMutableDictionary* promisedAttributes = attributes.mutableCopy;
+    promisedAttributes[CardTextPromiseUUIDAttributeName] = promise.UUIDString;
+    [self.textStorage appendAttributedString:[NSAS.alloc initWithString:@"…" attributes:promisedAttributes]];
+    return promise;
 }
 
-- (NSAttributedString*) appendTab {
-    NSAS* newline = [self appendValueString:@"\t"];
-    return newline;
-}
-
-// MARK: -
-
-- (void) replaceParagraphStyle:(NSParagraphStyle*)newStyle {
-#if IL_APP_KIT
-    NSMAS* updatedString = NSMAS.new;
-    for (NSTextStorage* storage in [[self textStorage] attributeRuns]) {
+- (void) fulfillPromise:(NSUUID*) promise withString:(NSAttributedString*) promisedString {
+    for (NSTextStorage* storage in self.textStorage.attributeRuns) {
         NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:nil];
-        if (runAttrs[CardTextReplaceableStyleAttributeName]) {
-            NSMutableDictionary* newAttrs = [runAttrs mutableCopy];
-            [newAttrs setObject:newStyle forKey:NSParagraphStyleAttributeName];
-            NSMAS* updatedRange = [NSMAS.alloc initWithString:storage.string attributes:newAttrs];
-            [updatedString appendAttributedString:updatedRange];
-        }
-        else {
-            [updatedString appendAttributedString:storage];
+
+        if (runAttrs[CardTextPromiseUUIDAttributeName] && [runAttrs[CardTextPromiseUUIDAttributeName] isEqualToString:promise.UUIDString]) {
+            storage.attributedString = promisedString;
+            break; // only fulfill the first promise
         }
     }
-    [self.textStorage setAttributedString:updatedString];
-#endif
+}
+
+- (void) fulfillPromise:(NSUUID*) promise withFormatted:(id) object {
+    NSAS* formatted = [self formatted:object withAttributes:[self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle]];
+    [self fulfillPromise:promise withString:formatted];
 }
 
 #if IL_APP_KIT
@@ -438,7 +318,7 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
 
 - (BOOL) validateMenuItem:(NSMenuItem*)menuItem {
     BOOL isValid = YES;
-    
+
     if (menuItem.action == @selector(cut:)
      || menuItem.action == @selector(copy:)
      || menuItem.action == @selector(paste:)
@@ -506,34 +386,5 @@ static NSString* const CardTextReplaceableStyleAttributeName = @"CardTextReplace
         [(id<CardTextViewDelegate>)self.delegate card:self delete:sender];
     }
 }
-
-#if IL_APP_KIT
-// MARK: - NSView
-
-- (void) viewDidHide {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [super viewDidHide];
-}
-
-- (void) viewDidUnhide {
-    NSParagraphStyle* style = [self paragraphStyleForColumns:self.columns];
-    [self performSelector:@selector(replaceParagraphStyle:) withObject:style afterDelay:0.1];
-    [super viewDidUnhide];
-}
-
-- (void) setFrame:(NSRect) frameRect {
-    [super setFrame:frameRect];
-
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    NSParagraphStyle* style = [self paragraphStyleForColumns:self.columns];
-    [self performSelector:@selector(replaceParagraphStyle:) withObject:style afterDelay:0.1];
-/*
-    NSSize insets = [self textContainerInset];
-    NSSize frame = frameRect.size;
-    [[self textContainer] setContainerSize:NSMakeSize(frame.width-(insets.width*2),
-                                                      frame.height-(insets.height*2))];
-*/
-}
-#endif
 
 @end

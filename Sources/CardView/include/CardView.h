@@ -2,6 +2,7 @@
 
 #import <CardView/CardTextView.h>
 #import <CardView/CardFormatters.h>
+#import <CardView/NSMutableAttributedString+CardView.h>
 
 #ifdef IL_APP_KIT
 #import <CardView/CardActionCell.h>
