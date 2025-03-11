@@ -1,9 +1,7 @@
 # CardView.framework
 
-========
-
-iStumbler Labs CardView.Framework — CardView is a good looking text view 
-with convenience methods for formatting text, embedding controls and scaling content.
+iStumbler Labs CardView.Framework — CardView is a good looking text view for iOS, macOS, 
+and tvOS with convenience methods for formatting text, embedding controls and scaling content.
 
 <a id="support"></a>
 ## Support CardView!
@@ -12,35 +10,134 @@ Are you using CardView in your apps? Would you like to help support the project 
 
 Visit our [Patreon Page](https://www.patreon.com/istumblerlabs) and patronize us in exchange for great rewards!
 
+
 <a id="classes"></a>
 ## Classes
 
-### CardTextView
+### [`CardTextView`](./Soruces/CardView/include/CardTextView.h)
 
-Good looking subclasses of NSTextView & UITextView
+Good looking subclasses of NSTextView & UITextView, with support for:
 
-### CardImageCell
+- Formatter Registry: Register NSFormatter subclasses to format text in a card
+  with a single method call
 
-An NSCell for displaying images in a CardTextView
+- Column Styles: create `NSParagraphStyle`s with tabs for laying out columns
+  in a card with a simple `NSArray<NSNumber*>*` describing the column widths
 
-### CardSeparatorCell
+- Style Stack: maintain a stack of `NSParagraphStyle`s to allow a default style
+  to be overidden while building a card and then restored to the previous state
 
-An NSCell for displaying a separator line in a CardTextView
+- Promises: add a promise in the text while building your card, fulfill
+  that promise later to allow generation of text in the background
 
-### CardActionCell
+- TODO: increaseSize/decreaseSize font actions
 
-An NSCell for displaying a button in a CardTextView
+### [`CardFormatters`](./Sources/CardView/include/CardFormatters.h)
+
+A collection of `NSFormatter` subclasses for formatting data:
+
+#### CardArrayFormatter
+formats Array values into comma separated lists
+
+#### CardDataFormatter
+formats data values into string with byte count: "420 Bytes"
+
+#### CardStringDataFormatter
+formats UTF data of any encoding into a string
+
+#### CardListFormatter
+formats arrays of objects with commas between the elements
+
+#### CardURLFormatter
+formats NSURLs as clickable links
+
+#### CardPListDataFormatter
+formats plist data
+
+#### CardJSONObjectFormatter
+formats a plist dictionary as JSON data
+
+#### CardMarkdownFormatter
+formats a plist dictionary as markdown text
+
+#### CardDateFormatter
+formats dates into the users preferred medium date and long time format
+
+#### CardUnitsFormatter
+formats number vales with units in grey text
+
+#### CardBooleanFormatter
+formats numeric values into boolean value strings: "Yes" or "No"
+
+#### CardBytesFormatter
+formats numbers as byte sizes
+
+#### CardFractionFormatter
+formats NSNumbers as a fractional value using the continued fraction method
+
+#### CardTimecodeFormatter
+display a time interval or duration in timecode format
+
+Along with an `NSValueTransformer` subclass which wraps an `NSValueTransformer`
+
+#### CardFormattingTransformer
+
+## NSCells
+
+### [`CardActionCell`](./Sources/CardView/include/CardActionCell.h)
+<!-- TODO: review this for usage -->
+
+An `NSCell` for displaying a button in a CardTextView on macOS
+
+TODO: review usage and see if it's needed
+
+### [`CardImageCell`](./Sources/CardView/include/CardImageCell.h)
+<!-- TODO: review this for usage -->
+
+An `NSCell` for displaying images in a CardTextView on macOS
+
+### [`CardRuleCell`](./Sources/CardView/include/CardRuleCell.h)
+<!-- TODO: review this for usage -->
+
+An `NSCell` for displaying a separator line in a CardTextView
 
 <a id="categories"></a>
 ## Categories
 
-### NSAttributedString+CardView
+### [`NSMutableAttributedString+CardView`](./Sources/CardView/include/NSMutableAttributedString+CardView.h)
 
-### NSPasteboard+CardView
+Implements `CardTextStyle` for `NSMutableAttributedString` to allow for building
+of styled attributed strings for display in a TextView.
+
+<a id="styles"></a>
+## Styles
+
+Styles are provided for formatting text:
+
+```
+typedef NS_ENUM(NSUInteger, CardTextStyle) {
+    CardPlainStyle,
+    CardHeaderStyle,
+    CardSubheaderStyle,
+    CardCenteredStyle,
+    CardLabelStyle,
+    CardGrayStyle,
+    CardMonospaceStyle
+};
+```
 
 <a id="Changes"></a>
 ## Changes
 
+- TODO: 2.0 - 
+    - breaking API changes: 
+        - `CardTextView` is simplifed and tersified
+        - `+formatted:withAttributes:` is now a class method
+        - `CardSeperatorCell` -> `CardRuleCell`
+        - remove `CardViewDelegate` inteface
+    - adds `CardTextStyle` inteface for stying strings
+    - adds `NSMutableAttributedString+CardView`
+    - adds Promises and Style Stack to `CardTextView`
 - 1.3 — 19 August 2024: Swift Package Manager Support
 - 1.2 – 19 May 2017: 
 - 1.1 — 29 May 2016: Add CardBytesFormatter

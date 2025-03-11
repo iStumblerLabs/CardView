@@ -1,7 +1,7 @@
 #import "include/CardTextView.h"
 
 #if IL_APP_KIT
-#import "include/CardSeparatorCell.h"
+#import "include/CardRuleCell.h"
 #import "include/CardImageCell.h"
 #endif
 #import "include/NSMutableAttributedString+CardView.h"
@@ -50,6 +50,27 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
     }
 
     return formatter;
+}
+
++ (NSAttributedString*) formatted:(id) object withAttributes:(NSDictionary*) attributes {
+    NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
+    NSAttributedString* formatted = nil;
+    if (!object) {
+        formatted = [NSAttributedString.alloc initWithString:@"-" attributes:attributes];
+    }
+    else if (formatter) {
+        if ([formatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
+            formatted = [formatter attributedStringForObjectValue:object withDefaultAttributes:attributes];
+        }
+        else {
+            formatted = [NSAttributedString.alloc initWithString:[formatter stringForObjectValue:object] attributes:attributes];
+        }
+    }
+    else {
+        formatted = [NSAttributedString.alloc initWithString:[object description] attributes:attributes];
+    }
+
+    return formatted;
 }
 
 // MARK: - ILViewLifecycle
@@ -162,59 +183,54 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 // MARK: - Resizable Styles
 
-- (NSAttributedString*) appendHeaderString:(NSString*)string {
-    return [self.textStorage appendHeaderString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendStyled:(CardTextStyle) style string:(NSString*)string {
+    return [self.textStorage append:string textStyle:style size:self.fontSize style:self.topStyle];
 }
 
-- (NSAttributedString*) appendSubheaderString:(NSString*)string {
-    return [self.textStorage appendSubheaderString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendHeader:(NSString*)string {
+    return [self appendStyled:CardHeaderStyle string:string];
 }
 
-- (NSAttributedString*) appendCenteredString:(NSString*) string {
-    return [self.textStorage appendCenteredString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendSubhead:(NSString*)string {
+    return [self appendStyled:CardSubheaderStyle string:string];
 }
 
-- (NSAttributedString*) appendLabelString:(NSString*) string {
-    return [self.textStorage appendLabelString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendCentered:(NSString*) string {
+    return [self appendStyled:CardCenteredStyle string:string];
 }
 
-- (NSAttributedString*) appendGrayString:(NSString*) string {
-    return [self.textStorage appendGrayString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendLabel:(NSString*) string {
+    return [self appendStyled:CardLabelStyle string:string];
 }
 
-- (NSAttributedString*) appendValueString:(NSString*) string {
-    return [self.textStorage appendValueString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendGray:(NSString*) string {
+    return [self appendStyled:CardGrayStyle string:string];
 }
 
-- (NSAttributedString*) appendValueFormatted:(id) object {
-    NSDictionary* valueAttrs = [self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle];
-    return [self appendFormatted:object withAttributes:valueAttrs];
+- (NSAttributedString*) append:(NSString*) string {
+    return [self appendStyled:CardPlainStyle string:string];
 }
 
-- (NSAttributedString*) appendKeywordString:(NSString*) string {
-    return [self.textStorage appendKeywordString:string size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendMonospace:(NSString*)string {
+    return [self appendStyled:CardMonospaceStyle string:string];
 }
 
-- (NSAttributedString*) appendMonospaceString:(NSString*)string {
-    return [self.textStorage appendMonospaceString:string size:self.fontSize style:self.topStyle];
-}
-
-- (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label {
-    return [self.textStorage appendLinkTo:url withText:label size:self.fontSize style:self.topStyle];
+- (NSAttributedString*) appendLink:(NSString*) url text:(NSString*) label {
+    return [self.textStorage appendLink:url text:label size:self.fontSize style:self.topStyle];
 }
 
 // MARK: - Rules
 
-- (NSAttributedString*) appendHorizontalRule; {
-    return [self.textStorage appendHorizontalRule:self.topStyle];
+- (NSAttributedString*) appendRule; {
+    return [self.textStorage appendRule:self.topStyle];
 }
 
-- (NSAttributedString*) appendHorizontalRuleWithAccentColor {
-    return [self.textStorage appendHorizontalRuleWithAccentColor:self.topStyle];
+- (NSAttributedString*) appendRuleWithAccentColor {
+    return [self.textStorage appendRuleWithAccentColor:self.topStyle];
 }
 
-- (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width {
-    return [self.textStorage appendHorizontalRuleWithColor:color width:width style:self.topStyle];
+- (NSAttributedString*) appendRuleWithColor:(ILColor*) color width:(CGFloat) width {
+    return [self.textStorage appendRuleWithColor:color width:width style:self.topStyle];
 }
 
 - (NSAttributedString*) appendNewline {
@@ -235,49 +251,22 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
     return [self.textStorage appendImage:image withAttributes:attributes];
 }
 
-// MARK: - Strings
-
-- (NSAttributedString*) appendString:(NSString*) string {
-    return [self.textStorage appendString:string size:self.fontSize style:self.topStyle];
-}
-
 // MARK: - Formatted Objects
 
-- (NSAttributedString*) formatted:(id) object withAttributes:(NSDictionary*) attributes {
-    NSFormatter* formatter = [CardTextView registeredFormatterForClass:[object class]];
-    NSAttributedString* formatted = nil;
-    if (!object) {
-        formatted = [NSAttributedString.alloc initWithString:@"-" attributes:attributes];
-    }
-    else if (formatter) {
-        if ([formatter respondsToSelector:@selector(attributedStringForObjectValue:withDefaultAttributes:)]) {
-            formatted = [formatter attributedStringForObjectValue:object withDefaultAttributes:attributes];
-        }
-        else {
-            formatted = [NSAttributedString.alloc initWithString:[formatter stringForObjectValue:object] attributes:attributes];
-        }
-    }
-    else {
-        formatted = [NSAttributedString.alloc initWithString:[object description] attributes:attributes];
-    }
-
-    return formatted;
-}
-
 - (NSAttributedString*) appendFormatted:(id) object {
-    NSDictionary* contentAttrs = [self.textStorage contentAttributesForSize:self.fontSize style:self.topStyle];
+    NSDictionary* contentAttrs = [self.textStorage.class textStyle:CardPlainStyle fontSize:self.fontSize graphStyle:self.topStyle];
     return [self appendFormatted:object withAttributes:contentAttrs];
 }
 
 - (NSAttributedString*) appendFormatted:(id) object withAttributes:(NSDictionary*) attributes {
-    NSAttributedString* formatted = [self formatted:object withAttributes:attributes];
+    NSAttributedString* formatted = [self.class formatted:object withAttributes:attributes];
     [self.textStorage appendAttributedString:formatted];
     return formatted;
 }
 
 
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter {
-    NSDictionary* valueAttrs = [self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle];
+    NSDictionary* valueAttrs = [self.textStorage.class textStyle:CardPlainStyle fontSize:self.fontSize graphStyle:self.topStyle];
     return [self append:object withFormatter:formatter andAttributes:valueAttrs];
 }
 
@@ -323,82 +312,14 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 }
 
 - (void) fulfillPromise:(NSUUID*) promise withFormatted:(id) object {
-    NSAS* formatted = [self formatted:object withAttributes:[self.textStorage valueAttributesForSize:self.fontSize style:self.topStyle]];
-    [self fulfillPromise:promise withString:formatted];
+    NSDictionary* attrs = [self.textStorage.class textStyle:CardPlainStyle fontSize:self.fontSize graphStyle:self.topStyle];
+    [self fulfillPromise:promise withString:[self.class formatted:object withAttributes:attrs]];
 }
-
-#if IL_APP_KIT
-// MARK: - NSMenuValidation
-
-- (BOOL) validateMenuItem:(NSMenuItem*)menuItem {
-    BOOL isValid = YES;
-
-    if (menuItem.action == @selector(cut:)
-     || menuItem.action == @selector(copy:)
-     || menuItem.action == @selector(paste:)
-     || menuItem.action == @selector(pasteSearch:)
-     || menuItem.action == @selector(pasteRuler:)
-     || menuItem.action == @selector(pasteFont:)
-     || menuItem.action == @selector(delete:)) {
-        isValid = YES;
-    }
-    else {
-        isValid = [super validateMenuItem:menuItem];
-    }
-
-//    NSLog(@"%@ validated: %@ %@", [self className], (isValid?@"YES":@"NO"), menuItem);
-    return isValid;
-}
-#endif
 
 // MARK: - NSResponder
 
-- (void) cut:(id) sender {
-    if (self.selectedRange.location > 0) {
-        [super copy:sender]; // don't modify the contents here
-    }
-    else if ([self.delegate respondsToSelector:@selector(card:cut:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self cut:sender];
-    }
-}
-
-- (void) copy:(id) sender {
-    if (self.selectedRange.length > 0) {
-        [super copy:sender]; // do the superclass thing with the contents
-    }
-    else if ([self.delegate respondsToSelector:@selector(card:copy:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self copy:sender];
-    }
-}
-
-- (void) paste:(id) sender {
-    if ([self.delegate respondsToSelector:@selector(card:paste:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self paste:sender];
-    }
-}
-
-- (void) pasteSearch:(id) sender {
-    if ([self.delegate respondsToSelector:@selector(card:pasteSearch:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self pasteSearch:sender];
-    }
-}
-
-- (void) pasteRuler:(id) sender {
-    if ([self.delegate respondsToSelector:@selector(card:pasteRuler:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self pasteRuler:sender];
-    }
-}
-
-- (void) pasteFont:(id) sender {
-    if ([self.delegate respondsToSelector:@selector(card:pasteFont:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self pasteFont:sender];
-    }
-}
-
-- (void) delete:(id) sender {
-    if ([self.delegate respondsToSelector:@selector(card:delete:)]) {
-        [(id<CardTextViewDelegate>)self.delegate card:self delete:sender];
-    }
+- (BOOL) acceptsFirstResponder {
+    return YES;
 }
 
 @end

@@ -1,23 +1,23 @@
-#import "CardSeparatorCell.h"
+#import "CardRuleCell.h"
 
 #if IL_APP_KIT
-@implementation CardSeparatorCell
+@implementation CardRuleCell
 
 + (NSAttributedString*) separator  {
     NSTextAttachment* divider = NSTextAttachment.new;
-    [divider setAttachmentCell:[CardSeparatorCell.alloc initWithColor:ILColor.grayColor width:1]];
+    [divider setAttachmentCell:[CardRuleCell.alloc initWithColor:ILColor.grayColor width:1]];
     return [NSAttributedString attributedStringWithAttachment:divider];
 }
 
 + (NSAttributedString*) separatorWithColor:(NSColor*) color {
     NSTextAttachment* divider = NSTextAttachment.new;
-    [divider setAttachmentCell:[CardSeparatorCell.alloc initWithColor:color width:1]];
+    [divider setAttachmentCell:[CardRuleCell.alloc initWithColor:color width:1]];
     return [NSAttributedString attributedStringWithAttachment:divider];
 }
 
 + (NSAttributedString*) separatorWithColor:(NSColor*) color width:(CGFloat) width {
     NSTextAttachment* divider = NSTextAttachment.new;
-    CardSeparatorCell* cell = [CardSeparatorCell.alloc initWithColor:color width:width];
+    CardRuleCell* cell = [CardRuleCell.alloc initWithColor:color width:width];
     [divider setAttachmentCell:cell];
     return [NSAttributedString attributedStringWithAttachment:divider];
 }

@@ -1,8 +1,11 @@
-#if SWIFT_PACKAGE
-#import "KitBridge.h"
-#else
 #import <KitBridge/KitBridge.h>
+
+#if SWIFT_PACKAGE
+#import "CardTextStyle.h"
+#else
+#import <CardView/CardTextStyle.h>
 #endif
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,11 +28,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Formatter Registry
 
-/// Register a `NSFormatter` to handle instances of the `Class` provided
-+ (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clzz;
+/// Register a
+/// @param formatter to handle instances of the
+/// @param clazz provided
++ (void) registerFormatter:(NSFormatter*) formatter forClass:(Class) clazz;
 
-/// @returns the registered `NSFormatter` for the `Class` provided
-+ (NSFormatter*) registeredFormatterForClass:(Class) clzz;
+/// @returns the registered `NSFormatter*` for the
+/// @param clazz provided
++ (NSFormatter*) registeredFormatterForClass:(Class) clazz;
+
+/// @returns an `NSAttributedString*` with the
+/// @param object formatted using the registred formatter for it's class and the default
+/// @param attributes provided
++ (NSAttributedString*) formatted:(id) object withAttributes:(NSDictionary*) attributes;
 
 // MARK: -
 
@@ -39,7 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSTextAttachment*) clickedAttachment;
 
-// MARK: - Styles
+// MARK: - Column Styles
+
+/// @returns an NSParagraphStyle with the columns provided rendered as tabs
+/// @param columnWidths see: `self.columns` for a description of the columnWidths array
+- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*) columnWidths;
+
+// MARK: - Style Stack
 
 /// push a new style on to the stack, making it the top style
 - (NSUInteger) pushStyle:(NSParagraphStyle*) currentStyle;
@@ -48,28 +65,30 @@ NS_ASSUME_NONNULL_BEGIN
 /// @returns the style that was last pushed onto the stack, or nil if the stack is empty
 - (nullable NSParagraphStyle*) popStyle;
 
-/// @returns an NSParagraphStyle with the columns provided rendered as tabs
-/// @param columnWidths see: `self.columns` for a description of the columnWidths array
-- (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*) columnWidths;
+// MARK: - CardTextStyle
 
-// MARK: - Resizable Styles
+/// @returns attributed string with the style provided
+- (NSAttributedString*) appendStyled:(CardTextStyle) style string:(NSString*)string;
 
-- (NSAttributedString*) appendHeaderString:(NSString*) string;
-- (NSAttributedString*) appendSubheaderString:(NSString*) string;
-- (NSAttributedString*) appendCenteredString:(NSString*) string;
-- (NSAttributedString*) appendLabelString:(NSString*) string;
-- (NSAttributedString*) appendGrayString:(NSString*) string;
-- (NSAttributedString*) appendValueString:(NSString*) string;
-- (NSAttributedString*) appendValueFormatted:(id) object;
-- (NSAttributedString*) appendKeywordString:(NSString*) string;
-- (NSAttributedString*) appendMonospaceString:(NSString*) string;
-- (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label;
+/// Convenience method for appending a string with a style
 
-// MARK: - Rules & Spacing
+- (NSAttributedString*) append:(NSString*) string;
+- (NSAttributedString*) appendHeader:(NSString*) string;
+- (NSAttributedString*) appendSubhead:(NSString*) string;
+- (NSAttributedString*) appendCentered:(NSString*) string;
+- (NSAttributedString*) appendLabel:(NSString*) string;
+- (NSAttributedString*) appendGray:(NSString*) string;
+- (NSAttributedString*) appendMonospace:(NSString*) string;
+- (NSAttributedString*) appendLink:(NSString*) url text:(NSString*) label;
 
-- (NSAttributedString*) appendHorizontalRule;
-- (NSAttributedString*) appendHorizontalRuleWithAccentColor;
-- (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width;
+// MARK: - Rules
+
+- (NSAttributedString*) appendRule;
+- (NSAttributedString*) appendRuleWithAccentColor;
+- (NSAttributedString*) appendRuleWithColor:(ILColor*) color width:(CGFloat) width;
+
+// MARK: - Spacing
+
 - (NSAttributedString*) appendNewline;
 - (NSAttributedString*) appendTab;
 
@@ -78,14 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSAttributedString*) appendImage:(ILImage*) image;
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes;
 
-// MARK: - Content Strings
-
-- (NSAttributedString*) appendString:(NSString*) string;
-
 // MARK: - Formatted Objects
-
-/// @returns a formatted `NSAttributedString` for the `object` provided as formatted by a registered `NSFormatter` with the provided `attributes`
-- (NSAttributedString*) formatted:(id) object withAttributes:(NSDictionary*) attributes;
 
 - (NSAttributedString*) appendFormatted:(id) object;
 - (NSAttributedString*) append:(id) object withFormatter:(NSFormatter*) formatter;
@@ -93,33 +105,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Promises
 
-/// promise to append an attributed string later
-/// an elipsis `…` with the `attributes` provided will be appended to the card
-/// @param attributes the attributes to apply to the string
-/// @returns a `NSUUID` that represents the promise
+/// promise to append an attributed string later, an elipsis `…` with the
+/// @param attributes provided will be appended to the card in it's place
+/// @returns an `NSUUID` which represents the promise
 - (NSUUID*) appendPromiseWithAttributes:(NSDictionary*) attributes;
 
-/// fulfill a promise with the `string` provided, can be used multiple time to set a "loading" or "progress" messages
-/// this also allows building styled NSMutableStrings in the background and appending them to the card when they
-/// are ready. the string can be formatted using the `CardTextStyle` to match the style of the card
+/// fulfill a promise with the
+/// @param string provided
+///
+/// can be used multiple time to set a "loading" or "progress" messages  this also allows building
+/// styled NSMutableStrings in the background and appending them to the card when they are
+/// ready. the string can be formatted using the `CardTextStyle` to match the style of the card
+///
 - (void) fulfillPromise:(NSUUID*) promise withString:(NSAttributedString*) string;
 
-/// fulfill a promise with the `object` provided with an object to be formatted
+/// fulfill a
+/// @param promise with the
+/// @param object provided to be formatted
 - (void) fulfillPromise:(NSUUID*) promise withFormatted:(id) object;
-
-@end
-
-// MARK: -
-
-@protocol CardTextViewDelegate <NSObject>
-
-- (void) card:(CardTextView*) card cut:(id) sender;
-- (void) card:(CardTextView*) card copy:(id) sender;
-- (void) card:(CardTextView*) card paste:(id) sender;
-- (void) card:(CardTextView*) card pasteSearch:(id) sender;
-- (void) card:(CardTextView*) card pasteRuler:(id) sender;
-- (void) card:(CardTextView*) card pasteFont:(id) sender;
-- (void) card:(CardTextView*) card delete:(id) sender;
 
 @end
 

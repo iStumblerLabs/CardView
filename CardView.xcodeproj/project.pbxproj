@@ -49,8 +49,8 @@
 		75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C480A8F78D1003AAE72 /* CardActionCell.m */; };
 		75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C490A8F78D1003AAE72 /* CardImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */; };
-		75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */; };
+		75AC2C590A8F78D1003AAE72 /* CardRuleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C4D0A8F78D1003AAE72 /* CardRuleCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AC2C5A0A8F78D1003AAE72 /* CardRuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C4E0A8F78D1003AAE72 /* CardRuleCell.m */; };
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -277,8 +277,8 @@
 		75AC2C480A8F78D1003AAE72 /* CardActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardActionCell.m; sourceTree = "<group>"; };
 		75AC2C490A8F78D1003AAE72 /* CardImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImageCell.h; sourceTree = "<group>"; };
 		75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardImageCell.m; sourceTree = "<group>"; };
-		75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSeparatorCell.h; sourceTree = "<group>"; };
-		75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSeparatorCell.m; sourceTree = "<group>"; };
+		75AC2C4D0A8F78D1003AAE72 /* CardRuleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardRuleCell.h; sourceTree = "<group>"; };
+		75AC2C4E0A8F78D1003AAE72 /* CardRuleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardRuleCell.m; sourceTree = "<group>"; };
 		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
 		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
 		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
@@ -438,7 +438,7 @@
 				75AC2C470A8F78D1003AAE72 /* CardActionCell.h */,
 				7571BFB81CD579CF00021159 /* CardFormatters.h */,
 				75AC2C490A8F78D1003AAE72 /* CardImageCell.h */,
-				75AC2C4D0A8F78D1003AAE72 /* CardSeparatorCell.h */,
+				75AC2C4D0A8F78D1003AAE72 /* CardRuleCell.h */,
 				7543C7F42D7AAF2300F59FEA /* CardTextStyle.h */,
 				75AC2C510A8F78D1003AAE72 /* CardTextView.h */,
 				75DE4323196E6A1B0022311F /* CardViewCell.h */,
@@ -455,7 +455,7 @@
 				75AC2C480A8F78D1003AAE72 /* CardActionCell.m */,
 				7571BFB91CD579CF00021159 /* CardFormatters.m */,
 				75AC2C4A0A8F78D1003AAE72 /* CardImageCell.m */,
-				75AC2C4E0A8F78D1003AAE72 /* CardSeparatorCell.m */,
+				75AC2C4E0A8F78D1003AAE72 /* CardRuleCell.m */,
 				75AC2C520A8F78D1003AAE72 /* CardTextView.m */,
 				75DE4324196E6A1B0022311F /* CardViewCell.m */,
 				7543C7F92D7AAFBD00F59FEA /* NSMutableAttributedString+CardView.m */,
@@ -509,7 +509,7 @@
 				75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */,
 				75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */,
 				75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */,
-				75AC2C590A8F78D1003AAE72 /* CardSeparatorCell.h in Headers */,
+				75AC2C590A8F78D1003AAE72 /* CardRuleCell.h in Headers */,
 				75DE4325196E6A1B0022311F /* CardViewCell.h in Headers */,
 				7543C7FB2D7AAFBD00F59FEA /* NSMutableAttributedString+CardView.h in Headers */,
 			);
@@ -856,7 +856,7 @@
 				75AC2C560A8F78D1003AAE72 /* CardImageCell.m in Sources */,
 				7571BFBB1CD579CF00021159 /* CardFormatters.m in Sources */,
 				75DE4326196E6A1B0022311F /* CardViewCell.m in Sources */,
-				75AC2C5A0A8F78D1003AAE72 /* CardSeparatorCell.m in Sources */,
+				75AC2C5A0A8F78D1003AAE72 /* CardRuleCell.m in Sources */,
 				75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

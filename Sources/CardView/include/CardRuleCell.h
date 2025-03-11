@@ -8,7 +8,7 @@
 #if IL_APP_KIT
 /// Draws a separator in an CardView
 /// http://www.cocoadev.com/index.pl?AddressBookCardView
-@interface CardSeparatorCell : NSTextAttachmentCell
+@interface CardRuleCell : NSTextAttachmentCell
 @property(nonatomic,retain) ILColor* separator_color;
 @property(nonatomic,assign) CGFloat separator_width;
 

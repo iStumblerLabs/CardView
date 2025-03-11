@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: -
 
-/// Format Array values into comma separated lists
+/// formats Array values into comma separated lists
 @interface CardArrayFormatter : CardFormatters
 
 /// String to use between each item in the array
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: -
 
-/// CardDataFormatter formats data values into string with byte count: "420 Bytes"
+/// formats data values into string with byte count: "420 Bytes"
 @interface CardDataFormatter : CardFormatters
 
 /// YES to have the formatter display data as a
@@ -53,18 +53,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: -
 
+/// formats UTF data of any encoding into a string
 @interface CardStringDataFormatter : CardFormatters
 
 @end
 
 // MARK: -
 
-/// CardListFormatter formats arrays with commas between the elements
+/// formats arrays of objects with commas between the elements
 @interface CardListFormatter : CardArrayFormatter
 @end
 
 // MARK: -
 
+// formats NSURLs as clickable links
 @interface CardURLFormatter : CardFormatters
 
 /// URL Link color
@@ -77,25 +79,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: -
 
-/// PListFormatter formats plist data
+/// formats plist data
 @interface CardPListDataFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// Format a plist dictionary as JSON data
+/// formats a plist dictionary as JSON data
 @interface CardJSONObjectFormatter : CardFormatters
 @end
 
 // MARK: -
 
-/// Format a plist dictionary as markdown text
+/// formats a plist dictionary as markdown text
 @interface CardMarkdownFormatter : CardFormatters
 @end
 
 // MARK: - Date Formatters
 
-/// CardDateFormatter formats dates into the users preferred medium date and long time format
+/// formats dates into the users preferred medium date and long time format
 @interface CardDateFormatter : NSDateFormatter
 
 + (instancetype) localDateFormatter;
@@ -104,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Units Formatter
 
-/// CardUnitsFormatter formats number vales with units in grey text
+/// formats number vales with units in grey text
 @interface CardUnitsFormatter : NSNumberFormatter
 
 /// unit name string to add using the unit style after the number
@@ -117,25 +119,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Number Formatters
 
-/// CardBooleanFormatter formats numeric values into boolean value strings: "Yes" or "No"
+/// formats numeric values into boolean value strings: "Yes" or "No"
 @interface CardBooleanFormatter : NSNumberFormatter
 @end
 
 // MARK: -
 
-/// CardBytesFormatter formats byte sizes
+/// formats numbers as byte sizes
 @interface CardBytesFormatter : CardUnitsFormatter
 @end
 
 // MARK: -
 
-/// Format a NSNumber as a fractional value using the continued fraction method
+/// formats NSNumbers as a fractional value using the continued fraction method
 /// https://en.wikipedia.org/wiki/Continued_fraction
 @interface CardFractionFormatter: CardUnitsFormatter
 @end
 
 // MARK: -
 
+/// display a time interval or duration in timecode format
 @interface CardTimecodeFormatter : NSNumberFormatter
 /// display seconds as decimal value if true, frames of frameInterval if false
 @property(nonatomic,assign) BOOL decimalSeconds;
@@ -148,9 +151,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Value Transformer
 
-/// NSValueTransformer which uses an NSFormatter to format the value.
-/// This allows for using NSFormatters in Interface Builder and registering
-/// them as NSValueTransformers
+/// `NSValueTransformer` which uses an `NSFormatter` to format the value.
+/// This allows for using `NSFormatters` in Interface Builder and registering
+/// them as `NSValueTransformers`
 @interface CardFormattingTransformer : NSValueTransformer
 @property(nonatomic,retain) NSFormatter* formatter;
 

@@ -7,6 +7,6 @@
 #ifdef IL_APP_KIT
 #import <CardView/CardActionCell.h>
 #import <CardView/CardImageCell.h>
-#import <CardView/CardSeparatorCell.h>
+#import <CardView/CardRuleCell.h>
 #import <CardView/CardViewCell.h>
 #endif

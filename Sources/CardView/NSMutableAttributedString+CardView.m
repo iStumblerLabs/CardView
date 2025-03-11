@@ -2,159 +2,111 @@
 
 #if IL_APP_KIT
 #import "CardImageCell.h"
-#import "CardSeparatorCell.h"
+#import "CardRuleCell.h"
 #endif
 
 #import "NSMutableAttributedString+CardView.h"
 
 @implementation NSMutableAttributedString (CardView)
 
-// MARK: - Attributes
++ (NSDictionary*) textStyle:(CardTextStyle) textStyle fontSize:(CGFloat) fontSize graphStyle:(NSParagraphStyle*) graphStyle {
+    NSMutableDictionary* style = NSMutableDictionary.new;
 
-- (NSDictionary*) attributesForSize:(CGFloat)fontSize style:(NSParagraphStyle*) style {
-    ILFont* tagFont = [ILFont systemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: tagFont,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
+    // this is CardPlainStyle
+    style[NSFontAttributeName] = [ILFont systemFontOfSize:fontSize];
+    style[NSParagraphStyleAttributeName] = graphStyle;
+    style[NSForegroundColorAttributeName] = ILColor.textColor;
 
-- (NSDictionary*) headerAttributesForSize:(CGFloat)fontSize tabStops:(NSArray*)tabStops  style:(NSParagraphStyle*) style {
-    ILFont* tag_font = [ILFont boldSystemFontOfSize:fontSize];
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: tag_font,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
+    switch (textStyle) {
+        case CardPlainStyle: {
+            break;
+        }
+        case CardHeaderStyle: {
+            style[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(fontSize * 1.25)];
+            break;
+        }
+        case CardSubheaderStyle: {
+            style[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(fontSize * 1.125)];
+            break;
+        }
+        case CardCenteredStyle: {
+            NSMutableParagraphStyle* centered = graphStyle.mutableCopy;
+            centered.alignment = NSTextAlignmentCenter;
+            centered.tabStops = @[]; // clear tabs
+            style[NSParagraphStyleAttributeName] = centered;
+            break;
+        }
+        case CardLabelStyle: {
+            style[NSFontAttributeName] = [ILFont boldSystemFontOfSize:fontSize];
+            break;
+        }
+        case CardGrayStyle: {
+            style[NSForegroundColorAttributeName] = ILColor.grayColor;
+            break;
+        }
+        case CardMonospaceStyle: {
+            style[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:fontSize];
+            break;
+        }
+        default:
+            break;
+    }
 
-- (NSDictionary*) centeredAttributesForSize:(CGFloat) fontSize style:(NSParagraphStyle*) baseStyle {
-    ILFont* font = [ILFont systemFontOfSize:fontSize];
-    NSMutableParagraphStyle* style = baseStyle.mutableCopy;
-    style.alignment = NSTextAlignmentCenter;
-    style.tabStops = @[]; // clear tabs
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: font,
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) labelAttributesForSize:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: [ILFont boldSystemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor };
-}
-
-- (NSDictionary*) grayAttributesForSize:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.grayColor};
-}
-
-- (NSDictionary*) valueAttributesForSize:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
-}
-
-- (NSDictionary*) keywordAttributesForSize:(CGFloat) fontSize style: (NSParagraphStyle*) style {
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
-}
-
-- (NSDictionary*) contentAttributesForSize:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    return @{ NSParagraphStyleAttributeName: style,
-              NSFontAttributeName: [ILFont systemFontOfSize:fontSize],
-              NSForegroundColorAttributeName: ILColor.textColor};
+    return style;
 }
 
 // MARK: - Resizable Styles
 
-- (NSAttributedString*) appendHeaderString:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+- (nonnull NSAttributedString *)append:(nonnull NSString *)string size:(CGFloat)fontSize style:(nonnull NSParagraphStyle *)style {
     NSAttributedString* attrString = nil;
-
     if (string) {
-        NSMutableDictionary* attrs = [self centeredAttributesForSize:fontSize style:style].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:(fontSize * 1.2)];
+        NSDictionary* attrs = [NSTextStorage textStyle:CardPlainStyle fontSize:fontSize graphStyle:style];
         attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
         [self appendAttributedString:attrString];
     }
     return attrString;
 }
 
-- (NSAttributedString*) appendSubheaderString:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+- (NSAttributedString*) append:(NSString*) string textStyle:(CardTextStyle) textStyle size:(CGFloat) fontSize style:(NSParagraphStyle*) graphStyle {
     NSAttributedString* attrString = nil;
+
     if (string) {
-        NSMutableDictionary* attrs = [self attributesForSize:fontSize style:style].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont boldSystemFontOfSize:[attrs[NSFontAttributeName] pointSize]];
+        NSDictionary* attrs = [NSTextStorage textStyle:textStyle fontSize:fontSize graphStyle:graphStyle];
         attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
         [self appendAttributedString:attrString];
     }
+
     return attrString;
 }
 
-- (NSAttributedString*) appendCenteredString:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self centeredAttributesForSize:fontSize style:style].mutableCopy;
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendHeader:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardHeaderStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendLabelString:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self labelAttributesForSize:fontSize style:style];
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendSubhead:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardSubheaderStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendGrayString:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self grayAttributesForSize:fontSize style:style];
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendCentered:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardCenteredStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendValueString:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self valueAttributesForSize:fontSize style:style];
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendLabel:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardLabelStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendKeywordString:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSDictionary* attrs = [self keywordAttributesForSize:fontSize style:style];
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendGray:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardGrayStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendMonospaceString:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    NSAttributedString* attrString = nil;
-    if (string) {
-        NSMutableDictionary* attrs = [self attributesForSize:fontSize style:style].mutableCopy;
-        attrs[NSFontAttributeName] = [ILFont userFixedPitchFontOfSize:[attrs[NSFontAttributeName] pointSize]];
-        attrString = [NSAttributedString.alloc initWithString:string attributes:attrs];
-        [self appendAttributedString:attrString];
-    }
-    return attrString;
+- (NSAttributedString*) appendMonospace:(NSString*)string size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+    return [self append:string textStyle:CardMonospaceStyle size:fontSize style:style];
 }
 
-- (NSAttributedString*) appendLinkTo:(NSString*) url withText:(NSString*) label size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
+- (NSAttributedString*) appendLink:(NSString*) url text:(NSString*) label size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
     NSAttributedString* attrString = nil;
     if (url) {
-        NSMutableDictionary* attrs = [self attributesForSize:fontSize style:style].mutableCopy;
+        NSMutableDictionary* attrs = [self.class textStyle:CardPlainStyle fontSize:fontSize graphStyle:style].mutableCopy;
         attrs[NSLinkAttributeName] = url;
         attrString = [NSAttributedString.alloc initWithString:(label ?: url) attributes:attrs];
         [self appendAttributedString:attrString];
@@ -164,26 +116,26 @@
 
 // MARK: - Rules
 
-- (NSAttributedString*) appendHorizontalRule:(NSParagraphStyle*) style {
-    NSAttributedString* rule = [self appendHorizontalRuleWithColor:ILColor.disabledControlTextColor width:1 style:style];
+- (NSAttributedString*) appendRule:(NSParagraphStyle*) style {
+    NSAttributedString* rule = [self appendRuleWithColor:ILColor.disabledControlTextColor width:1 style:style];
     return rule;
 }
 
-- (NSAttributedString*) appendHorizontalRuleWithAccentColor:(NSParagraphStyle*) style {
+- (NSAttributedString*) appendRuleWithAccentColor:(NSParagraphStyle*) style {
     ILColor* color = ILColor.disabledControlTextColor;
 #if IL_APP_KIT && MAC_OS_X_VERSION_10_14
     if (@available(macOS 10.14, *)) {
         color = NSColor.controlAccentColor;
     }
 #endif
-    NSAttributedString* rule = [self appendHorizontalRuleWithColor:color width:1 style:style];
+    NSAttributedString* rule = [self appendRuleWithColor:color width:1 style:style];
     return rule;
 }
 
-- (NSAttributedString*) appendHorizontalRuleWithColor:(ILColor*) color width:(CGFloat) width style:(NSParagraphStyle*) style {
+- (NSAttributedString*) appendRuleWithColor:(ILColor*) color width:(CGFloat) width style:(NSParagraphStyle*) style {
     NSAttributedString* attrString = nil;
 #if IL_APP_KIT
-    attrString = [CardSeparatorCell separatorWithColor:color width:width];
+    attrString = [CardRuleCell separatorWithColor:color width:width];
     [self appendNewline:ILFont.defaultFontSize style:style]; // each rule is it's own paragrah
     [self appendAttributedString:attrString];
     [self appendNewline:ILFont.defaultFontSize style:style]; // and clears the next line below it
@@ -194,19 +146,19 @@
 }
 
 - (NSAttributedString*) appendNewline:(CGFloat) size style:(NSParagraphStyle*) style {
-    NSAttributedString* newline = [self appendValueString:@"\n" size:size style:style];
+    NSAttributedString* newline = [self append:@"\n" size:size style:style];
     return newline;
 }
 
 - (NSAttributedString*) appendTab:(CGFloat) size style:(NSParagraphStyle*) style {
-    NSAttributedString* newline = [self appendValueString:@"\t" size:size style:style];
+    NSAttributedString* newline = [self append:@"\t" size:size style:style];
     return newline;
 }
 
 // MARK: - Images
 
 - (NSAttributedString*) appendImage:(ILImage*) image size:(CGFloat) fontSize style:(NSParagraphStyle*) style {
-    return [self appendImage:image withAttributes:[self centeredAttributesForSize:fontSize style:style]];
+    return [self appendImage:image withAttributes:[self.class textStyle:CardCenteredStyle fontSize:fontSize graphStyle:style]];
 }
 
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes {
@@ -233,10 +185,6 @@
         [self appendAttributedString:attrString];
     }
     return attrString;
-}
-
-- (nonnull NSAttributedString *)appendString:(nonnull NSString *)string size:(CGFloat)fontSize style:(nonnull NSParagraphStyle *)style {
-    return [self appendValueString:string size:fontSize style:style];
 }
 
 @end
