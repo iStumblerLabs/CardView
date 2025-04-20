@@ -84,6 +84,8 @@ Along with an `NSValueTransformer` subclass which wraps an `NSValueTransformer`
 
 ## NSCells
 
+These classes are deprecated in favor of the NSTextAttachment API
+
 ### [`CardActionCell`](./Sources/CardView/include/CardActionCell.h)
 <!-- TODO: review this for usage -->
 
@@ -91,7 +93,12 @@ An `NSCell` for displaying a button in a CardTextView on macOS
 
 TODO: review usage and see if it's needed
 
+- deprecated
+
 ### [`CardImageCell`](./Sources/CardView/include/CardImageCell.h)
+
+- deprecated
+
 <!-- TODO: review this for usage -->
 
 An `NSCell` for displaying images in a CardTextView on macOS
@@ -100,6 +107,8 @@ An `NSCell` for displaying images in a CardTextView on macOS
 <!-- TODO: review this for usage -->
 
 An `NSCell` for displaying a separator line in a CardTextView
+
+- deprecated
 
 <a id="categories"></a>
 ## Categories

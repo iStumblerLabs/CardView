@@ -112,7 +112,7 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 // MARK: -
 
 - (void) clearCard {
-    [self.textStorage setAttributedString:[NSAS attributedString:@""]];
+    [self.textStorage setAttributedString:[NSAS.alloc initWithString:@""]];
 }
 
 // MARK: -

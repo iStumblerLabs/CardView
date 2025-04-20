@@ -1,6 +1,10 @@
 #import "include/CardFormatters.h"
 
+#if SWIFT_PACKAGE
+@import ILFoundation;
+#else
 #import <ILFoundation/ILFoundation.h>
+#endif
 
 static CGFloat unit_scale = 0.9;
 
@@ -28,6 +32,8 @@ static CGFloat unit_scale = 0.9;
     monoAttrs[NSFontAttributeName] = monoFont;
     return monoAttrs;
 }
+
+// MARK: -
 
 - (NSAttributedString*) attributedStringForObjectValue:(id)object withDefaultAttributes:(NSDictionary*) defaultAttrs {
     NSString* formattedString = [self stringForObjectValue:object];
@@ -318,6 +324,7 @@ static NSString* tabSymbol;
     NSError* error = nil;
     id plistObject = [NSPropertyListSerialization propertyListWithData:obj options:NSPropertyListImmutable format:&format error:&error];
     NSString* plistString = [plistObject description];
+
     return plistString;
 }
 
@@ -448,20 +455,29 @@ static NSString* tabSymbol;
     return self;
 }
 
+// NARROW NO-BREAK SPACE Unicode: U+202F, UTF-8: E2 80 AF
+static NSString* noBreakSpace;
+
+
 - (NSString*) stringForObjectValue:(id) anObject {
     NSMutableString* formatted = nil;
+
+    if (!noBreakSpace) {
+        noBreakSpace = [NSString stringWithFormat:@"%C", 0x202F];
+    }
+
     if ([anObject isKindOfClass:NSNumber.class]) {
         formatted = NSMutableString.new;
 
         if (self.prefix) {
             [formatted appendString:self.prefix];
-            [formatted appendString:@" "];
+            [formatted appendString:noBreakSpace];
         }
 
         NSString* valueString = [super stringForObjectValue:anObject];
         [formatted appendString:valueString];
         if (self.units) {
-            [formatted appendString:@" "];
+            [formatted appendString:noBreakSpace];
             [formatted appendString:self.units];
         }
     }
@@ -471,20 +487,26 @@ static NSString* tabSymbol;
 
 - (NSAttributedString*) attributedStringForObjectValue:(id) anObject withDefaultAttributes:(NSDictionary*) attrs {
     NSMutableAttributedString* formatted = nil;
+
+    if (!noBreakSpace) {
+        noBreakSpace = [NSString stringWithFormat:@"%C", 0x202F];
+    }
+
     if ([anObject isKindOfClass:NSNumber.class]) {
         formatted = NSMutableAttributedString.new;
         NSDictionary* unitsAttrs = [CardFormatters unitsAttrs:attrs];
         if (self.prefix) {
             NSAttributedString* formattedPrefix = [NSAttributedString.alloc initWithString:self.prefix attributes:unitsAttrs];
             [formatted appendAttributedString:formattedPrefix];
-            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:@" "]];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace]];
         }
+
         NSString* valueString = [super stringForObjectValue:anObject];
         NSAttributedString* formattedValue = [NSAttributedString.alloc initWithString:valueString attributes:attrs];
         [formatted appendAttributedString:formattedValue];
         if (self.units) {
             NSAttributedString* formattedUnits = [NSAttributedString.alloc initWithString:self.units attributes:unitsAttrs];
-            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:@" "]];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace]];
             [formatted appendAttributedString:formattedUnits];
         }
     }

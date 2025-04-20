@@ -1,4 +1,4 @@
-#import "CardImageCell.h"
+#import "include/CardImageCell.h"
 
 #if IL_APP_KIT
 @implementation CardImageCell

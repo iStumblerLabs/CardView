@@ -1,4 +1,8 @@
-#import <KitBridge/KitBridgeDefines.h>
+#if SWIFT_PACKAGE
+@import KitBridge;
+#else
+#import <KitBridge/KitBridge.h>
+#endif
 
 #import <CardView/CardTextView.h>
 #import <CardView/CardFormatters.h>

@@ -1,4 +1,4 @@
-#import "CardRuleCell.h"
+#import "include/CardRuleCell.h"
 
 #if IL_APP_KIT
 @implementation CardRuleCell

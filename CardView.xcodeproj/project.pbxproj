@@ -24,9 +24,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
-		7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
-		7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
 		7543C7EE2D775A0900F59FEA /* CardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; };
 		7543C7F52D7AAF2300F59FEA /* CardTextStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7543C7F42D7AAF2300F59FEA /* CardTextStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7543C7F62D7AAF2300F59FEA /* CardTextStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7543C7F42D7AAF2300F59FEA /* CardTextStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +42,20 @@
 		754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* CardView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7571BFBA1CD579CF00021159 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7571BFBB1CD579CF00021159 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
+		758739942DB4961C00630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
+		758739962DB4962400630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
+		758739982DB4962A00630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
+		7587399A2DB4963700630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
+		7587399B2DB4963700630067 /* ILFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7587399C2DB4963700630067 /* ILFoundationSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; };
+		7587399D2DB4963700630067 /* ILFoundationSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7587399E2DB4963F00630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
+		7587399F2DB4963F00630067 /* ILFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		758739A02DB4963F00630067 /* ILFoundationSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; platformFilters = (ios, macos, ); };
+		758739A12DB4963F00630067 /* ILFoundationSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		759413D32DB422FF0077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
+		759413D52DB423030077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
+		759413DD2DB494420077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
 		75AC2C530A8F78D1003AAE72 /* CardActionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C470A8F78D1003AAE72 /* CardActionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C540A8F78D1003AAE72 /* CardActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C480A8F78D1003AAE72 /* CardActionCell.m */; };
 		75AC2C550A8F78D1003AAE72 /* CardImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C490A8F78D1003AAE72 /* CardImageCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,9 +65,6 @@
 		75AC2C5D0A8F78D1003AAE72 /* CardTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C510A8F78D1003AAE72 /* CardTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AC2C5E0A8F78D1003AAE72 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75AC2C610A8F78D9003AAE72 /* CardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AC2C600A8F78D9003AAE72 /* CardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75B654382D6F6BFA000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
-		75B654392D6F6C00000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
-		75B6543A2D6F6C05000A139E /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B654292D6F6B50000A139E /* ILFoundation.framework */; };
 		75BE80BD1F5F670500453938 /* CardFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7571BFB91CD579CF00021159 /* CardFormatters.m */; };
 		75BE80BE1F5F670500453938 /* CardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AC2C520A8F78D1003AAE72 /* CardTextView.m */; };
 		75BE80C61F5F671700453938 /* CardFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7571BFB81CD579CF00021159 /* CardFormatters.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,34 +94,6 @@
 			remoteGlobalIDString = 7503F5D12C74205400B8CFC9;
 			remoteInfo = colorist;
 		};
-		75070DAD2CA8721100C7E64D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75CB089F2C9B945D00B83BC3;
-			remoteInfo = KitBridgeTests;
-		};
-		7543C7DA2D71688700F59FEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7582F67B2D3F642F008588DD;
-			remoteInfo = ILFoundation;
-		};
-		7543C7DC2D71688700F59FEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75EEF6A92D638CFB00B2EE80;
-			remoteInfo = ILFoundationSwift;
-		};
-		7543C7DE2D71688700F59FEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75CB089F2C9B945D00B83BC3;
-			remoteInfo = ILFoundationTests;
-		};
 		7543C7EF2D775A0900F59FEA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -142,65 +122,44 @@
 			remoteGlobalIDString = 75DCBEF21ED2C84B00538D87;
 			remoteInfo = "KitBridge (iOS)";
 		};
-		75B654232D6F6B50000A139E /* PBXContainerItemProxy */ = {
+		7587398E2DB4960B00630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7582F6692D3F642F008588DD;
-			remoteInfo = ILFoundation;
-		};
-		75B654282D6F6B50000A139E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7582F67B2D3F642F008588DD;
 			remoteInfo = ILFoundation;
 		};
-		75B6542A2D6F6B50000A139E /* PBXContainerItemProxy */ = {
+		758739902DB4960B00630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 75EEF6A92D638CFB00B2EE80;
 			remoteInfo = ILFoundationSwift;
 		};
-		75B6542C2D6F6B50000A139E /* PBXContainerItemProxy */ = {
+		758739922DB4960B00630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 75CB089F2C9B945D00B83BC3;
 			remoteInfo = ILFoundationTests;
 		};
-		75B6542E2D6F6B55000A139E /* PBXContainerItemProxy */ = {
+		758739A42DB496E800630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 7582F6692D3F642F008588DD;
 			remoteInfo = ILFoundation;
 		};
-		75B654302D6F6B5E000A139E /* PBXContainerItemProxy */ = {
+		758739A62DB4979400630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7503F63B2C76732E00B8CFC9;
-			remoteInfo = "KitBridge (iOS)";
-		};
-		75B654322D6F6B64000A139E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7503F6892C7674C400B8CFC9;
-			remoteInfo = "KitBridge (macOS)";
-		};
-		75B654342D6F6B6B000A139E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 7582F6692D3F642F008588DD;
 			remoteInfo = ILFoundation;
 		};
-		75B654362D6F6B7B000A139E /* PBXContainerItemProxy */ = {
+		758739A82DB4979900630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
+			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 7582F6692D3F642F008588DD;
 			remoteInfo = ILFoundation;
@@ -233,13 +192,6 @@
 			remoteGlobalIDString = 754780BA2C56E84100C7C25C;
 			remoteInfo = "Deck (macOS)";
 		};
-		75EA5BC82C6D679000EE0783 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7503F6602C76744900B8CFC9;
-			remoteInfo = "KitBridge (tvOS)";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -249,7 +201,51 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7587399B2DB4963700630067 /* ILFoundation.framework in Embed Frameworks */,
+				7587399D2DB4963700630067 /* ILFoundationSwift.framework in Embed Frameworks */,
 				754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759413B72DB4227A0077A478 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759413BB2DB4227E0077A478 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759413C82DB4228D0077A478 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				758739A12DB4963F00630067 /* ILFoundationSwift.framework in Embed Frameworks */,
+				7587399F2DB4963F00630067 /* ILFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759413D02DB422F90077A478 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +269,7 @@
 		7571BF711CCDB68100021159 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7571BFB81CD579CF00021159 /* CardFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFormatters.h; sourceTree = "<group>"; };
 		7571BFB91CD579CF00021159 /* CardFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardFormatters.m; sourceTree = "<group>"; };
+		758739862DB4960B00630067 /* ILFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ILFoundation.xcodeproj; path = ../ILFoundation/ILFoundation.xcodeproj; sourceTree = SOURCE_ROOT; };
 		75AC2C470A8F78D1003AAE72 /* CardActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardActionCell.h; sourceTree = "<group>"; };
 		75AC2C480A8F78D1003AAE72 /* CardActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardActionCell.m; sourceTree = "<group>"; };
 		75AC2C490A8F78D1003AAE72 /* CardImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardImageCell.h; sourceTree = "<group>"; };
@@ -282,8 +279,6 @@
 		75AC2C510A8F78D1003AAE72 /* CardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTextView.h; sourceTree = "<group>"; };
 		75AC2C520A8F78D1003AAE72 /* CardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTextView.m; sourceTree = "<group>"; };
 		75AC2C600A8F78D9003AAE72 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
-		75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ILFoundation.xcodeproj; path = ../ILFoundation/ILFoundation.xcodeproj; sourceTree = SOURCE_ROOT; };
-		75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ILFoundation.xcodeproj; path = /Users/alf/Developer/ILFoundation/ILFoundation.xcodeproj; sourceTree = "<absolute>"; };
 		75BE80AF1F5F66C200453938 /* CardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE4323196E6A1B0022311F /* CardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewCell.h; sourceTree = "<group>"; };
 		75DE4324196E6A1B0022311F /* CardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewCell.m; sourceTree = "<group>"; };
@@ -305,6 +300,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7587399E2DB4963F00630067 /* ILFoundation.framework in Frameworks */,
+				758739A02DB4963F00630067 /* ILFoundationSwift.framework in Frameworks */,
 				7543C7EE2D775A0900F59FEA /* CardView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +310,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7587399A2DB4963700630067 /* ILFoundation.framework in Frameworks */,
+				7587399C2DB4963700630067 /* ILFoundationSwift.framework in Frameworks */,
 				754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,8 +320,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75B654382D6F6BFA000A139E /* ILFoundation.framework in Frameworks */,
-				7503F6D02C76B4D000B8CFC9 /* KitBridge.framework in Frameworks */,
+				758739942DB4961C00630067 /* ILFoundation.framework in Frameworks */,
+				759413DD2DB494420077A478 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +329,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75B6543A2D6F6C05000A139E /* ILFoundation.framework in Frameworks */,
-				7503F6D82C76B53900B8CFC9 /* KitBridge.framework in Frameworks */,
+				758739982DB4962A00630067 /* ILFoundation.framework in Frameworks */,
+				759413D52DB423030077A478 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +338,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75B654392D6F6C00000A139E /* ILFoundation.framework in Frameworks */,
-				7503F6D32C76B4F300B8CFC9 /* KitBridge.framework in Frameworks */,
+				758739962DB4962400630067 /* ILFoundation.framework in Frameworks */,
+				759413D32DB422FF0077A478 /* KitBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,25 +375,14 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */,
+				758739862DB4960B00630067 /* ILFoundation.xcodeproj */,
 				7550C5B21F5A43D0003A0691 /* KitBridge.xcodeproj */,
 				75FA0B8D1981B1B1000AFFE3 /* Security.framework */,
 				75FD72DC1966A44A004C54DD /* WebKit.framework */,
 				D2F7E79907B2D74100F64583 /* CoreData.framework */,
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
-				75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7543C7D32D71688700F59FEA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7543C7DB2D71688700F59FEA /* ILFoundation.framework */,
-				7543C7DD2D71688700F59FEA /* ILFoundationSwift.framework */,
-				7543C7DF2D71688700F59FEA /* ILFoundationTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		754780BC2C56E84100C7C25C /* Deck */ = {
@@ -416,17 +404,16 @@
 				7503F5E22C7420B000B8CFC9 /* KitBridge.framework */,
 				7550C5B81F5A43D0003A0691 /* KitBridge.framework */,
 				7503F5E42C7420B000B8CFC9 /* colorist */,
-				75070DAE2CA8721100C7E64D /* KitBridgeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75B654212D6F6B50000A139E /* Products */ = {
+		758739892DB4960B00630067 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75B654292D6F6B50000A139E /* ILFoundation.framework */,
-				75B6542B2D6F6B50000A139E /* ILFoundationSwift.framework */,
-				75B6542D2D6F6B50000A139E /* ILFoundationTests.xctest */,
+				7587398F2DB4960B00630067 /* ILFoundation.framework */,
+				758739912DB4960B00630067 /* ILFoundationSwift.framework */,
+				758739932DB4960B00630067 /* ILFoundationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,6 +512,7 @@
 				7543C7E62D775A0900F59FEA /* Sources */,
 				7543C7E72D775A0900F59FEA /* Frameworks */,
 				7543C7E82D775A0900F59FEA /* Resources */,
+				759413C82DB4228D0077A478 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -553,7 +541,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				75B654372D6F6B7B000A139E /* PBXTargetDependency */,
 				754780D22C56E88100C7C25C /* PBXTargetDependency */,
 			);
 			name = "Deck (macOS)";
@@ -569,12 +556,12 @@
 				75BE80AA1F5F66C200453938 /* Sources */,
 				75BE80AB1F5F66C200453938 /* Frameworks */,
 				75BE80AD1F5F66C200453938 /* Resources */,
+				759413D02DB422F90077A478 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				75B654312D6F6B5E000A139E /* PBXTargetDependency */,
-				75B654242D6F6B50000A139E /* PBXTargetDependency */,
+				758739A52DB496E800630067 /* PBXTargetDependency */,
 			);
 			name = "CardView (iOS)";
 			productName = CardView;
@@ -589,12 +576,12 @@
 				75EA5BAB2C6D66B800EE0783 /* Sources */,
 				75EA5BB12C6D66B800EE0783 /* Frameworks */,
 				75EA5BB32C6D66B800EE0783 /* Resources */,
+				759413BB2DB4227E0077A478 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				75B654352D6F6B6B000A139E /* PBXTargetDependency */,
-				75EA5BC92C6D679000EE0783 /* PBXTargetDependency */,
+				758739A92DB4979900630067 /* PBXTargetDependency */,
 			);
 			name = "CardView (tvOS)";
 			productName = CardView;
@@ -609,12 +596,12 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				8DC2EF520486A6940098B216 /* Resources */,
+				759413B72DB4227A0077A478 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				75B654332D6F6B64000A139E /* PBXTargetDependency */,
-				75B6542F2D6F6B55000A139E /* PBXTargetDependency */,
+				758739A72DB4979400630067 /* PBXTargetDependency */,
 			);
 			name = "CardView (macOS)";
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -662,16 +649,14 @@
 				Base,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* CardView */;
+			packageReferences = (
+			);
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 75B654212D6F6B50000A139E /* Products */;
-					ProjectRef = 75B654202D6F6B50000A139E /* ILFoundation.xcodeproj */;
-				},
-				{
-					ProductGroup = 7543C7D32D71688700F59FEA /* Products */;
-					ProjectRef = 75B654182D6F6B46000A139E /* ILFoundation.xcodeproj */;
+					ProductGroup = 758739892DB4960B00630067 /* Products */;
+					ProjectRef = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
 				},
 				{
 					ProductGroup = 7550C5B31F5A43D0003A0691 /* Products */;
@@ -705,34 +690,6 @@
 			remoteRef = 7503F5E32C7420B000B8CFC9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		75070DAE2CA8721100C7E64D /* KitBridgeTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KitBridgeTests.xctest;
-			remoteRef = 75070DAD2CA8721100C7E64D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7543C7DB2D71688700F59FEA /* ILFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ILFoundation.framework;
-			remoteRef = 7543C7DA2D71688700F59FEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7543C7DD2D71688700F59FEA /* ILFoundationSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ILFoundationSwift.framework;
-			remoteRef = 7543C7DC2D71688700F59FEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7543C7DF2D71688700F59FEA /* ILFoundationTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ILFoundationTests.xctest;
-			remoteRef = 7543C7DE2D71688700F59FEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		7550C5B81F5A43D0003A0691 /* KitBridge.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -747,25 +704,25 @@
 			remoteRef = 7550C5B91F5A43D0003A0691 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		75B654292D6F6B50000A139E /* ILFoundation.framework */ = {
+		7587398F2DB4960B00630067 /* ILFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ILFoundation.framework;
-			remoteRef = 75B654282D6F6B50000A139E /* PBXContainerItemProxy */;
+			remoteRef = 7587398E2DB4960B00630067 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		75B6542B2D6F6B50000A139E /* ILFoundationSwift.framework */ = {
+		758739912DB4960B00630067 /* ILFoundationSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ILFoundationSwift.framework;
-			remoteRef = 75B6542A2D6F6B50000A139E /* PBXContainerItemProxy */;
+			remoteRef = 758739902DB4960B00630067 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		75B6542D2D6F6B50000A139E /* ILFoundationTests.xctest */ = {
+		758739932DB4960B00630067 /* ILFoundationTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ILFoundationTests.xctest;
-			remoteRef = 75B6542C2D6F6B50000A139E /* PBXContainerItemProxy */;
+			remoteRef = 758739922DB4960B00630067 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -874,35 +831,20 @@
 			target = 8DC2EF4F0486A6940098B216 /* CardView (macOS) */;
 			targetProxy = 754780D12C56E88100C7C25C /* PBXContainerItemProxy */;
 		};
-		75B654242D6F6B50000A139E /* PBXTargetDependency */ = {
+		758739A52DB496E800630067 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ILFoundation;
-			targetProxy = 75B654232D6F6B50000A139E /* PBXContainerItemProxy */;
+			targetProxy = 758739A42DB496E800630067 /* PBXContainerItemProxy */;
 		};
-		75B6542F2D6F6B55000A139E /* PBXTargetDependency */ = {
+		758739A72DB4979400630067 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ILFoundation;
-			targetProxy = 75B6542E2D6F6B55000A139E /* PBXContainerItemProxy */;
+			targetProxy = 758739A62DB4979400630067 /* PBXContainerItemProxy */;
 		};
-		75B654312D6F6B5E000A139E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KitBridge (iOS)";
-			targetProxy = 75B654302D6F6B5E000A139E /* PBXContainerItemProxy */;
-		};
-		75B654332D6F6B64000A139E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KitBridge (macOS)";
-			targetProxy = 75B654322D6F6B64000A139E /* PBXContainerItemProxy */;
-		};
-		75B654352D6F6B6B000A139E /* PBXTargetDependency */ = {
+		758739A92DB4979900630067 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ILFoundation;
-			targetProxy = 75B654342D6F6B6B000A139E /* PBXContainerItemProxy */;
-		};
-		75B654372D6F6B7B000A139E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ILFoundation;
-			targetProxy = 75B654362D6F6B7B000A139E /* PBXContainerItemProxy */;
+			targetProxy = 758739A82DB4979900630067 /* PBXContainerItemProxy */;
 		};
 		75EA5BC12C6D671E00EE0783 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -923,11 +865,6 @@
 			isa = PBXTargetDependency;
 			target = 754780BA2C56E84100C7C25C /* Deck (macOS) */;
 			targetProxy = 75EA5BC62C6D671E00EE0783 /* PBXContainerItemProxy */;
-		};
-		75EA5BC92C6D679000EE0783 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "KitBridge (tvOS)";
-			targetProxy = 75EA5BC82C6D679000EE0783 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -1,14 +1,14 @@
-//
-//  NSMutableAttributedString+CardView.h
-//  CardView
-//
-//  Created by Alf Watt on 3/6/25.
-//  Copyright © 2025 iStumbler Labs. All rights reserved.
-//
+#if SWIFT_PACKAGE
+@import KitBridge;
+#else
+#import <KitBridge/KitBridge.h>
+#endif
 
-#import <Foundation/Foundation.h>
-
+#if SWIFT_PACKAGE
+#import "CardTextStyle.h"
+#else
 #import <CardView/CardTextStyle.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

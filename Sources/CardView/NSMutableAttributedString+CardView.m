@@ -1,11 +1,9 @@
-#import <KitBridge/KitBridge.h>
+#import "include/NSMutableAttributedString+CardView.h"
 
 #if IL_APP_KIT
 #import "CardImageCell.h"
 #import "CardRuleCell.h"
 #endif
-
-#import "NSMutableAttributedString+CardView.h"
 
 @implementation NSMutableAttributedString (CardView)
 
@@ -164,15 +162,11 @@
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes {
     NSAttributedString* attrString = nil;
     if (image) {
-#if IL_APP_KIT
-        CardImageCell* attachment = [CardImageCell cellWithImage:image];
-        attrString = [NSAttributedString attributedStringWithAttachmentCell:attachment];
-#elif IL_UI_KIT
         NSTextAttachment* attachment = NSTextAttachment.new;
         attachment.image = image;
         attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
         attrString = [NSAttributedString attributedStringWithAttachment:attachment];
-#endif
+
         if (attributes) {
             NSMutableDictionary* attrs = attributes.mutableCopy;
             NSMutableAttributedString* styled = attrString.mutableCopy;
