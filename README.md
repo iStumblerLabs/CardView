@@ -138,15 +138,18 @@ typedef NS_ENUM(NSUInteger, CardTextStyle) {
 <a id="Changes"></a>
 ## Changes
 
-- TODO: 2.0 - 
-    - breaking API changes: 
-        - `CardTextView` is simplifed and tersified
-        - `+formatted:withAttributes:` is now a class method
-        - `CardSeperatorCell` -> `CardRuleCell`
-        - remove `CardViewDelegate` inteface
-    - adds `CardTextStyle` inteface for stying strings
-    - adds `NSMutableAttributedString+CardView`
-    - adds Promises and Style Stack to `CardTextView`
+- CardView 2.0.0 - 20 April 2025 
+  - Breaking API changes: 
+    - `CardTextView` is simplifed and tersified
+    - `+formatted:withAttributes:` is now a class method
+    - `CardSeperatorCell` -> `CardRuleCell`
+    - Remove `CardViewDelegate` inteface
+  - Adds `CardTextStyle` inteface for stying strings
+  - Adds `NSMutableAttributedString+CardView`
+  - Adds Promises and Style Stack to `CardTextView`
+  - Hex formatter for abritrary data
+  - Depend on ILFoundation
+  - 
 - 1.3 — 19 August 2024: Swift Package Manager Support
 - 1.2 – 19 May 2017: 
 - 1.1 — 29 May 2016: Add CardBytesFormatter
