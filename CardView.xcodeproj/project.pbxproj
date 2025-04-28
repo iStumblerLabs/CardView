@@ -47,12 +47,8 @@
 		758739982DB4962A00630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
 		7587399A2DB4963700630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
 		7587399B2DB4963700630067 /* ILFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7587399C2DB4963700630067 /* ILFoundationSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; };
-		7587399D2DB4963700630067 /* ILFoundationSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7587399E2DB4963F00630067 /* ILFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; };
 		7587399F2DB4963F00630067 /* ILFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7587398F2DB4960B00630067 /* ILFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		758739A02DB4963F00630067 /* ILFoundationSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; platformFilters = (ios, macos, ); };
-		758739A12DB4963F00630067 /* ILFoundationSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 758739912DB4960B00630067 /* ILFoundationSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		759413D32DB422FF0077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5B81F5A43D0003A0691 /* KitBridge.framework */; };
 		759413D52DB423030077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503F5E22C7420B000B8CFC9 /* KitBridge.framework */; };
 		759413DD2DB494420077A478 /* KitBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550C5BA1F5A43D0003A0691 /* KitBridge.framework */; };
@@ -129,13 +125,6 @@
 			remoteGlobalIDString = 7582F67B2D3F642F008588DD;
 			remoteInfo = ILFoundation;
 		};
-		758739902DB4960B00630067 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 75EEF6A92D638CFB00B2EE80;
-			remoteInfo = ILFoundationSwift;
-		};
 		758739922DB4960B00630067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 758739862DB4960B00630067 /* ILFoundation.xcodeproj */;
@@ -202,7 +191,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7587399B2DB4963700630067 /* ILFoundation.framework in Embed Frameworks */,
-				7587399D2DB4963700630067 /* ILFoundationSwift.framework in Embed Frameworks */,
 				754780D02C56E88100C7C25C /* CardView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -234,7 +222,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				758739A12DB4963F00630067 /* ILFoundationSwift.framework in Embed Frameworks */,
 				7587399F2DB4963F00630067 /* ILFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -301,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7587399E2DB4963F00630067 /* ILFoundation.framework in Frameworks */,
-				758739A02DB4963F00630067 /* ILFoundationSwift.framework in Frameworks */,
 				7543C7EE2D775A0900F59FEA /* CardView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7587399A2DB4963700630067 /* ILFoundation.framework in Frameworks */,
-				7587399C2DB4963700630067 /* ILFoundationSwift.framework in Frameworks */,
 				754780CF2C56E88100C7C25C /* CardView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				7587398F2DB4960B00630067 /* ILFoundation.framework */,
-				758739912DB4960B00630067 /* ILFoundationSwift.framework */,
 				758739932DB4960B00630067 /* ILFoundationTests.xctest */,
 			);
 			name = Products;
@@ -709,13 +693,6 @@
 			fileType = wrapper.framework;
 			path = ILFoundation.framework;
 			remoteRef = 7587398E2DB4960B00630067 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		758739912DB4960B00630067 /* ILFoundationSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ILFoundationSwift.framework;
-			remoteRef = 758739902DB4960B00630067 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		758739932DB4960B00630067 /* ILFoundationTests.xctest */ = {

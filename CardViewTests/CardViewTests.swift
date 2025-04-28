@@ -72,7 +72,6 @@ struct CardViewTests_macOS {
         Task { @MainActor in
             let cardView = CardTextView()
             let promise = cardView.appendPromise(attributes: [:])
-            #expect(promise != nil)
 
             #expect(cardView.textStorage!.string.isEqual("…"))
 
@@ -85,12 +84,8 @@ struct CardViewTests_macOS {
     @Test func testMultiplePromises() async throws {
         Task { @MainActor in
             let cardView = CardTextView()
-
             let promise1 = cardView.appendPromise(attributes: [:])
-            #expect(promise1 != nil)
-
             let promise2 = cardView.appendPromise(attributes: [:])
-            #expect(promise2 != nil)
 
             #expect(cardView.textStorage!.string.isEqual("……"))
 

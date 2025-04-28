@@ -287,26 +287,24 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 }
 
 - (void) fulfillPromise:(NSUUID*) promise withString:(NSAttributedString*) promisedString {
-    for (NSTextStorage* storage in self.textStorage.attributeRuns) {
-        NSRange range = {};
-        NSDictionary* runAttrs = [storage attributesAtIndex:0 effectiveRange:&range];
-
-        if (runAttrs[CardTextPromiseUUIDAttributeName] && [runAttrs[CardTextPromiseUUIDAttributeName] isEqualToString:promise.UUIDString]) { // match up the uuid
-
-            // scrub any existing ranges for this promise to handle cases where
-            // the promisedString has multiple attribute runs for styling
-            [[self.textStorage rangesForAttribute:CardTextPromiseUUIDAttributeName value:promise.UUIDString] enumerateObjectsUsingBlock:^(NSString* rangeString, NSUInteger idx, BOOL* stop) {
-                NSRange range = NSRangeFromString(rangeString);
-                [self.textStorage replaceCharactersInRange:range withString:@""];
-            }];
-
+    // iterate through the text storage and find the first promise with this uuid
+    BOOL first = YES;
+    
+    for (NSString* rangeString in [self.textStorage rangesForAttribute:CardTextPromiseUUIDAttributeName value:promise.UUIDString].reverseObjectEnumerator) {
+        NSRange range = NSRangeFromString(rangeString);
+        if (first) {
             // now tag the promisedString with the promise so it can be replaced with the next fulfillment
             NSMutableAttributedString* mutablePromise = promisedString.mutableCopy;
             [mutablePromise addAttributes:@{CardTextPromiseUUIDAttributeName: promise.UUIDString}
                                     range:NSMakeRange(0, mutablePromise.length)];
-
-            storage.attributedString = mutablePromise;
-            break; // only fulfill the first promise
+            [self.textStorage replaceCharactersInRange:range withAttributedString:mutablePromise];
+            first = NO;
+        }
+        else {
+            // scrub any existing ranges for this promise to handle cases where
+            // the promisedString has multiple attribute runs for styling
+            // remove ranges in reverse to prevent out of range errors
+            [self.textStorage replaceCharactersInRange:range withString:@""];
         }
     }
 }
