@@ -152,15 +152,21 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 - (NSParagraphStyle*) paragraphStyleForColumns:(NSArray*)columnWidths {
     NSMutableParagraphStyle* style = NSMutableParagraphStyle.new;
-#if IL_APP_KIT
     NSMutableArray* stops = NSMutableArray.new;
     CGFloat columnEdge = 0;
     for (NSNumber* stop in columnWidths) {
         CGFloat stopValue = stop.doubleValue;
+#if IL_APP_KIT
         NSTextTabType tabType = NSLeftTabStopType;
         if (stopValue < 0) { // it's a right tab
             tabType = NSRightTabStopType;
         }
+#elif IL_UI_KIT
+        NSTextAlignment tabType = NSTextAlignmentLeft;
+        if (stopValue < 0) { // it's a right tab
+            tabType = NSTextAlignmentRight;
+        }
+#endif
 
         if ((stopValue > -1.0) && (stopValue < 1.0)) { // it's a fraction of the width of the frame
             stopValue = (self.frame.size.width * fabs(stopValue)); // be positive
@@ -170,14 +176,17 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
         }
 
         columnEdge += stopValue;
+#if IL_APP_KIT
         [stops addObject:[NSTextTab.alloc initWithType:tabType location:columnEdge]];
+#elif IL_UI_KIT
+        [stops addObject:[NSTextTab.alloc initWithTextAlignment:tabType location:columnEdge options:@{}]];
+#endif
     }
     // NSLog(@"tab stops: %@", stops);
     style.lineBreakMode = NSLineBreakByCharWrapping;
     style.firstLineHeadIndent = 0;
     style.headIndent = columnEdge;
     style.tabStops = stops;
-#endif
     return style;
 }
 
@@ -289,7 +298,7 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 - (void) fulfillPromise:(NSUUID*) promise withString:(NSAttributedString*) promisedString {
     // iterate through the text storage and find the first promise with this uuid
     BOOL first = YES;
-    
+
     for (NSString* rangeString in [self.textStorage rangesForAttribute:CardTextPromiseUUIDAttributeName value:promise.UUIDString].reverseObjectEnumerator) {
         NSRange range = NSRangeFromString(rangeString);
         if (first) {

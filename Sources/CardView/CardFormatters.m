@@ -489,7 +489,7 @@ static NSString* noBreakSpace;
     NSMutableAttributedString* formatted = nil;
 
     if (!noBreakSpace) {
-        noBreakSpace = [NSString stringWithFormat:@"%C", 0x202F];
+        noBreakSpace = [NSString stringWithFormat:@"%C", 0x202F]; // NARROW NO-BREAK SPACE Unicode: U+202F, UTF-8: E2 80 AF
     }
 
     if ([anObject isKindOfClass:NSNumber.class]) {
@@ -498,7 +498,7 @@ static NSString* noBreakSpace;
         if (self.prefix) {
             NSAttributedString* formattedPrefix = [NSAttributedString.alloc initWithString:self.prefix attributes:unitsAttrs];
             [formatted appendAttributedString:formattedPrefix];
-            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace]];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace attributes:attrs]];
         }
 
         NSString* valueString = [super stringForObjectValue:anObject];
@@ -506,7 +506,7 @@ static NSString* noBreakSpace;
         [formatted appendAttributedString:formattedValue];
         if (self.units) {
             NSAttributedString* formattedUnits = [NSAttributedString.alloc initWithString:self.units attributes:unitsAttrs];
-            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace]];
+            [formatted appendAttributedString:[NSAttributedString.alloc initWithString:noBreakSpace attributes:attrs]];
             [formatted appendAttributedString:formattedUnits];
         }
     }
