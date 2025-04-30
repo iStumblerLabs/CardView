@@ -5,9 +5,12 @@
 #import "CardRuleCell.h"
 #endif
 
+NSString* const CardTextAttachmentActionName = @"CardTextAttachmentAction";
+NSString* const CardTextAttacmentTargetName = @"CardTextAttacmentTarget";
+
 @implementation NSMutableAttributedString (CardView)
 
-+ (NSDictionary*) textStyle:(CardTextStyle) textStyle fontSize:(CGFloat) fontSize graphStyle:(NSParagraphStyle*) graphStyle {
++ (NSDictionary*) textStyle:(CardStyle) textStyle fontSize:(CGFloat) fontSize graphStyle:(NSParagraphStyle*) graphStyle {
     NSMutableDictionary* style = NSMutableDictionary.new;
 
     // this is CardPlainStyle
@@ -65,7 +68,7 @@
     return attrString;
 }
 
-- (NSAttributedString*) append:(NSString*) string textStyle:(CardTextStyle) textStyle size:(CGFloat) fontSize style:(NSParagraphStyle*) graphStyle {
+- (NSAttributedString*) append:(NSString*) string textStyle:(CardStyle) textStyle size:(CGFloat) fontSize style:(NSParagraphStyle*) graphStyle {
     NSAttributedString* attrString = nil;
 
     if (string) {
@@ -179,7 +182,17 @@
 
         [self appendAttributedString:attrString];
     }
+
     return attrString;
+}
+
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes target:(nullable id) target action:(SEL) action {
+    NSMutableDictionary* mutableAttributes = attributes.mutableCopy;
+    if (target) {
+        mutableAttributes[CardTextAttacmentTargetName] = target;
+    }
+    mutableAttributes[CardTextAttachmentActionName] = NSStringFromSelector(action);
+    return [self appendImage:image withAttributes:mutableAttributes];
 }
 
 @end

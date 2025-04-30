@@ -6,7 +6,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, CardTextStyle) {
+typedef NS_ENUM(NSUInteger, CardStyle) {
     CardPlainStyle,
     CardHeaderStyle,
     CardSubheaderStyle,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, CardTextStyle) {
     CardMonospaceStyle
 };
 
-@protocol CardTextStyle <NSObject>
+@protocol CardTextStyle
 
 // MARK: - Attributes
 
@@ -25,12 +25,12 @@ typedef NS_ENUM(NSUInteger, CardTextStyle) {
 /// @param fontSize the font size to use for the attributes
 /// @param graphStyle the paragraph style to use for the attributes
 ///
-+ (NSDictionary*) textStyle:(CardTextStyle) textStyle fontSize:(CGFloat) fontSize graphStyle:(NSParagraphStyle*) graphStyle;
++ (NSDictionary*) textStyle:(CardStyle) textStyle fontSize:(CGFloat) fontSize graphStyle:(NSParagraphStyle*) graphStyle;
 
 // MARK: - Styles
 
 - (NSAttributedString*) append:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style;
-- (NSAttributedString*) append:(NSString*) string textStyle:(CardTextStyle) textStyle size:(CGFloat) fontSize style:(NSParagraphStyle*) graphStyle;
+- (NSAttributedString*) append:(NSString*) string textStyle:(CardStyle) textStyle size:(CGFloat) fontSize style:(NSParagraphStyle*) graphStyle;
 
 - (NSAttributedString*) appendHeader:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style;
 - (NSAttributedString*) appendSubhead:(NSString*) string size:(CGFloat) fontSize style:(NSParagraphStyle*) style;
@@ -52,6 +52,7 @@ typedef NS_ENUM(NSUInteger, CardTextStyle) {
 
 - (NSAttributedString*) appendImage:(ILImage*) image size:(CGFloat) fontSize style:(NSParagraphStyle*) style;
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes;
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes target:(nullable id) target action:(SEL) action;
 
 @end
 

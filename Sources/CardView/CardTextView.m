@@ -83,6 +83,20 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 #else
     self.fontSize = ILFont.systemFontSize;
 #endif
+
+    /* TODO: manually create a layout manager which doesn't break layout so we can enable tap/click 
+
+#if IL_UI_KIT
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    [self addGestureRecognizer:tap];
+#endif
+
+    NSLayoutManager* manager = NSLayoutManager.new;
+    manager.delegate = self;
+     manager.showsInvisibleCharacters = YES;
+    [manager addTextContainer:self.textContainer];
+    [self.textStorage addLayoutManager:manager];
+    */
 }
 
 - (void) updateView {
@@ -115,19 +129,47 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
     [self.textStorage setAttributedString:[NSAS.alloc initWithString:@""]];
 }
 
-// MARK: -
-
-- (NSTextAttachment*) clickedAttachment {
-    NSTextAttachment* attachment = nil;
+// MARK: - IBActions
+/* TODO: fix layout issue when creating a layoutManager
 #if IL_APP_KIT
-    CGPoint click = [self convertPoint:NSApp.currentEvent.locationInWindow fromView:nil];
-            click.y -= self.textContainerInset.height;
-            click.x -= self.textContainerInset.width;
-    NSUInteger index = [self.layoutManager glyphIndexForPoint:click inTextContainer:[self textContainer]];
-    attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
-#endif
-    return attachment;
+- (IBAction) mouseDown:(NSEvent*) event {
+    CGPoint click = [self convertPoint:event.locationInWindow fromView:nil];
+    click.y -= self.textContainerInset.height;
+    click.x -= self.textContainerInset.width;
+    NSUInteger index = [self.layoutManager characterIndexForPoint:click inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:nil];
+    index -= 1;
+    NSDictionary* attrs = [self.textStorage attributesAtIndex:index effectiveRange:nil];
+    NSTextAttachment* attachment = attrs[NSAttachmentAttributeName];
+    if (attachment) {
+        SEL action = NSSelectorFromString(attrs[CardTextAttachmentActionName]);
+        if (action) {
+            id target = attrs[CardTextAttacmentTargetName];
+            [ILApplication.sharedApplication sendAction:action to:target from:self];
+        }
+    }
+    else {
+        [super mouseDown:event];
+    }
 }
+#elif IL_UI_KIT
+- (IBAction) onTap:(UITapGestureRecognizer*) recognizer {
+    CGPoint click = [recognizer locationInView:self];
+    click.y -= self.textContainerInset.top;
+    click.x -= self.textContainerInset.left;
+    NSUInteger index = [self.layoutManager glyphIndexForPoint:click inTextContainer:[self textContainer]];
+    index -= 1;
+    NSTextAttachment* attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:nil];
+    if (attachment) {
+        NSDictionary* attrs = [self.textStorage attributesAtIndex:index effectiveRange:nil];
+        SEL action = NSSelectorFromString(attrs[CardTextAttachmentActionName]);
+        if (action) {
+            id target = attrs[CardTextAttacmentTargetName];
+            [ILApplication.sharedApplication sendAction:action to:target from:self];
+        }
+    }
+}
+#endif
+*/
 
 // MARK: - Style
 
@@ -192,7 +234,7 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 // MARK: - Resizable Styles
 
-- (NSAttributedString*) appendStyled:(CardTextStyle) style string:(NSString*)string {
+- (NSAttributedString*) appendStyled:(CardStyle) style string:(NSString*)string {
     return [self.textStorage append:string textStyle:style size:self.fontSize style:self.topStyle];
 }
 
@@ -258,6 +300,10 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes {
     return [self.textStorage appendImage:image withAttributes:attributes];
+}
+
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes target:(nullable id) target action:(SEL) action {
+    return [self.textStorage appendImage:image withAttributes:attributes target:target action:action];
 }
 
 // MARK: - Formatted Objects
@@ -327,6 +373,20 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 - (BOOL) acceptsFirstResponder {
     return YES;
+}
+
+// MARK: - NSLayoutManagerDelegate
+
+- (void) layoutManager:(NSLayoutManager *) layoutManager
+didCompleteLayoutForTextContainer:(NSTextContainer *) textContainer
+                 atEnd:(BOOL) layoutFinishedFlag {
+
+}
+
+- (void) layoutManager:(NSLayoutManager *) layoutManager
+         textContainer:(NSTextContainer *) textContainer
+didChangeGeometryFromSize:(CGSize) oldSize {
+
 }
 
 @end

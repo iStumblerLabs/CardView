@@ -124,7 +124,7 @@ of styled attributed strings for display in a TextView.
 Styles are provided for formatting text:
 
 ```
-typedef NS_ENUM(NSUInteger, CardTextStyle) {
+typedef NS_ENUM(NSUInteger, CardStyle) {
     CardPlainStyle,
     CardHeaderStyle,
     CardSubheaderStyle,

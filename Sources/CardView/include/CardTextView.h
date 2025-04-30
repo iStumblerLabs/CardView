@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Implements an Address Book Card style text view
 /// subclass of ILTextView with support for columns and styled text on macOS and iOS
-@interface CardTextView : ILTextView <ILViewLifecycle> // TODO: implment CardTextStyle as well as the convenience methods
+@interface CardTextView : ILTextView <ILViewLifecycle, NSLayoutManagerDelegate>
 @property(nonatomic, assign) CGFloat fontSize;
 
 /// an array of numbers describing the colum layout for the card view
@@ -45,10 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) clearCard;
 
-// MARK: - Attachments
-
-- (NSTextAttachment*) clickedAttachment;
-
 // MARK: - Column Styles
 
 /// @returns an NSParagraphStyle with the columns provided rendered as tabs
@@ -64,10 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @returns the style that was last pushed onto the stack, or nil if the stack is empty
 - (nullable NSParagraphStyle*) popStyle;
 
-// MARK: - CardTextStyle
+// MARK: - CardStyle
 
 /// @returns attributed string with the style provided
-- (NSAttributedString*) appendStyled:(CardTextStyle) style string:(NSString*)string;
+- (NSAttributedString*) appendStyled:(CardStyle) style string:(NSString*)string;
 
 /// Convenience method for appending a string with a style
 
@@ -95,6 +91,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSAttributedString*) appendImage:(ILImage*) image;
 - (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes;
+
+/// @returns an attributed string with the
+/// @param image provided and the
+/// @param attributes along with an
+/// @param target and
+/// @param action to perform when the image is clicked
+- (NSAttributedString*) appendImage:(ILImage*) image withAttributes:(NSDictionary*) attributes target:(nullable id) target action:(SEL) action;
 
 // MARK: - Formatted Objects
 
