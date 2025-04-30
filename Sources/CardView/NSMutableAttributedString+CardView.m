@@ -132,14 +132,15 @@
 
 - (NSAttributedString*) appendRuleWithColor:(ILColor*) color width:(CGFloat) width style:(NSParagraphStyle*) style {
     NSAttributedString* attrString = nil;
+    [self appendNewline:ILFont.defaultFontSize style:style]; // each rule is it's own paragrah
 #if IL_APP_KIT
     attrString = [CardRuleCell separatorWithColor:color width:width];
-    [self appendNewline:ILFont.defaultFontSize style:style]; // each rule is it's own paragrah
     [self appendAttributedString:attrString];
-    [self appendNewline:ILFont.defaultFontSize style:style]; // and clears the next line below it
 #elif IL_UI_KIT
     // TODO: NSTextAttachment* attachment = [NSTextAttachment textAttachmentWithImage:nil];
+    attrString = [self appendGray:@"—" size:width style:style];
 #endif
+    [self appendNewline:ILFont.defaultFontSize style:style]; // and clears the next line below it
     return attrString;
 }
 

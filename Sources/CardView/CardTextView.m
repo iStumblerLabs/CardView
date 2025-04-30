@@ -221,7 +221,7 @@ static NSString* const CardTextPromiseUUIDAttributeName = @"CardTextPromiseUUIDA
 
 // MARK: - Rules
 
-- (NSAttributedString*) appendRule; {
+- (NSAttributedString*) appendRule {
     return [self.textStorage appendRule:self.topStyle];
 }
 
