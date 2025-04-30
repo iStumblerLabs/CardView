@@ -91,7 +91,7 @@ static CGFloat unit_scale = 0.9;
         BOOL first = YES;
         for (id valueItem in attributeArray) {
             NSAttributedString* formattedItem = nil;
-            if (!first) {
+            if (!first || (first = NO)) {
                 [formattedString appendAttributedString:
                  [NSAttributedString.alloc initWithString:self.separator attributes:[CardFormatters unitsAttrs:attrs]]];
             }
@@ -106,10 +106,6 @@ static CGFloat unit_scale = 0.9;
             }
             else {
                 formattedItem = [NSAttributedString.alloc initWithString:[valueItem description] attributes:attrs];
-            }
-
-            if (first) {
-                first = NO;
             }
 
             [formattedString appendAttributedString:formattedItem];
@@ -211,10 +207,16 @@ static NSString* tabSymbol;
             NSUInteger lineBytes = self.hexLineBytes;
             NSUInteger dataIndex = 0;
             NSMutableAttributedString* hexDump = NSMutableAttributedString.new;
+            BOOL first = YES;
+
             while (dataIndex < data.length) {
                 NSUInteger remainingBytes = (data.length - dataIndex);
                 if (remainingBytes < lineBytes) { // last line
                     lineBytes = remainingBytes;
+                }
+
+                if (!first || (first = NO)) {
+                    [hexDump appendAttributedString:[NSAttributedString.alloc initWithString:@"\n"]];
                 }
 
                 NSData* lineData = [obj subdataWithRange:NSMakeRange(dataIndex, lineBytes)];
@@ -236,7 +238,6 @@ static NSString* tabSymbol;
                 [hexDump appendAttributedString:
                  [NSAttributedString.alloc initWithString:decoded
                                                attributes:[CardFormatters unitsAttrs:[CardFormatters monospaceAttrs:attrs]]]];
-                [hexDump appendAttributedString:[NSAttributedString.alloc initWithString:@"\n"]];
 
                 dataIndex += lineBytes;
             }

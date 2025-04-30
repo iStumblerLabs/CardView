@@ -141,7 +141,7 @@ NSString* const CardTextAttacmentTargetName = @"CardTextAttacmentTarget";
     [self appendAttributedString:attrString];
 #elif IL_UI_KIT
     // TODO: NSTextAttachment* attachment = [NSTextAttachment textAttachmentWithImage:nil];
-    attrString = [self appendGray:@"—" size:width style:style];
+    [self appendGray:@"———" size:ILFont.defaultFontSize style:style];
 #endif
     [self appendNewline:ILFont.defaultFontSize style:style]; // and clears the next line below it
     return attrString;
