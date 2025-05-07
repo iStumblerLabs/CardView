@@ -495,7 +495,7 @@ static NSString* noBreakSpace;
 
     if ([anObject isKindOfClass:NSNumber.class]) {
         formatted = NSMutableAttributedString.new;
-        NSDictionary* unitsAttrs = [CardFormatters unitsAttrs:attrs];
+        NSDictionary* unitsAttrs = [CardFormatters unitsAttrs:[CardFormatters monospaceAttrs:attrs]];
         if (self.prefix) {
             NSAttributedString* formattedPrefix = [NSAttributedString.alloc initWithString:self.prefix attributes:unitsAttrs];
             [formatted appendAttributedString:formattedPrefix];
@@ -783,7 +783,7 @@ void timecode(double totalSeconds, double frameInterval, long* hours, long* minu
     NSMutableAttributedString* timecodeString = NSMutableAttributedString.new;
 
     if ([obj isKindOfClass:NSNumber.class]) {
-        NSDictionary* seperatorAttrs = (self.unitSeparators ? [CardFormatters unitsAttrs:attrs] : [CardFormatters cardinalAttrs:attrs]);
+        NSDictionary* seperatorAttrs = (self.unitSeparators ? [CardFormatters unitsAttrs:[CardFormatters monospaceAttrs:attrs]] : [CardFormatters cardinalAttrs:attrs]);
         double totalSeconds = ((NSNumber*) obj).doubleValue;
         double decimalSeconds;
         long hours, minutes, seconds, frames;
