@@ -16,7 +16,7 @@ struct CardViewTests_macOS {
             let cardView = CardTextView()
             cardView.appendNewline()
             cardView.clearCard()
-            #expect(cardView.textStorage!.string.isEmpty)
+            #expect(cardView.textStorage.string.isEmpty)
         }
     }
 
@@ -73,11 +73,11 @@ struct CardViewTests_macOS {
             let cardView = CardTextView()
             let promise = cardView.appendPromise(attributes: [:])
 
-            #expect(cardView.textStorage!.string.isEqual("…"))
+            #expect(cardView.textStorage.string.isEqual("…"))
 
             let promised = "Promised"
             cardView.fulfillPromise(promise, with: NSAttributedString(string: promised))
-            #expect(cardView.textStorage!.string.isEqual(promised))
+            #expect(cardView.textStorage.string.isEqual(promised))
         }
     }
 
@@ -87,15 +87,15 @@ struct CardViewTests_macOS {
             let promise1 = cardView.appendPromise(attributes: [:])
             let promise2 = cardView.appendPromise(attributes: [:])
 
-            #expect(cardView.textStorage!.string.isEqual("……"))
+            #expect(cardView.textStorage.string.isEqual("……"))
 
             let firstPromised = "First Promised"
             cardView.fulfillPromise(promise1, with: NSAttributedString(string: firstPromised))
-            #expect(cardView.textStorage!.string.isEqual(firstPromised + "…"))
+            #expect(cardView.textStorage.string.isEqual(firstPromised + "…"))
 
             let secondPromised = "Second Promised"
             cardView.fulfillPromise(promise2, with: NSAttributedString(string: secondPromised))
-            #expect(cardView.textStorage!.string.isEqual(firstPromised + secondPromised))
+            #expect(cardView.textStorage.string.isEqual(firstPromised + secondPromised))
         }
     }
 
