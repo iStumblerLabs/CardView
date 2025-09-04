@@ -1,5 +1,9 @@
 # CardView.framework
 
+```
+This fork is no longer being actively maintained. Use: git@github.com:alfwatt/CardView.git
+```
+
 iStumbler Labs CardView.Framework — CardView is a good looking text view for iOS, macOS, 
 and tvOS with convenience methods for formatting text, embedding controls and scaling content.
 
